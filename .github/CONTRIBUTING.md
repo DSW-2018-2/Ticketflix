@@ -12,12 +12,12 @@ Obrigado por contribuir! :tada::+1: Sua ajuda será recebida com muita gratidão
 
 * Esse projeto segue um padrão de [_Issues_](). Logo, caso encontre um bug, verifique se ele não se encontra em uma das nossas _Issues_. Os bugs devem ser marcados com _tag (label)_ __bug__.
 
-* Se o bug encontrado não consta nas _Isses_, basta abrir uma [Nova _Issue_](https://github.com/fga-gpp-mds/2018.1-Dr-Down/issues/new).
+* Se o bug encontrado não consta nas _Isses_, basta abrir uma [Nova _Issue_]https://github.com/DSW-2018-2/Arquitetura-Desenho-2018-2/issues/new).
 
 
 ## Adicionando e/ou modificando alguma funcionalidade
 
-* Primeiro verifique que não existe nenhuma [_Issue_]() a respeito dessa modificação e/ou adição.
+* Primeiro verifique que não existe nenhuma [_Issue_](https://github.com/DSW-2018-2/Arquitetura-Desenho-2018-2/issues/new) a respeito dessa modificação e/ou adição.
 
 * Caso não exista, crie uma [Nova _Issue_](https://github.com/DSW-2018-2/Arquitetura-Desenho-2018-2/issues/new). Dê um título significativo a ela, coloque uma descrição e pelo menos uma _label_.
 

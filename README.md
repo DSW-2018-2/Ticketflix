@@ -10,4 +10,4 @@ https://github.com/DSW-2018-2/Arquitetura-Desenho-2018-2/wiki
 
 ## Contruibuindo: 
 
-Para contribuir com o projeto, por favor, leia o [CONTRIBUTING](), nele contém algumas informações importantes de como contribuir, um link para o nosso código de conduta e alguns dos nossos padrões!
+Para contribuir com o projeto, por favor, leia o [CONTRIBUTING](https://github.com/DSW-2018-2/Arquitetura-Desenho-2018-2/blob/master/.github/CONTRIBUTING.md), nele contém algumas informações importantes de como contribuir, um link para o nosso código de conduta e alguns dos nossos padrões!
