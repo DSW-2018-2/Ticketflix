@@ -12,7 +12,7 @@ Obrigado por contribuir! :tada::+1: Sua ajuda será recebida com muita gratidão
 
 * Esse projeto segue um padrão de [_Issues_](https://github.com/DSW-2018-2/Ticketflix/blob/develop/.github/ISSUE_TEMPLATE.md). Logo, caso encontre um bug, verifique se ele não se encontra em uma das nossas _Issues_. Os bugs devem ser marcados com _tag (label)_ __bug__.
 
-* Se o bug encontrado não consta nas _Issues_, basta abrir uma [Nova _Issue_]https://github.com/DSW-2018-2/Ticketflix/issues/new).
+* Se o bug encontrado não consta nas _Issues_, basta abrir uma [Nova _Issue_](https://github.com/DSW-2018-2/Ticketflix/issues/new).
 
 
 ## Adicionando e/ou modificando alguma funcionalidade
