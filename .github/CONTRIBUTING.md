@@ -1,4 +1,4 @@
-# Contribuindo com o Cineminha
+# Contribuindo com Ticketflix
 
 Caso queira contribuir com o projeto, talvez seja uma boa ideia começar pelo [README](https://github.com/DSW-2018-2/Ticketflix) para conhecer melhor sobre nós.
 Outro documento importante e que deve ser lido é o [Código de Conduta](https://github.com/DSW-2018-2/Ticketflix/blob/develop/docs/CODE_OF_CONDUCT.md).
