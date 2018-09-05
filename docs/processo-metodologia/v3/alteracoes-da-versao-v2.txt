@@ -1,0 +1,20 @@
+Alterações:
+Etapa Design/Arquitetura
+- Melhor distribuição dos objetos, para facilitar leitura
+- Uso de paralelo entre Definição do Escopo e Definição das Tecnologias do Projeto,
+esse paralelo indica que não necessariamente, as duas tarefas iniciem ao mesmo tempo,
+mas que para a tarefa Elicitação de Requisitos inicie, é necessário que as duas sejam finalizas antes.
+- Uso de grupo para os artefatos produzidos na fase de Elicitação de Requisitos
+
+Etapa Execução
+- O gateway  condicional "Todos os artefatos e padrões estão de acordo?", 
+quando falso(não), retorna para Definição das tecnologias do Projeto, não Executando a Definição do escopo novamente.
+- Alteração do titulo da tarefa "Desenvolvimento/Pair Programming" para "Desenvolvimento", 
+Pair Programming seria uma politica/metodologia do Desenvolvimento
+- Alteração do titulo da tarefa "Testes/QA" para "Garantia da Qualidade", 
+pois segundo alguns membros do grupo, o titulo estava confuso
+- Uso do paralelo para representar que o Daily Meeting e a Atualização do Kanban, 
+ocorrem em paralelo a todo o processo de Execução
+
+Etapa Transição/Consolidação
+- Após a tarefa "Correção para a próxima iteração", finalizar etapa
