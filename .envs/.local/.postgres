@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=ticketflix
+POSTGRES_USER=lbAcciRcYhVtFPjRvjJKZRWZQnAwjmOA
+POSTGRES_PASSWORD=di1YVHXa4CQGyr5ZkcGEu0DGKyZhAC0TZ4TR214wR9bozDLg6WYQCvV7Fyx22zks
