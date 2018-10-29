@@ -27,7 +27,6 @@ before_install:
 
 before_script:
   - echo $DOCKER_ID_USER_PASSWORD | docker login -u $DOCKER_ID_USER --password-stdin
-  - docker-compose -f local.yml pull
   - docker-compose -f local.yml up --build -d
 
 script:
