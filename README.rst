@@ -43,20 +43,7 @@ O primeiro passo é fazer o clone do projeto pelo GitHub (tenha certeza de ter o
 
     $ git clone https://github.com/DSW-2018-2/Ticketflix.git
 
-Para rodar a aplicação tenha certeza de ter algumas dependências instaladas. Existem dois scripts que auxiliam o você nessa etapa.
-Para fazer a instalação basta rodar (partindo que está na pasta base após clone) os seguintes ``shell scripts``::
-
-    $ sudo bash utility/install_os_dependencies.sh arg
-    $ sudo bash utility/install_python_dependencies.sh
-
-No primeiro script será necessário dizer qual é o ``arg`` da operação que deseja fazer, as funções disponíveis são:
-
-    * list
-    * help
-    * install
-    * upgrade
-
-Certifique de ter instalado também:
+Certifique de ter instalado:
 
     * docker
     * docker-compose
