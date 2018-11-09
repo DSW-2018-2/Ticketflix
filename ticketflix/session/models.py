@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Session(models.Model):
@@ -7,3 +8,6 @@ class Session(models.Model):
     place = models.CharField( max_length=50)
     available_ticket_number = models.IntegerField()
     total_ticket_number = models.IntegerField()
+
+    def get_absolute_url(self):
+        return reverse('session-datail', args=[str(self.id)])
