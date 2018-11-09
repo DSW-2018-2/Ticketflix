@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}Members{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Users</h2>
+
+  <div class="list-group">
+    {% for establishment in object_list %}
+      <li>
+        <a href="{{establishment.get_absolute_url}}">{{establishment.name}}</a>  
+      </li>
+      {% empty %}
+          <li>No establishment yet.</li>
+      {% endfor %}
+  </div>
+</div>
+{% endblock content %}
