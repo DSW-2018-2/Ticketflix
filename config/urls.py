@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from ticketflix.session.views import SessionDetailView
+
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
@@ -21,6 +23,7 @@ urlpatterns = [
     ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path('session/<slug:pk>', SessionDetailView.as_view(template_name="session/session-detail.html"), name='session-datail'),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
