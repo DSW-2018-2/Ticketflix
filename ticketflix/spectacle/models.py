@@ -19,6 +19,11 @@ class SpectacleComponent(models.Model):
     DEZESSEISANOS = '16ANOS'
     MAIORESDEDEZOITO = 'MAIORES18'
 
+    FILME = 'FILME'
+    SHOW = 'SHOW'
+    PECA ='PECA'
+    NA = 'NA'
+
     STATUS_CHOICES = (
         (PREESTREIA, 'Pré-Estréia'),
         (EMCARTAZ, 'Em Cartaz'),
@@ -36,6 +41,13 @@ class SpectacleComponent(models.Model):
         (MAIORESDEDEZOITO, 'Maiores de 18 Anos'),
     )
 
+    SPECTACLE_CHOICES = (
+        (FILME, 'Filme'),
+        (SHOW, 'Show'),
+        (PECA, 'Peça Teatral'),
+        (NA, 'N/A'),
+    )
+
     name = models.CharField(
         verbose_name=_('Nome'),
         help_text=_('Nome da Espetáculo'),
@@ -51,7 +63,7 @@ class SpectacleComponent(models.Model):
 
     status = models.CharField(
         verbose_name=_('Status do Espetáculo'),
-        help_text=_(''),
+        help_text=_('Status do Espetáculo'),
         max_length=15,
         choices=STATUS_CHOICES,
         default=EMBREVE
@@ -72,7 +84,7 @@ class SpectacleComponent(models.Model):
 
     duration = models.PositiveIntegerField(
         verbose_name=_('Duração'),
-        help_text=_('Duração do Espetáculo'),
+        help_text=_('Duração do Espetáculo em minutos'),
         default=0
     )
 
@@ -83,6 +95,15 @@ class SpectacleComponent(models.Model):
         choices=CLASSIFICATION_CHOICES,
         default=LIVRE
     )
+
+    type = models.CharField(
+        verbose_name=_('Tipo do Espetáculo'),
+        help_text=_('Tipo do Espetáculo'),
+        max_length=15,
+        choices=SPECTACLE_CHOICES,
+        default=NA
+    )
+
 
     def __str__(self):
         return self.name
