@@ -94,18 +94,17 @@ class Spectacle(SpectacleComponent):
         verbose_name_plural = _("Espetáculos")
 
 
-class SpectacleDecorator(SpectacleComponent, models.Model):
+class SpectacleDecorator(SpectacleComponent):
     class Meta:
         abstract = True
 
-    spectacle = SpectacleComponent
+    spectacle = models.ForeignKey(
+        Spectacle,
+        on_delete=models.PROTECT
+    )
 
-    def __init__(self, spectacle):
-        super().__init__()
-        self._spectacle = spectacle
 
-
-class Movie(SpectacleDecorator, models.Model):
+class Movie(SpectacleDecorator):
     class Meta:
         verbose_name = _("Filme")
         verbose_name_plural = _("Filmes")
@@ -188,16 +187,11 @@ class Movie(SpectacleDecorator, models.Model):
         default=""
     )
 
-    spectacle = models.ForeignKey(
-        SpectacleDecorator,
-        on_delete=models.CASCADE
-    )
-
     def __str__(self):
         return self.spectacle.name
 
 
-class Play(SpectacleDecorator, models.Model):
+class Play(SpectacleDecorator):
     class Meta:
         verbose_name = _("Peça Teatral")
         verbose_name_plural = _("Peças Teatrais")
@@ -271,16 +265,11 @@ class Play(SpectacleDecorator, models.Model):
         default=OUTROS
     )
 
-    spectacle = models.ForeignKey(
-        SpectacleDecorator,
-        on_delete=models.CASCADE
-    )
-
     def __str__(self):
         return self.spectacle.name
 
 
-class Show(SpectacleDecorator, models.Model):
+class Show(SpectacleDecorator):
     class Meta:
         verbose_name = _("Show")
         verbose_name_plural = _("Shows")
@@ -304,11 +293,6 @@ class Show(SpectacleDecorator, models.Model):
         help_text=_('Descrição do Show'),
         max_length=500,
         default=""
-    )
-
-    spectacle = models.ForeignKey(
-        SpectacleDecorator,
-        on_delete=models.CASCADE
     )
 
     def __str__(self):
