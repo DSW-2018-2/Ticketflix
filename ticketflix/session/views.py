@@ -1,24 +1,44 @@
 from django.shortcuts import render
-
+from django.views.generic import ListView
 from django.views.generic import DetailView
-from django.views.generic.list import ListView
-# Create your views here.
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 from .models import Session
 
-class SessionDetailView(DetailView):
+
+class SessionList(ListView):
     model = Session
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
 
-
-class SessionListView(ListView):
+class SessionView(DetailView):
     model = Session
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs) 
-        return context
-    
-    
+
+class SessionCreate(CreateView):
+    model = Session
+    fields = [
+        'place',
+        'date',
+        'time',
+        'total_ticket_number',
+        'available_ticket_number'
+    ]
+    success_url = reverse_lazy('session:session_list')
+
+
+class SessionUpdate(UpdateView):
+    model = Session
+    fields = [
+        'place',
+        'date',
+        'time',
+        'total_ticket_number',
+        'available_ticket_number'
+    ]
+    success_url = reverse_lazy('session:session_list')
+
+
+class SessionDelete(DeleteView):
+    model = Session
+    success_url = reverse_lazy('session:session_list')
