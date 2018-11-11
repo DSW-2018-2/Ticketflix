@@ -7,6 +7,7 @@ from django.views import defaults as default_views
 from ticketflix.establishments.views import EstablishmentDetailView
 from ticketflix.establishments.views import EstablishmentsListView
 from ticketflix.establishments.views import EstablishmentUpdateView
+from ticketflix.establishments.views import EstablishmentDeleteView
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -26,7 +27,8 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path('establishments/<slug:pk>', EstablishmentDetailView.as_view(template_name="establishment/establishment-detail.html"), name='establishment-detail'),
     path('establishments/', EstablishmentsListView.as_view(template_name="establishment/establishment_list.html"),name='establishment-list'),
-    path('establishments/<slug:pk>/update', EstablishmentUpdateView.as_view(template_name="establishment/establishment_update.html"),name='establishment-update')
+    path('establishments/<slug:pk>/update', EstablishmentUpdateView.as_view(template_name="establishment/establishment_update.html"),name='establishment-update'),
+    path('establishments/<slug:pk>/delete',EstablishmentDeleteView.as_view(template_name="establishment/establishment_delete.html"),name='establishment-delete')
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
