@@ -4,12 +4,12 @@
 
 {% block content %}
 <div class="container">
-  <h2>Users</h2>
+  <h2>establishments</h2>
 
   <div class="list-group">
     {% for establishment in object_list %}
       <li>
-        <a href="{{establishment.get_absolute_url}}">{{establishment.name}}</a>  
+        <a href="{{establishment.get_absolute_url}}">{{establishment.name}}</a> 
       </li>
       {% empty %}
           <li>No establishment yet.</li>
