@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Espetáculos" %}
+{% endblock %}
+
+{% block content %}
+<h1>Espetáculo</h1>
+<ul>
+  {{ spectacle.name }}
+  {{ spectacle.spectacle_type }}
+  {{ spectacle.status }}
+  {{ spectacle.duration }}
+
+  {% if spectacle.poster  %}
+    {{ spectacle.poster }}
+  {% endif %}
+
+  {{ spectacle.classification }}
+
+</ul>
+{% endblock content %}

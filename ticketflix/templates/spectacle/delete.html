@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Espetáculos" %}
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <p>{% trans 'Tem cereteza de que deseja deletar esse objeto?' %} {{ spectacle }}</p>
+  <button type="submit" class="btn btn-success float-right">{% trans 'Submit' %}</button>
+</form>
+<a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
+{% endblock content %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -9,7 +10,7 @@ class SpectacleComponent(models.Model):
     PREESTREIA = 'PREESTREIA'
     EMCARTAZ = 'EMCARTAZ'
     LANCAMENTO = 'LANCAMENTO'
-    FORACATAZ = 'FORACARTAZ'
+    FORACARTAZ = 'FORACARTAZ'
     EMBREVE = 'EMBREVE'
 
     LIVRE = 'LIVRE'
@@ -28,7 +29,7 @@ class SpectacleComponent(models.Model):
         (PREESTREIA, 'Pré-Estréia'),
         (EMCARTAZ, 'Em Cartaz'),
         (LANCAMENTO, 'Lançamento'),
-        (FORACATAZ, 'Fora de Cartaz'),
+        (FORACARTAZ, 'Fora de Cartaz'),
         (EMBREVE, 'Em Breve'),
     )
 
@@ -96,7 +97,7 @@ class SpectacleComponent(models.Model):
         default=LIVRE
     )
 
-    type = models.CharField(
+    spectacle_type = models.CharField(
         verbose_name=_('Tipo do Espetáculo'),
         help_text=_('Tipo do Espetáculo'),
         max_length=15,
@@ -104,9 +105,11 @@ class SpectacleComponent(models.Model):
         default=NA
     )
 
-
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('spectacle-detail', kwargs={'id': self.id})
 
 
 class Spectacle(SpectacleComponent):

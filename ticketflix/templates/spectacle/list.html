@@ -1,8 +1,15 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Espetáculos" %}
+{% endblock %}
+
+{% block content %}
 <h1>Espetáculo</h1>
 <ul>
-    {% for spectacle in spectacle_list %}
-    <li>
-    	{{spectacle}}
-    </li>
+    {% for spectacle in object_list %}
+      {{ spectacle }}
     {% endfor %}
 </ul>
+{% endblock content %}
