@@ -26,5 +26,5 @@ class EstablishmentsListView(ListView):
 class EstablishmentUpdateView(UpdateView):
 
     model = Establishment
-    fields = ['name']
+    fields = ['name', 'address', 'addressComplement', 'cep', 'city', 'phoneNumber']
     template_name_suffix = '_update_form'
