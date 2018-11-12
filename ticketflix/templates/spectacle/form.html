@@ -36,22 +36,27 @@
           {% endif %}
         </div>
       </div>
-
       <div id="div_id_spectacle_type" class="form-group">
       <label for="id_spectacle_type" class="col-form-label  requiredField">
           {% trans 'Tipo do Espetáculo' %}<span class="asteriskField">*</span>
       </label>
       <div class="">
         <select name="spectacle_type" class="select form-control" required="" id="id_spectacle_type">
-        {% if object.spectacle_type %}
-          <option value="{{object.spectacle_type}}">{{ object.spectacle_type }}</option>
-        {% else %}
+        {% if not object.get_spectacle_type_display %}
           <option value="" selected="">---------</option>
+          <option value="FILME">{% trans 'Filme' %}</option>
+          <option value="SHOW">{% trans 'Show' %}</option>
+          <option value="PECA">{% trans 'Peça Teatral' %}</option>
+          <option value="NA">{% trans 'N/A' %}</option>
+        {% else %}
+          {% for x, y in object.SPECTACLE_CHOICES %}
+            {% if object.spectacle_type != x %}
+              <option value="{{ x }}">{{ y }}</option>
+            {% else %}
+              <option value="{{object.spectacle_type}}" selected="">{{object.get_spectacle_type_display}}</option>
+            {% endif %}
+          {% endfor %}
         {% endif %}
-        <option value="FILME">{% trans 'Filme' %}</option>
-        <option value="SHOW">{% trans 'Show' %}</option>
-        <option value="PECA">{% trans 'Peça Teatral' %}</option>
-        <option value="NA">{% trans 'N/A' %}</option>
         </select>
       </div>
       <br>
@@ -62,16 +67,23 @@
       </label>
       <div class="">
         <select name="status" class="select form-control" required="" id="id_status">
-        {% if object.status %}
-          <option value="{{object.status}}">{{ object.status }}</option>
-        {% else %}
+        {% if not object.get_status_display %}
           <option value="" selected="">---------</option>
+          <option value="PREESTREIA">{% trans 'Pré-Estréia' %}</option>
+          <option value="EMCARTAZ">{% trans 'Em Cartaz' %}</option>
+          <option value="LANCAMENTO">{% trans 'Lançamento' %}</option>
+          <option value="FORACARTAZ">{% trans 'Fora de Cartaz' %}</option>
+          <option value="EMBREVE">{% trans 'Em Breve' %}</option>
+        {% else %}
+          {% for x, y in object.STATUS_CHOICES %}
+            {% if object.status != x %}
+              <option value="{{ x }}">{{ y }}</option>
+            {% else %}
+              <option value="{{object.status}}" selected="">{{object.get_status_display}}</option>
+            {% endif %}
+          {% endfor %}
         {% endif %}
-        <option value="PREESTREIA">{% trans 'Pré-Estréia' %}</option>
-        <option value="EMCARTAZ">{% trans 'Em Cartaz' %}</option>
-        <option value="LANCAMENTO">{% trans 'Lançamento' %}</option>
-        <option value="FORACARTAZ">{% trans 'Fora de Cartaz' %}</option>
-        <option value="EMBREVE">{% trans 'Em Breve' %}</option>
+
         </select>
       </div>
       <br>
@@ -79,7 +91,11 @@
       <div class="">
         <label class="col" for="id_duration">{% trans 'Duração do Espetáculo' %}*</label>
         <div>
-          <input class="form-control" type="number" name="duration" step="0.010" required id="id_duration"  value="0"/>
+          {% if object.duration %}
+            <input class="form-control" type="number" name="duration" step="0.010" required id="id_duration"  value="{{ object.duration }}"/>
+          {% else %}
+            <input class="form-control" type="number" name="duration" step="0.010" required id="id_duration"  value="0"/>
+          {% endif %}
           <small class="text-muted">{% trans 'Insira a duração do espetáculo em minutos' %}</small>
         </div>
       </div>
@@ -100,17 +116,25 @@
       </label>
       <div class="">
         <select name="classification" class="select form-control" required="" id="id_classification">
-        {% if object.classification %}
-          <option value="{{object.classification}}">{{object.classification}}</option>
-        {% else %}
+        {% if not object.get_classification_display %}
           <option value="" selected="">---------</option>
+          <option value="LIVRE">{% trans 'Livre' %}</option>
+          <option value="10ANOS">{% trans '10 Anos' %}</option>
+          <option value="12ANOS">{% trans '12 Anos' %}</option>
+          <option value="14ANOS">{% trans '14 Anos' %}</option>
+          <option value="16ANOS">{% trans '16 Anos' %}</option>
+          <option value="MAIORES18">{% trans 'Maiores de 18 Anos' %}</option>
+        {% else %}
+          {% for x, y in object.CLASSIFICATION_CHOICES %}
+            {% if object.classification != x %}
+              <option value="{{ x }}">{{ y }}</option>
+            {% else %}
+              <option value="{{object.classification}}" selected="">{{object.get_classification_display}}</option>
+            {% endif %}
+          {% endfor %}
         {% endif %}
-        <option value="LIVRE">{% trans 'Livre' %}</option>
-        <option value="DEZANOS">{% trans '10 Anos' %}</option>
-        <option value="DOZEANOS">{% trans '12 Anos' %}</option>
-        <option value="QUATORZEANOS">{% trans '14 Anos' %}</option>
-        <option value="DEZESSEISANOS">{% trans '16 Anos' %}</option>
-        <option value="MAIORESDEDEZOITO">{% trans 'Maiores de 18 Anos' %}</option>
+
+
         </select>
       </div>
 

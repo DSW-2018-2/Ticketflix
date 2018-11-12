@@ -34,6 +34,9 @@ class SpectacleCreateView(CreateView):
         'classification',
     ]
 
+    def form_valid(self, form):
+        return super().form_valid(form)
+
     success_url = reverse_lazy(
         viewname='spectacle:spectacle-list'
     )
