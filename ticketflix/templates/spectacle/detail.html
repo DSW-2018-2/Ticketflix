@@ -6,18 +6,22 @@
 {% endblock %}
 
 {% block content %}
-<h1>Espetáculo</h1>
-<ul>
-  {{ spectacle.name }}
-  {{ spectacle.spectacle_type }}
-  {{ spectacle.status }}
-  {{ spectacle.duration }}
+<div class="container">
+	<h2>Espetáculo</h2>
+	<div class="row">
+		<div class="col-sm-12">
+		  <a href="{% url 'spectacle:spectacle-create' %}"><button  class="btn btn-sucess mr-1 float-right">{% trans 'Criar Espetáculo' %}</button></a>
+		  <ul>Nome: <strong>{{ spectacle.name }}</strong></ul>
+		  <ul>Tipo: {{ spectacle.spectacle_type }}</ul>
+		  <ul>Status: {{ spectacle.status }}</ul>
+		  <ul>Duração: {{ spectacle.duration }} minutos</ul>
 
-  {% if spectacle.poster  %}
-    {{ spectacle.poster }}
-  {% endif %}
+		  {% if spectacle.poster  %}
+		    <ul>{{ spectacle.poster }}</ul>
+		  {% endif %}
 
-  {{ spectacle.classification }}
-
-</ul>
+		  <ul>Classificação Indicativa: {{ spectacle.classification }}</ul>
+		</div>
+	</div>
+</div>
 {% endblock content %}

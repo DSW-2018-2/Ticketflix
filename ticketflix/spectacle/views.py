@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 class SpectacleDetailView(DetailView):
     model = Spectacle
+    template_name = 'spectacle/detail.html'
 
     def get_object(self, queryset=None):
         spectacle = Spectacle.objects.get(
