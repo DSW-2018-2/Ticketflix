@@ -92,9 +92,9 @@
         <label class="col" for="id_duration">{% trans 'Duração do Espetáculo' %}*</label>
         <div>
           {% if object.duration %}
-            <input class="form-control" type="number" name="duration" step="0.010" required id="id_duration"  value="{{ object.duration }}"/>
+            <input class="form-control" type="number" name="duration" step="1" required id="id_duration"  value="{{ object.duration }}"/>
           {% else %}
-            <input class="form-control" type="number" name="duration" step="0.010" required id="id_duration"  value="0"/>
+            <input class="form-control" type="number" name="duration" step="1" required id="id_duration"  value="0"/>
           {% endif %}
           <small class="text-muted">{% trans 'Insira a duração do espetáculo em minutos' %}</small>
         </div>
@@ -186,7 +186,7 @@
         </div>
         <div id="div_id_classification" class="form-group">
         <label for="id_classification" class="col-form-label  requiredField">
-            {% trans 'Classificação Indicativa' %}<span class="asteriskField">*</span>
+            {% trans 'Gênero' %}<span class="asteriskField">*</span>
         </label>
         <div class="">
           <select name="classification" class="select form-control" required="" id="id_classification">

@@ -1,7 +1,7 @@
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView, DetailView
 from .models import Spectacle, Movie, Play, Show
-from django.urls import reverse_lazy
-
+from .forms import SpectacleForm
 
 class SpectacleDetailView(DetailView):
     model = Spectacle
@@ -26,14 +26,7 @@ class SpectacleListView(ListView):
 class SpectacleCreateView(CreateView):
     model = Spectacle
     template_name = 'spectacle/form.html'
-    fields = [
-        'name',
-        'spectacle_type',
-        'status',
-        'duration',
-        'poster',
-        'classification',
-    ]
+    form_class = SpectacleForm
 
     def form_valid(self, form):
         return super().form_valid(form)

@@ -3,6 +3,27 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
+class SpectacleManager(models.Manager):
+    def get_related_object(self, spectacle):
+        if not spectacle:
+            return self
+        else:
+            if spectacle.spectacle_type == 'FILME':
+                return spectacle.movie_set.first()
+            elif spectacle.spectacle_type == 'SHOW':
+                return spectacle.show_set.first()
+            elif spectacle.spectacle_type == 'PECA':
+                return spectacle.play_set.first()
+
+    def get_parent_object(self, spectacle):
+        if not spectacle:
+            return self
+        else:
+            return Spectacle.objects.get(
+                id=spectacle.spectacle_id
+            )
+
+
 class SpectacleComponent(models.Model):
     class Meta:
         abstract = True
@@ -104,6 +125,8 @@ class SpectacleComponent(models.Model):
         choices=SPECTACLE_CHOICES,
         default=NA
     )
+
+    objects = SpectacleManager()
 
     def __str__(self):
         return self.name
