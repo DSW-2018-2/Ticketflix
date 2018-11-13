@@ -79,3 +79,15 @@ class SpectacleUpdateView(UpdateView):
         viewname='spectacle:spectacle-list'
     )
 
+
+class MovieCreateView(CreateView):
+    model = Movie
+    template_name = 'spectacle/form.html'
+    fields = '__all__'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list'
+    )

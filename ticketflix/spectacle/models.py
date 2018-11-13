@@ -109,7 +109,7 @@ class SpectacleComponent(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('spectacle-detail', kwargs={'id': self.id})
+        return reverse('spectacle:spectacle-detail', kwargs={'id': self.id})
 
 
 class Spectacle(SpectacleComponent):
@@ -137,11 +137,11 @@ class Movie(SpectacleDecorator):
     ACAO = 'ACAO'
     BIOGRAFIA = 'BIOGRAFIA'
     COMEDIA = 'COMEDIA'
-    DOCMUNETARIO = 'DOCUMENTARIO'
+    DOCUMENTARIO = 'DOCUMENTARIO'
     DRAMA = 'DRAMA'
     FICCAO = 'FICCAO'
     MUSICAL = 'MUSICAL'
-    ROMAMANCE = 'ROMANCE'
+    ROMANCE = 'ROMANCE'
     SUSPENSE = 'SUSPENSE'
     TERROR = 'TERROR'
     NA = 'NA'
@@ -151,12 +151,12 @@ class Movie(SpectacleDecorator):
         (ACAO, 'Ação'),
         (BIOGRAFIA, 'Biografia'),
         (COMEDIA, 'Comédia'),
-        (DOCMUNETARIO, 'Documentário'),
+        (DOCUMENTARIO, 'Documentário'),
         (DRAMA, 'Drama'),
         (FICCAO, 'Ficção Científica'),
         (MUSICAL, 'Musical'),
         (NA, 'N/A'),
-        (ROMAMANCE, 'Romance'),
+        (ROMANCE, 'Romance'),
         (SUSPENSE, 'Suspense'),
         (TERROR, 'Terror'),
     )

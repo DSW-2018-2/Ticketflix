@@ -138,9 +138,116 @@
         </select>
       </div>
 
+
+      <div id="movie_form">
+        <div class="">
+          <label for="id_synopsis">{% trans 'Sinopse' %}*</label>
+          {% if object %}
+            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_synopsis" required></textarea>
+            <small class="text-muted">{% trans 'Entre com a sinopse do filme' %}</small>
+          {%else%}
+            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_synopsis" required></textarea>
+            <small class="text-muted">{% trans 'Entre com a sinopse do filme' %}</small>
+          {% endif %}
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label>{% trans 'Diretor' %}*</label>
+            {% if object %}
+              <input class="form-control" type="text" name="name" maxlength="255" required id="id_diretor" value=""/>
+              <small class="text-muted">{% trans 'Insira o diretor do filme' %}</small>
+            {% else %}
+              <input class="form-control" type="text" name="name" maxlength="100" required id="id_name"/>
+              <small class="text-muted">{% trans 'Insira o diretor do filme' %}</small>
+            {% endif %}
+          </div>
+        </div>
+        <div class="">
+          <label for="id_cast">{% trans 'Elenco' %}*</label>
+          {% if object %}
+            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_cast" required></textarea>
+            <small class="text-muted">{% trans 'Entre com o elenco do filme' %}</small>
+          {%else%}
+            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_cast" required></textarea>
+            <small class="text-muted">{% trans 'Entre com o elenco do filme' %}</small>
+          {% endif %}
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label>{% trans 'Escritor' %}*</label>
+            {% if object %}
+              <input class="form-control" type="text" name="name" maxlength="255" required id="id_writer" value=""/>
+              <small class="text-muted">{% trans 'Insira o escritor do filme' %}</small>
+            {% else %}
+              <input class="form-control" type="text" name="name" maxlength="100" required id="id_writer"/>
+              <small class="text-muted">{% trans 'Insira o escritor do filme' %}</small>
+            {% endif %}
+          </div>
+        </div>
+        <div id="div_id_classification" class="form-group">
+        <label for="id_classification" class="col-form-label  requiredField">
+            {% trans 'Classificação Indicativa' %}<span class="asteriskField">*</span>
+        </label>
+        <div class="">
+          <select name="classification" class="select form-control" required="" id="id_classification">
+            <option value="" selected="">---------</option>
+            <option value="ANIMACAO">{% trans 'Animação' %}</option>
+            <option value="ACAO">{% trans 'Ação' %}</option>
+            <option value="BIOGRAFIA">{% trans 'Biografia' %}</option>
+            <option value="COMEDIA">{% trans 'Comédia' %}</option>
+            <option value="DOCUMENTARIO">{% trans 'Documentário' %}</option>
+            <option value="DRAMA">{% trans 'Drama' %}</option>
+            <option value="FICCAO">{% trans 'Ficção Científica' %}</option>
+            <option value="MUSICAL">{% trans 'Musical' %}</option>
+            <option value="NA">{% trans 'N/A' %}</option>
+            <option value="ROMANCE">{% trans 'Romance' %}</option>
+            <option value="SUSPENSE">{% trans 'Suspense' %}</option>
+            <option value="TERROR">{% trans 'Terror' %}</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="form-group col">
+            <label>{% trans 'Trailer' %}*</label>
+            {% if object %}
+              <input class="form-control" type="text" name="name" maxlength="255" required id="id_trailer" value=""/>
+              <small class="text-muted">{% trans 'Insira o link do trailer do filme' %}</small>
+            {% else %}
+              <input class="form-control" type="text" name="name" maxlength="100" required id="id_trailer"/>
+              <small class="text-muted">{% trans 'Insira o link do trailer do filme' %}</small>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      </div>
+
       <br>
       <button type="submit" class="btn btn-success float-right">{% trans 'Submit' %}</button>
     </form>
     <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
   </div>
 {% endblock %}
+
+{% block javascript %}
+ <script type="text/javascript">
+  $(function () {
+    $("#id_spectacle_type").change(function() {
+      var val = $(this).val();
+      $("#movie_form").hide();
+      if(val === "FILME") {
+          $("#movie_form").show();
+      }
+      else if(val === "SHOW") {
+        $("#movie_form").hide();
+      }
+      else if(val === "PECA") {
+        $("#movie_form").hide();
+      }
+      else {
+        $("#movie_form").hide();
+      }
+    });
+    $("#id_spectacle_type").change()
+  });
+  </script>
+{% endblock javascript %}
+
