@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% load static %} {% block title %}Product: {{ object.date }}{% endblock %} {% block content %}
+<h1>Products</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in object_list %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description}}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>
+                <a href="{% url 'bomboniere:product:product_view' product.id %}">view</a>
+            </td>
+            <td>
+                <a href="{% url 'bomboniere:product:product_edit' product.id %}">edit</a>
+            </td>
+            <td>
+                <a href="{% url 'bomboniere:product:product_delete' product.id %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'bomboniere:product:product_new' %}">New</a>
+
+{% endblock content %}

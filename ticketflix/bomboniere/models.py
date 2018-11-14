@@ -34,6 +34,7 @@ class ProductComponent(models.Model):
         verbose_name=_("Quantidade"),
         help_text=_("Quantidade de Itens em Estoque"),
         validators=[validators.MinValueValidator(0)],
+        default=0,
         blank=False
     )
 

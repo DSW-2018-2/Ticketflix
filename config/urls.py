@@ -19,7 +19,15 @@ urlpatterns = [
         "users/",
         include("ticketflix.users.urls", namespace="users"),
     ),
-    path("accounts/", include("allauth.urls")),
+    path(
+        "accounts/", 
+        include("allauth.urls")
+    ),
+    path(
+        "bomboniere/", 
+        include(("ticketflix.bomboniere.urls", "bomboniere"), 
+                namespace="bomboniere")
+    ),
     # Your stuff: custom urls includes go here
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
