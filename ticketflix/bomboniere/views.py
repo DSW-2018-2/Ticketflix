@@ -24,7 +24,7 @@ class ProductCreate(CreateView):
         'price',
         'quantity'
     ]
-    success_url = reverse_lazy('product:product')
+    success_url = reverse_lazy('bomboniere:product:product_list')
 
 
 class ProductUpdate(UpdateView):
@@ -35,9 +35,9 @@ class ProductUpdate(UpdateView):
         'price',
         'quantity'
     ]
-    success_url = reverse_lazy('product:product_list')
+    success_url = reverse_lazy('bomboniere:product:product_list')
 
 
 class ProductDelete(DeleteView):
     model = Product
-    success_url = reverse_lazy('product:product_list')
+    success_url = reverse_lazy('bomboniere:product:product_list')

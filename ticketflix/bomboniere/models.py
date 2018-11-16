@@ -20,7 +20,7 @@ class ProductComponent(models.Model):
         verbose_name=_("Descrição"),
         help_text=_("Descrição do Produto"),
         max_length=200,
-        default=""
+        blank=True
     )
 
     price = models.FloatField(
@@ -34,8 +34,7 @@ class ProductComponent(models.Model):
         verbose_name=_("Quantidade"),
         help_text=_("Quantidade de Itens em Estoque"),
         validators=[validators.MinValueValidator(0)],
-        default=0,
-        blank=False
+        blank=True
     )
 
     def __str__(self):
