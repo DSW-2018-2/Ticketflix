@@ -2,11 +2,11 @@
 {% load static i18n %}
 
 {% block title %}
-  {% url 'spectacle:movie-create' as url %}
+  {% url 'spectacle:play-create' as url %}
   {% if request.path == url %}
-    {% trans "Novo Filme" %}
+    {% trans "Nova Peça" %}
    {% else %}
-    {% trans "Editar Filme" %}
+    {% trans "Editar Peça" %}
   {% endif %}
 {% endblock %}
 
@@ -18,9 +18,9 @@
       {% endif %}
     </div>
     {% if object %}
-      <h2>{% trans 'Editar Filme' %}</h2>
+      <h2>{% trans 'Editar Peça' %}</h2>
     {% else %}
-      <h2>{% trans 'Novo Filme' %}</h2>
+      <h2>{% trans 'Nova Peça' %}</h2>
     {% endif %}
     <form method='post' class="mt-3">
     {% csrf_token %}
@@ -31,8 +31,8 @@
           </label>
           <div class="">
             <select name="spectacle" class="select form-control" required_id="id_spectacle" required="">
-            {% if object.movie_set.first %}
-              <option value="{{ object.movie_set.first.id }}" selected="">{{ object.movie_set.first.name }}</option>
+            {% if object.play_set.first %}
+              <option value="{{ object.play_set.first.id }}" selected="">{{ object.play_set.first.name }}</option>
             {% else %}
               {% for spectacle in spectacles%}
                 <option value="" selected="">---------</option>
@@ -47,10 +47,10 @@
           <label for="id_synopsis">{% trans 'Sinopse' %}*</label>
           {% if object %}
             <textarea class="form-control" name="synopsis" cols="40" rows="5" maxlength="500" id="id_synopsis" required></textarea>
-            <small class="text-muted">{% trans 'Entre com a sinopse do filme' %}</small>
+            <small class="text-muted">{% trans 'Entre com a sinopse da peça' %}</small>
           {%else%}
             <textarea class="form-control" name="synopsis" cols="40" rows="5" maxlength="500" id="id_synopsis" required></textarea>
-            <small class="text-muted">{% trans 'Entre com a sinopse do filme' %}</small>
+            <small class="text-muted">{% trans 'Entre com a sinopse da peça' %}</small>
           {% endif %}
         </div>
         <div class="row">
@@ -58,10 +58,10 @@
             <label>{% trans 'Diretor' %}*</label>
             {% if object %}
               <input class="form-control" type="text" name="diretor" maxlength="255" required id="id_diretor" value=""/>
-              <small class="text-muted">{% trans 'Insira o diretor do filme' %}</small>
+              <small class="text-muted">{% trans 'Insira o diretor da peça' %}</small>
             {% else %}
               <input class="form-control" type="text" name="diretor" maxlength="100" required id="id_name"/>
-              <small class="text-muted">{% trans 'Insira o diretor do filme' %}</small>
+              <small class="text-muted">{% trans 'Insira o diretor da peça' %}</small>
             {% endif %}
           </div>
         </div>
@@ -69,10 +69,10 @@
           <label for="id_cast">{% trans 'Elenco' %}*</label>
           {% if object %}
             <textarea class="form-control" name="cast" cols="40" rows="5" maxlength="500" id="id_cast" required></textarea>
-            <small class="text-muted">{% trans 'Entre com o elenco do filme' %}</small>
+            <small class="text-muted">{% trans 'Entre com o elenco da peça' %}</small>
           {%else%}
             <textarea class="form-control" name="cast" cols="40" rows="5" maxlength="500" id="id_cast" required></textarea>
-            <small class="text-muted">{% trans 'Entre com o elenco do filme' %}</small>
+            <small class="text-muted">{% trans 'Entre com o elenco da peça' %}</small>
           {% endif %}
         </div>
         <div class="row">
@@ -80,10 +80,10 @@
             <label>{% trans 'Produtor' %}*</label>
             {% if object %}
               <input class="form-control" type="text" name="producer" maxlength="255" required id="id_producer" value=""/>
-              <small class="text-muted">{% trans 'Insira o produtor do filme' %}</small>
+              <small class="text-muted">{% trans 'Insira o produtor da peça' %}</small>
             {% else %}
               <input class="form-control" type="text" name="producer" maxlength="100" required id="id_producer"/>
-              <small class="text-muted">{% trans 'Insira o produtor do filme' %}</small>
+              <small class="text-muted">{% trans 'Insira o produtor da peça' %}</small>
             {% endif %}
           </div>
         </div>
@@ -92,10 +92,10 @@
             <label>{% trans 'Escritor' %}*</label>
             {% if object %}
               <input class="form-control" type="text" name="writer" maxlength="255" required id="id_writer" value=""/>
-              <small class="text-muted">{% trans 'Insira o escritor do filme' %}</small>
+              <small class="text-muted">{% trans 'Insira o escritor da peça' %}</small>
             {% else %}
               <input class="form-control" type="text" name="writer" maxlength="100" required id="id_writer"/>
-              <small class="text-muted">{% trans 'Insira o escritor do filme' %}</small>
+              <small class="text-muted">{% trans 'Insira o escritor da peça' %}</small>
             {% endif %}
           </div>
         </div>
@@ -106,31 +106,18 @@
         <div class="">
           <select name="gender" class="select form-control" required="" id="id_gender">
             <option value="" selected="">---------</option>
-            <option value="ANIMACAO">{% trans 'Animação' %}</option>
-            <option value="ACAO">{% trans 'Ação' %}</option>
-            <option value="BIOGRAFIA">{% trans 'Biografia' %}</option>
+            <option value="AUTO">{% trans 'Auto' %}</option>
+            <option value="BURLESCO">{% trans 'Burlesco' %}</option>
+            <option value="CIRCENSE">{% trans 'Circense' %}</option>
             <option value="COMEDIA">{% trans 'Comédia' %}</option>
-            <option value="DOCUMENTARIO">{% trans 'Documentário' %}</option>
             <option value="DRAMA">{% trans 'Drama' %}</option>
-            <option value="FICCAO">{% trans 'Ficção Científica' %}</option>
+            <option value="FARSA">{% trans 'Farsa' %}</option>
+            <option value="MIMICA">{% trans 'Mímica' %}</option>
             <option value="MUSICAL">{% trans 'Musical' %}</option>
-            <option value="NA">{% trans 'N/A' %}</option>
-            <option value="ROMANCE">{% trans 'Romance' %}</option>
-            <option value="SUSPENSE">{% trans 'Suspense' %}</option>
-            <option value="TERROR">{% trans 'Terror' %}</option>
+            <option value="OUTROS">{% trans 'Outros' %}</option>
+            <option value="TRAGEDIA">{% trans 'Tragédia' %}</option>
+            <option value="TRAGICOMEDIA">{% trans 'Tragicomédia' %}</option>
           </select>
-        </div>
-        <div class="row">
-          <div class="form-group col">
-            <label>{% trans 'Trailer' %}*</label>
-            {% if object %}
-              <input class="form-control" type="text" name="trailer" maxlength="255" required id="id_trailer" value=""/>
-              <small class="text-muted">{% trans 'Insira o link do trailer do filme' %}</small>
-            {% else %}
-              <input class="form-control" type="text" name="trailer" maxlength="100" required id="id_trailer"/>
-              <small class="text-muted">{% trans 'Insira o link do trailer do filme' %}</small>
-            {% endif %}
-          </div>
         </div>
       </div>
       </div>

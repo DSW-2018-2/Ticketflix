@@ -84,6 +84,7 @@ class MovieCreateView(CreateView):
         'writer',
         'gender',
         'trailer',
+        'spectacle',
     ]
 
     def get_context_data(self, **kwargs):
@@ -99,27 +100,51 @@ class MovieCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        data = form.data
-        spectacle = Spectacle.objects.get(id=int(data['spectacle']))
-        data['name'] = spectacle.name
-        data['status'] = spectacle.status
-        data['poster'] = spectacle.poster
-        data['duration'] = spectacle.duration
-        data['classification'] = spectacle.classification
-        data['spectacle_type'] = spectacle.spectacle_type
-        data['spectacle_id'] = spectacle.id
-        form.data = data
         return super().form_valid(form)
 
     success_url = reverse_lazy(
         viewname='spectacle:spectacle-list'
+    )
+
+
+class MovieDeleteView(DeleteView):
+    model = Movie
+
+    def get_object(self, queryset=None):
+        spectacle = Movie.objects.get(
+            id=self.kwargs.get('id')
+        )
+        return spectacle
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list',
     )
 
 
 class PlayCreateView(CreateView):
     model = Play
     template_name = 'spectacle/play_form.html'
-    fields = '__all__'
+    fields = [
+        'spectacle',
+        'synopsis',
+        'diretor',
+        'cast',
+        'writer',
+        'producer',
+        'gender',
+    ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        spectacles = Spectacle.objects.all()
+        objects = []
+        for spectacle in spectacles:
+            related = Spectacle.objects.get_related_object(spectacle)
+            if related is None:
+                objects.append(spectacle)
+
+        context['spectacles'] = objects
+        return context
 
     def form_valid(self, form):
         return super().form_valid(form)
@@ -129,14 +154,59 @@ class PlayCreateView(CreateView):
     )
 
 
+class PlayDeleteView(DeleteView):
+    model = Play
+
+    def get_object(self, queryset=None):
+        spectacle = Play.objects.get(
+            id=self.kwargs.get('id')
+        )
+        return spectacle
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list',
+    )
+
+
 class ShowCreateView(CreateView):
     model = Show
     template_name = 'spectacle/play_form.html'
-    fields = '__all__'
+    fields = [
+        'spectacle',
+        'band',
+        'tour',
+        'description',
+    ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        spectacles = Spectacle.objects.all()
+        objects = []
+        for spectacle in spectacles:
+            related = Spectacle.objects.get_related_object(spectacle)
+            if related is None:
+                objects.append(spectacle)
+
+        context['spectacles'] = objects
+        return context
 
     def form_valid(self, form):
         return super().form_valid(form)
 
     success_url = reverse_lazy(
         viewname='spectacle:spectacle-list'
+    )
+
+
+class ShowDeleteView(DeleteView):
+    model = Show
+
+    def get_object(self, queryset=None):
+        spectacle = Show.objects.get(
+            id=self.kwargs.get('id')
+        )
+        return spectacle
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list',
     )

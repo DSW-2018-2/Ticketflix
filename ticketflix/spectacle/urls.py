@@ -2,7 +2,9 @@ from django.urls import path
 from .views import SpectacleCreateView, SpectacleDeleteView
 from .views import SpectacleListView, SpectacleUpdateView
 from .views import SpectacleDetailView
-from .views import MovieCreateView
+from .views import MovieCreateView, MovieDeleteView
+from .views import PlayCreateView, PlayDeleteView
+from .views import ShowCreateView, ShowDeleteView
 
 
 urlpatterns = [
@@ -37,27 +39,37 @@ urlpatterns = [
         name="movie-create"
     ),
     # path(
-    #     "<int:id>/movie/<int:id>/update"
+    #     "movie/<int:id>/update"
     # ),
+    path(
+        "movie/<int:id>/delete/",
+        MovieDeleteView.as_view(template_name="spectacle/delete.html"),
+        name="movie-delete"
+    ),
+    path(
+        "play/create/",
+        PlayCreateView.as_view(template_name="spectacle/play_form.html"),
+        name="play-create"
+    ),
     # path(
-    #     "<int:id>/movie/<int:id>/delete/"
+    #     "play/<int:id>/update"
     # ),
-    # path(
-    #     "<int:id>/play/create/"
-    # ),
-    # path(
-    #     "<int:id>/play/<int:id>/update"
-    # ),
-    # path(
-    #     "<int:id>/play/<int:id>/delete/"
-    # ),
-    # path(
-    #     "<int:id>/show/create/"
-    # ),
+    path(
+        "play/<int:id>/delete/",
+        PlayDeleteView.as_view(template_name="spectacle/delete.html"),
+        name="play-delete"
+    ),
+    path(
+        "show/create/",
+        ShowCreateView.as_view(template_name="spectacle/show_form.html"),
+        name="show-create"
+    ),
     # path(
     #     "<int:id>/show/<int:id>/update"
     # ),
-    # path(
-    #     "<int:id>/show/<int:id>/delete/"
-    # ),
+    path(
+        "show/<int:id>/delete/",
+        ShowDeleteView.as_view(template_name="spectacle/delete.html"),
+        name="show-delete"
+    ),
 ]

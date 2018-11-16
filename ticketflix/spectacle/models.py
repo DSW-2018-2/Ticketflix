@@ -77,12 +77,6 @@ class SpectacleComponent(models.Model):
         default="",
     )
 
-    # audience = models.PositiveIntegerField(
-    #     _('Audiência'),
-    #     help_text=_(''),
-    #     default=0
-    # )
-
     status = models.CharField(
         verbose_name=_('Status do Espetáculo'),
         help_text=_('Status do Espetáculo'),
@@ -90,10 +84,6 @@ class SpectacleComponent(models.Model):
         choices=STATUS_CHOICES,
         default=EMBREVE
     )
-
-    # session = models.ForeignKey()
-    #
-    # establishment = models.ForeignKey()
 
     poster = models.ImageField(
         upload_to='media/',
@@ -237,6 +227,18 @@ class Movie(SpectacleDecorator):
     def __str__(self):
         return self.spectacle.name
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        spectacle = Spectacle.objects.get(id=self.spectacle_id)
+        self.name = spectacle.name
+        self.status = spectacle.status
+        if spectacle.poster:
+            self.poster = spectacle.poster
+        self.duration = spectacle.duration
+        self.classification = spectacle.classification
+        self.spectacle_type = spectacle.spectacle_type
+        super(Movie, self).save()
+
 
 class Play(SpectacleDecorator):
     class Meta:
@@ -315,6 +317,18 @@ class Play(SpectacleDecorator):
     def __str__(self):
         return self.spectacle.name
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        spectacle = Spectacle.objects.get(id=self.spectacle_id)
+        self.name = spectacle.name
+        self.status = spectacle.status
+        if spectacle.poster:
+            self.poster = spectacle.poster
+        self.duration = spectacle.duration
+        self.classification = spectacle.classification
+        self.spectacle_type = spectacle.spectacle_type
+        super(Play, self).save()
+
 
 class Show(SpectacleDecorator):
     class Meta:
@@ -343,13 +357,24 @@ class Show(SpectacleDecorator):
     )
 
     def __str__(self):
-        spetacle_name = self.spetacle.name
-        band_name = self.band
-        tour_name = self.tour
-        show_name = "{} - {} - {}".format(
-            spetacle_name,
-            band_name,
-            tour_name
+        show_name = self.spectacle.name
+        show_band = self.band
+        show_tour = self.tour
+
+        return '{}: {} - {}'.format(
+            show_name,
+            show_band,
+            show_tour
         )
 
-        return show_name
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        spectacle = Spectacle.objects.get(id=self.spectacle_id)
+        self.name = spectacle.name
+        self.status = spectacle.status
+        if spectacle.poster:
+            self.poster = spectacle.poster
+        self.duration = spectacle.duration
+        self.classification = spectacle.classification
+        self.spectacle_type = spectacle.spectacle_type
+        super(Show, self).save()
