@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load static %} {% block title %}Combo: {{ object.name }}{% endblock %} {% block content %}
+<div class="container">
+    <b>Nome: </b>{{ object.name }}<br>
+    {% if object.description %}
+    <b>Descrição: </b>{{ object.description }}<br>
+    {% endif %}
+    <b>Preço: </b><b>{{ object.price }}<br>
+    {% if object.quantity %}
+    <b>Quantidade: </b>{{ object.quantity }}<br>
+    {% endif %}
+    <br>
+
+    <div class="col-sm-12">
+        <div class="row"><h5>Produtos:</h5></div>
+    </div>
+
+    {% for product in object.products.all %}
+    <div class="row">
+        <div class="col-sm-12">
+            <b>Nome: </b>{{ product.name }}<br>
+            {% if product.description %}
+            <b>Descrição: </b>{{ product.description }}<br>
+            {% endif %}
+            <b>Preço: </b><b>{{ product.price }}<br>
+            {% if product.quantity %}
+            <b>Quantidade: </b>{{ product.quantity }}<br>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+
+</div>
+{% endblock content %}

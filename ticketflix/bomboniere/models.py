@@ -11,30 +11,32 @@ class ProductComponent(models.Model):
 
     name = models.CharField(
         verbose_name=_("Nome"),
-        help_text=_("Nome do Produto"),
+        help_text=_("Nome"),
         max_length=50,
         blank=False
     )
 
     description = models.TextField(
         verbose_name=_("Descrição"),
-        help_text=_("Descrição do Produto"),
+        help_text=_("Descrição"),
         max_length=200,
-        blank=True
+        blank=True,
+        null=True
     )
 
     price = models.FloatField(
         verbose_name=_("Preço"),
-        help_text=_("Preço do Produto"),
+        help_text=_("Preço"),
         validators=[validators.MinValueValidator(0)],
         blank=False
     )
 
     quantity = models.IntegerField(
         verbose_name=_("Quantidade"),
-        help_text=_("Quantidade de Itens em Estoque"),
+        help_text=_("Quantidade em Estoque"),
         validators=[validators.MinValueValidator(0)],
-        blank=True
+        blank=True,
+        null=True
     )
 
     def __str__(self):

@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% load static %} {% block title %}New Combo: {{ object.date }}{% endblock %} {% block content %}
+<h1>Combo Edit</h1>
+<form method="post">{% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}
