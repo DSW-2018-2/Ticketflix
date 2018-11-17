@@ -5,6 +5,7 @@
   {% trans "Espetáculos" %}
 {% endblock %}
 
+
 {% block content %}
 <div class="container">
 	<h2>Espetáculo</h2>
@@ -20,6 +21,31 @@
       {% endif %}
 
       <ul>Classificação Indicativa: {{ spectacle.get_classification_display }}</ul>
+      {% if decorator %}
+        <h4><strong>Informações Adicionais</strong></h4>
+        {% if spectacle.spectacle_type == 'FILME' %}
+          <ul>Sinopse: {{ decorator.synopsis }}</ul>
+          <ul>Diretor: {{ decorator.diretor }}</ul>
+          <ul>Elenco: {{ decorator.cast }}</ul>
+          <ul>Produtor: {{ decorator.producer }}</ul>
+          <ul>Escritor: {{ decorator.writer }}</ul>
+          <ul>Gênero: {{ decorator.get_gender_display }}</ul>
+          <ul>Trailer: <a href="">{{ decorator.trailer }}</a></ul>
+        {% endif %}
+        {% if spectacle.spectacle_type == 'PECA' %}
+          <ul>Sinopse: {{ decorator.synopsis }}</ul>
+          <ul>Diretor: {{ decorator.diretor }}</ul>
+          <ul>Elenco: {{ decorator.cast }}</ul>
+          <ul>Produtor: {{ decorator.producer }}</ul>
+          <ul>Escritor: {{ decorator.writer }}</ul>
+          <ul>Gênero: {{ decorator.get_gender_display }}</ul>
+        {% endif %}
+        {% if spectacle.spectacle_type == 'SHOW' %}
+          <ul>Banda: {{ decorator.band }}</ul>
+          <ul>Turnê: {{ decorator.tour }}</ul>
+          <ul>Descrição: {{ decorator.description }}</ul>
+        {% endif %}
+      {% endif %}
     </div>
   </div>
   <a href="{% url 'spectacle:spectacle-update' spectacle.id %}"><button  class="btn btn-success mr-1 float-right">{% trans 'Editar Espetáculo' %}</button></a>
