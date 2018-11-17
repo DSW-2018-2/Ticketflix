@@ -31,11 +31,11 @@
           </label>
           <div class="">
             <select name="spectacle" class="select form-control" required_id="id_spectacle" required="">
-            {% if object.show_set.first %}
-              <option value="{{ object.show_set.first.id }}" selected="">{{ object.show_set.first.name }}</option>
+            {% if object %}
+              <option value="{{ object.id }}" selected="">{{ object.name }}</option>
             {% else %}
+              <option value="" selected="">---------</option>
               {% for spectacle in spectacles%}
-                <option value="" selected="">---------</option>
                 <option value="{{ spectacle.id }}">{{ spectacle.name }}</option>
               {% endfor %}
             {% endif %}
@@ -47,7 +47,7 @@
           <div class="form-group col">
             <label>{% trans 'Banda' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="band" maxlength="255" required id="id_band" value=""/>
+              <input class="form-control" type="text" name="band" maxlength="255" required id="id_band" value="{{ object.band }}"/>
               <small class="text-muted">{% trans 'Insira o nome da banda' %}</small>
             {% else %}
               <input class="form-control" type="text" name="band" maxlength="255" required id="id_band"/>
@@ -59,7 +59,7 @@
           <div class="form-group col">
             <label>{% trans 'Turnê' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="tour" maxlength="255" required id="id_tour" value=""/>
+              <input class="form-control" type="text" name="tour" maxlength="255" required id="id_tour" value="{{ object.tour }}"/>
               <small class="text-muted">{% trans 'Insira o nome da turnê' %}</small>
             {% else %}
               <input class="form-control" type="text" name="tour" maxlength="255" required id="id_tour"/>
@@ -70,7 +70,7 @@
         <div class="">
           <label for="id_description">{% trans 'Descrição' %}*</label>
           {% if object %}
-            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_description" required></textarea>
+            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_description" required>{{ object.description }}</textarea>
             <small class="text-muted">{% trans 'Entre com a descrição do show' %}</small>
           {%else%}
             <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_description" required></textarea>

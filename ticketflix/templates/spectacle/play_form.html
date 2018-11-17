@@ -31,11 +31,11 @@
           </label>
           <div class="">
             <select name="spectacle" class="select form-control" required_id="id_spectacle" required="">
-            {% if object.play_set.first %}
-              <option value="{{ object.play_set.first.id }}" selected="">{{ object.play_set.first.name }}</option>
+            {% if object %}
+              <option value="{{ object.id }}" selected="">{{ object.name }}</option>
             {% else %}
+              <option value="" selected="">---------</option>
               {% for spectacle in spectacles%}
-                <option value="" selected="">---------</option>
                 <option value="{{ spectacle.id }}">{{ spectacle.name }}</option>
               {% endfor %}
             {% endif %}
@@ -46,7 +46,7 @@
         <div class="">
           <label for="id_synopsis">{% trans 'Sinopse' %}*</label>
           {% if object %}
-            <textarea class="form-control" name="synopsis" cols="40" rows="5" maxlength="500" id="id_synopsis" required></textarea>
+            <textarea class="form-control" name="synopsis" cols="40" rows="5" maxlength="500" id="id_synopsis" required>{{ object.synopsis }}</textarea>
             <small class="text-muted">{% trans 'Entre com a sinopse da peça' %}</small>
           {%else%}
             <textarea class="form-control" name="synopsis" cols="40" rows="5" maxlength="500" id="id_synopsis" required></textarea>
@@ -57,10 +57,10 @@
           <div class="form-group col">
             <label>{% trans 'Diretor' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="diretor" maxlength="255" required id="id_diretor" value=""/>
+              <input class="form-control" type="text" name="diretor" maxlength="255" required id="id_diretor" value="{{ object.diretor }}"/>
               <small class="text-muted">{% trans 'Insira o diretor da peça' %}</small>
             {% else %}
-              <input class="form-control" type="text" name="diretor" maxlength="100" required id="id_name"/>
+              <input class="form-control" type="text" name="diretor" maxlength="255" required id="id_diretor"/>
               <small class="text-muted">{% trans 'Insira o diretor da peça' %}</small>
             {% endif %}
           </div>
@@ -68,7 +68,7 @@
         <div class="">
           <label for="id_cast">{% trans 'Elenco' %}*</label>
           {% if object %}
-            <textarea class="form-control" name="cast" cols="40" rows="5" maxlength="500" id="id_cast" required></textarea>
+            <textarea class="form-control" name="cast" cols="40" rows="5" maxlength="500" id="id_cast" required>{{ object.cast }}</textarea>
             <small class="text-muted">{% trans 'Entre com o elenco da peça' %}</small>
           {%else%}
             <textarea class="form-control" name="cast" cols="40" rows="5" maxlength="500" id="id_cast" required></textarea>
@@ -79,7 +79,7 @@
           <div class="form-group col">
             <label>{% trans 'Produtor' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="producer" maxlength="255" required id="id_producer" value=""/>
+              <input class="form-control" type="text" name="producer" maxlength="255" required id="id_producer" value="{{ object.producer }}"/>
               <small class="text-muted">{% trans 'Insira o produtor da peça' %}</small>
             {% else %}
               <input class="form-control" type="text" name="producer" maxlength="100" required id="id_producer"/>
@@ -91,7 +91,7 @@
           <div class="form-group col">
             <label>{% trans 'Escritor' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="writer" maxlength="255" required id="id_writer" value=""/>
+              <input class="form-control" type="text" name="writer" maxlength="255" required id="id_writer" value="{{ object.writer }}"/>
               <small class="text-muted">{% trans 'Insira o escritor da peça' %}</small>
             {% else %}
               <input class="form-control" type="text" name="writer" maxlength="100" required id="id_writer"/>
@@ -105,6 +105,7 @@
         </label>
         <div class="">
           <select name="gender" class="select form-control" required="" id="id_gender">
+            {% if not object.get_gender_display %}
             <option value="" selected="">---------</option>
             <option value="AUTO">{% trans 'Auto' %}</option>
             <option value="BURLESCO">{% trans 'Burlesco' %}</option>
@@ -117,6 +118,15 @@
             <option value="OUTROS">{% trans 'Outros' %}</option>
             <option value="TRAGEDIA">{% trans 'Tragédia' %}</option>
             <option value="TRAGICOMEDIA">{% trans 'Tragicomédia' %}</option>
+            {% else %}
+              {% for x, y in object.PLAY_GENDER_OPTIONS %}
+                {% if object.gender != x %}
+                  <option value="{{ x }}">{{ y }}</option>
+                {% else %}
+                  <option value="{{object.gender}}" selected="">{{object.get_gender_display}}</option>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
           </select>
         </div>
       </div>

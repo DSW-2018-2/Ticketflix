@@ -107,6 +107,31 @@ class MovieCreateView(CreateView):
     )
 
 
+class MovieUpdateView(UpdateView):
+    model = Movie
+    template_name = 'spectacle/movie_form.html'
+    fields = [
+        'synopsis',
+        'diretor',
+        'cast',
+        'producer',
+        'writer',
+        'gender',
+        'trailer',
+        'spectacle',
+    ]
+
+    def get_object(self, queryset=None):
+        spectacle = Movie.objects.get(
+            id=self.kwargs.get('id')
+        )
+        return spectacle
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list'
+    )
+
+
 class MovieDeleteView(DeleteView):
     model = Movie
 
@@ -154,6 +179,30 @@ class PlayCreateView(CreateView):
     )
 
 
+class PlayUpdateView(UpdateView):
+    model = Play
+    template_name = 'spectacle/play_form.html'
+    fields = [
+        'spectacle',
+        'synopsis',
+        'diretor',
+        'cast',
+        'writer',
+        'producer',
+        'gender',
+    ]
+
+    def get_object(self, queryset=None):
+        spectacle = Play.objects.get(
+            id=self.kwargs.get('id')
+        )
+        return spectacle
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list',
+    )
+
+
 class PlayDeleteView(DeleteView):
     model = Play
 
@@ -195,6 +244,27 @@ class ShowCreateView(CreateView):
 
     success_url = reverse_lazy(
         viewname='spectacle:spectacle-list'
+    )
+
+
+class ShowUpdateView(UpdateView):
+    model = Show
+    template_name = 'spectacle/play_form.html'
+    fields = [
+        'spectacle',
+        'band',
+        'tour',
+        'description',
+    ]
+
+    def get_object(self, queryset=None):
+        spectacle = Show.objects.get(
+            id=self.kwargs.get('id')
+        )
+        return spectacle
+
+    success_url = reverse_lazy(
+        viewname='spectacle:spectacle-list',
     )
 
 
