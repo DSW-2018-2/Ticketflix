@@ -13,6 +13,22 @@ class SpectacleDetailView(DetailView):
         )
         return spectacle
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        spectacle = context['object']
+
+        if spectacle.spectacle_type == 'FILME':
+            objects = Movie.objects.get_related_object(spectacle)
+        elif spectacle.spectacle_type == 'PECA':
+            objects = Peca.objects.get_related_object(spectacle)
+        elif spectacle.spectacle_type == 'SHOW':
+            objects = Show.object.get_related_object(spectacle)
+        else:
+            objects = None 
+
+        context['decorator'] = objects
+        return context
+
 
 class SpectacleListView(ListView):
     model = Spectacle
