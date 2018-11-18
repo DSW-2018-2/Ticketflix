@@ -101,16 +101,16 @@ class ProductSelect(FormView):
         combo = Combo.objects.get(id=combo_id)
 
         products = form.cleaned_data.get('products')
-        
+
         for product_id in products:
             product = Product.objects.get(id=product_id)
             combo.products.add(product)
 
         return HttpResponseRedirect(self.get_success_url(combo_id))
-    
+
     def get_success_url(self, combo_id):
         """Return the URL to redirect to after processing a valid form."""
-        
+
         success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
 
-        return str(success_url)  # success_url may be lazy
+        return str(success_url) # success_url must be lazy
