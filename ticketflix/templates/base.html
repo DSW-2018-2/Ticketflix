@@ -41,7 +41,7 @@
         </ul>
         {% if request.user.is_authenticated %}
           <ul class="right hide-on-med-and-down">
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
+            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "Minha conta" %}</a></li>
           </ul>
           <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
@@ -75,31 +75,30 @@
 
 
     {% block footer %}
-      <footer class="page-footer teal">
+    <footer class="page-footer black">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
+          <h5 class="white-text">Ticketflix</h5>
           <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Menu</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="#!">Espetáculos</a></li>
+            <li><a class="white-text" href="#!">Ingressos</a></li>
+            <li><a class="white-text" href="#!">Bombonier</a></li>
           </ul>
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
+          <h5 class="white-text">Políticas</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="#!">Segurança e Privacidade</a></li>
+            <li><a class="white-text" href="#!">Meia-Entrada</a></li>
+            <li><a class="white-text" href="#!">Termo de Uso</a></li>
+            <li><a class="white-text" href="#!">Sobre</a></li>
           </ul>
         </div>
       </div>
