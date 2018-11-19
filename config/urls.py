@@ -25,6 +25,11 @@ urlpatterns = [
         include(("ticketflix.spectacle.urls", "spectacle"),
                 namespace="spectacle")
     ),
+    # Your stuff: custom urls includes go here
+    path(
+        "session/",
+        include(("ticketflix.session.urls","ticketflix.session"), namespace="session"),
+    ),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

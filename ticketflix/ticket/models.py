@@ -1,4 +1,8 @@
 from django.db import models
+from ticketflix.session.models import Session
+from django.core import validators
+from django.urls import reverse
+from django.utils.translation import gettext as _
 
 class Ticket(models.Model):
     """
@@ -19,10 +23,18 @@ class Ticket(models.Model):
         blank=False
     )
 
-     price = models.FloatField(
+    price = models.FloatField(
         verbose_name=_("Preço"),
         help_text=_("Preço"),
         validators=[validators.MinValueValidator(0)],
+        blank=False
+    )
+
+    session = models.OneToOneField(
+        Session,
+        verbose_name=_("Sessão"),
+        help_text=_("Sessão do Ticket"),
+        on_delete=models.CASCADE,
         blank=False
     )
 
@@ -32,7 +44,7 @@ class Ticket(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.ticket_type
 
     def get_absolute_url(self):
         return reverse('ticket-detail', kwargs={'id': self.id})
