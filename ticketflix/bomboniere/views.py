@@ -58,11 +58,13 @@ class ComboCreate(CreateView):
     model = Combo
     fields = [
         'name',
-        'description',
-        'price',
-        'quantity'
+        'description'
     ]
-    success_url = reverse_lazy('bomboniere:combo:combo_list')
+
+    def get_success_url(self):
+        success_url = reverse_lazy('bomboniere:combo:product_select', kwargs={'pk': self.object.id})
+
+        return str(success_url) # success_url must be lazy
 
 
 class ComboUpdate(UpdateView):
@@ -85,11 +87,8 @@ class ProductSelect(FormView):
 
     form_class = ProductSelectForm
 
+    # override of the post method
     def post(self, request, *args, **kwargs):
-        """
-        Handle POST requests: instantiate a form instance with the passed
-        POST variables and then check if it's valid.
-        """
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form, **kwargs)
@@ -101,16 +100,20 @@ class ProductSelect(FormView):
         combo = Combo.objects.get(id=combo_id)
 
         products = form.cleaned_data.get('products')
+        combo_price = 0
 
         for product_id in products:
             product = Product.objects.get(id=product_id)
             combo.products.add(product)
+            combo_price += product.price
+
+        combo.price = combo_price
+        combo.quantity = len(products)
+        combo.save()
 
         return HttpResponseRedirect(self.get_success_url(combo_id))
 
     def get_success_url(self, combo_id):
-        """Return the URL to redirect to after processing a valid form."""
-
         success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
 
         return str(success_url) # success_url must be lazy

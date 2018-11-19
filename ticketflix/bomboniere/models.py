@@ -68,7 +68,24 @@ class Combo(ProductComponent):
         Product,
         verbose_name=_("Produtos"),
         help_text=_("Produtos do Combo")    
-    )    
+    )
+
+    price = models.FloatField(
+        verbose_name=_("Preço"),
+        help_text=_("Preço"),
+        validators=[validators.MinValueValidator(0)],
+        blank=False,
+        default=0
+    )
+
+    quantity = models.IntegerField(
+        verbose_name=_("Quantidade"),
+        help_text=_("Quantidade em Estoque"),
+        validators=[validators.MinValueValidator(0)],
+        blank=True,
+        null=True,
+        default=0
+    )
 
     class Meta:
         verbose_name = _("Combo")
