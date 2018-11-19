@@ -21,6 +21,7 @@ class SessionCreate(CreateView):
         'place',
         'date',
         'time',
+        'spectacle',
         'total_ticket_number',
         'available_ticket_number'
     ]
