@@ -2,28 +2,134 @@
 {% load static i18n %}
 
 {% block title %}
-  {% trans "Espetáculos" %}
+  {% trans "Ticketflix" %}
 {% endblock %}
-
 
 {% block content %}
-<h1> Programação </h1>
-<li>
-{% for spectacle in object_list %}
-{% if spectacle.sessions.all %}
-  <ul>
-  <b>{{spectacle.name}}</b>
-    <li>
-  {% for session in spectacle.sessions.all %}
-    <ul> {{session.date}}</ul>
-  {% endfor %}
-  </li>
-  </ul>
-  {% endif %}
-{% endfor %}
-</li>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center white-text text-lighten-2"><b style="text-shadow: 4px 4px #000;">Ticketflix</b></h1>
+        <div class="row center">
+          <h4 class="header col s12 white-text" style="text-shadow: 2px 2px #000;">Ingressos para filmes, peças e shows do jeito mais simples e ágil</h4>
+        </div>
+        <div class="row center">
+          <a href="{% url 'spectacle:spectacle-list' %}" id="download-button" class="btn-large waves-effect waves-light red lighten-3 white-text lighten-1"><b>Espetáculos</b></a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/incredibles.jpg' %}" alt="Os Incríveis 2"></div>
+  </div>
 
 
-{% endblock %}
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text lighten-3"><i class="material-icons">local_play</i></h2>
+            <h5 class="center">Espetáculos</h5>
+            <p class="light">Filmes, peças de teatro e shows, tudo em um só lugar.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text lighten-3"><i class="material-icons">local_pizza</i></h2>
+            <h5 class="center">Bombonieres</h5>
+            <p class="light">Fila? Nunca mais. Compre seus lanche para o espetáculo por aqui.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text lighten-3"><i class="material-icons">room</i></h2>
+            <h5 class="center">Estabelecimentos</h5>
+            <p class="light">Saiba qual estabelecimento está mais perto de você e também o que ele está exibindo.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <!-- <h5 class="header col s12" style="text-shadow: 2px 2px #000;">Chega de pegar fila.</h5> -->
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/coco.jpg' %}" alt="Coco"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Ticketflix</h4>
+          <p class="left-align light">Uma plataforma de venda de ingressos e visualização de atrações, no que diz respeito à três estabelecimentos base: Teatros, cinemas e casas de show. Nosso site foi pensado com a capacidade de expansão para outros tipos de atrações e estabelecimentos. Dessa forma, o objetivo da ferramenta consiste em prover ao usuário uma maneira confortável de adquirir entradas para os eventos na sua cidade e/ou região.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <!-- <h5 class="header col s12" style="text-shadow: 3px 3px #000;">Outra frase aqui</h5> -->
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/rockinrio.png' %}" alt="Rock In Rio"></div>
+  </div>
+{% endblock content %}
+
+{% block footer %}
+    <footer class="page-footer-home black">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ticketflix</h5>
+          <p class="grey-text text-lighten-4">Uma plataforma de venda de ingressos e visualização de atrações, no que diz respeito à três estabelecimentos base: Teatros, cinemas e casas de show.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Menu</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Espetáculos</a></li>
+            <li><a class="white-text" href="#!">Ingressos</a></li>
+            <li><a class="white-text" href="#!">Bombonier</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Políticas</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Segurança e Privacidade</a></li>
+            <li><a class="white-text" href="#!">Meia-Entrada</a></li>
+            <li><a class="white-text" href="#!">Termo de Uso</a></li>
+            <li><a class="white-text" href="#!">Sobre</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      <a class="brown-text text-lighten-3" href="http://materializecss.com">Made by: Materialize</a>
+      </div>
+    </div>
+  </footer>
+    {% endblock footer %}
