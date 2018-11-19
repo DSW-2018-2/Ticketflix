@@ -23,7 +23,7 @@ urlpatterns = [
     path(
         "spectacle/",
         include(("ticketflix.spectacle.urls", "spectacle"),
-                namespace="spectacle"),
+                namespace="spectacle")),
     # Your stuff: custom urls includes go here
     path(
         "session/",
