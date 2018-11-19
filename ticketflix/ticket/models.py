@@ -30,14 +30,13 @@ class Ticket(models.Model):
         blank=False
     )
 
-    session = models.OneToOneField(
+    session = models.ForeignKey(
         Session,
-        verbose_name=_("Sessão"),
-        help_text=_("Sessão do Ticket"),
-        on_delete=models.CASCADE,
-        blank=False
+        related_name='sessions',
+        related_query_name='session',
+        on_delete=models.PROTECT,
+        null=True
     )
-
     class Meta:
         verbose_name = _("Ticket")
         verbose_name_plural = _("Tickets")
