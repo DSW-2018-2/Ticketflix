@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.translation import gettext as _
+from django.core import validators
 from ticketflix.users.models import User
 from ticketflix.cart.models import Cart
 
@@ -29,3 +31,7 @@ class Purchase(models.Model):
         Cart,
         on_delete=models.PROTECT
     )
+
+    def update_status_payment(self):
+        self.statusPayment = True
+        self.save()

@@ -73,7 +73,8 @@ LOCAL_APPS = [
     'ticketflix.spectacle.apps.SpectacleAppConfig',
     'ticketflix.session.apps.SessionConfig',
     'ticketflix.ticket.apps.TicketConfig',
-    'ticketflix.cart.apps.CartConfig'
+    'ticketflix.cart.apps.CartConfig',
+    'ticketflix.purchase.apps.PurchaseConfig'
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

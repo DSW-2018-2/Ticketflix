@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class PurchaseConfig(AppConfig):
-    name = 'purchase'
+    name = "ticketflix.purchase"
+    verbose_name = "Purchase"
