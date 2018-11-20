@@ -5,8 +5,12 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from .views import ScheduleView
+
+
+
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", ScheduleView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -23,7 +27,11 @@ urlpatterns = [
     path(
         "spectacle/",
         include(("ticketflix.spectacle.urls", "spectacle"),
-                namespace="spectacle")
+                namespace="spectacle")),
+    # Your stuff: custom urls includes go here
+    path(
+        "session/",
+        include(("ticketflix.session.urls","ticketflix.session"), namespace="session"),
     ),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

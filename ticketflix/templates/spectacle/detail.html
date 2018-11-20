@@ -16,6 +16,11 @@
       <ul>Status: {{ spectacle.get_status_display }}</ul>
       <ul>Duração: {{ spectacle.duration }} minutos</ul>
 
+      <ul>Sessões: </ul>
+      {% for session in spectacle.sessions.all%}
+      <ul>- Dia:  {{ session.date }} - Hora: {{session.time}} </ul>
+      {% endfor%}
+
       {% if spectacle.poster  %}
         <ul>{{ spectacle.poster }}</ul>
       {% endif %}

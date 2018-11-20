@@ -1,1 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Espetáculos" %}
+{% endblock %}
+
+
+{% block content %}
+<h1> Programação </h1>
+<li>
+{% for spectacle in object_list %}
+{% if spectacle.sessions.all %}
+  <ul>
+  <b>{{spectacle.name}}</b>
+    <li>
+  {% for session in spectacle.sessions.all %}
+    <ul> {{session.date}}</ul>
+  {% endfor %}
+  </li>
+  </ul>
+  {% endif %}
+{% endfor %}
+</li>
+
+
+{% endblock %}
+
+
