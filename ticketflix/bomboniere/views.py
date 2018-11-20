@@ -7,7 +7,7 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
-from .models import Product, Combo
+from .models import Combo, Product
 from .forms import ProductSelectForm
 
 
@@ -24,7 +24,7 @@ class ProductCreate(CreateView):
     fields = [
         'name',
         'description',
-        'price',
+        'price'
     ]
     success_url = reverse_lazy('bomboniere:product:product_list')
 
@@ -34,7 +34,7 @@ class ProductUpdate(UpdateView):
     fields = [
         'name',
         'description',
-        'price',
+        'price'
     ]
     success_url = reverse_lazy('bomboniere:product:product_list')
 
@@ -85,9 +85,15 @@ class ProductSelect(FormView):
 
     form_class = ProductSelectForm
 
+    def get_initial(self):
+        initials = super(ProductSelect, self).get_initial()
+        initials['pk'] = self.kwargs['pk']
+        return initials
+
     # override of the post method
     def post(self, request, *args, **kwargs):
         form = self.get_form()
+
         if form.is_valid():
             return self.form_valid(form, **kwargs)
         else:
@@ -95,24 +101,16 @@ class ProductSelect(FormView):
 
     def form_valid(self, form, **kwargs):
         combo_id = kwargs['pk']
-        combo = Combo.objects.get(id=combo_id)
+        combo = Combo.objects.get(id=combo_id)  
 
-        self.reset_combo_products(combo)
-
+        combo_products = form.cleaned_data.get('products_in_combo')
         products = form.cleaned_data.get('products')
 
-        for product_id in products:
-            product = Product.objects.get(id=product_id)
-            combo.products.add(product)
-
-        combo.save()
+        self.reset_combo_products(combo)
+        self.add_combo_products(combo_products, combo)
+        self.add_products(products, combo)
 
         return HttpResponseRedirect(self.get_success_url(combo_id))
-
-    def get_success_url(self, combo_id):
-        success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
-
-        return str(success_url) # success_url must be lazy
 
     def reset_combo_products(self, combo):
 
@@ -120,3 +118,27 @@ class ProductSelect(FormView):
             combo.products.remove(product)
 
         combo.save()
+
+    def add_combo_products(self, combo_products, combo):
+        
+        if(combo_products):
+            for combo_product_id in combo_products:
+                combo_product = Product.objects.get(id=combo_product_id)
+                combo.products.add(combo_product)
+
+        combo.save()
+
+    def add_products(self, products, combo):
+
+        if products:
+            for product_id in products:
+                product = Product.objects.get(id=product_id)
+                combo.products.add(product)        
+
+
+    def get_success_url(self, combo_id):
+        success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
+
+        return str(success_url) # success_url must be lazy
+
+    
