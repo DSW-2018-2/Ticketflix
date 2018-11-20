@@ -5,26 +5,21 @@
     <b>Descrição: </b>{{ object.description }}<br>
     {% endif %}
     <b>Preço: </b><b>{{ object.price }}<br>
-    {% if object.quantity %}
-    <b>Quantidade: </b>{{ object.quantity }}<br>
-    {% endif %}
     <br>
 
     <div class="col-sm-12">
         <div class="row"><h5>Produtos:</h5></div>
     </div>
 
-    {% for product in object.products.all %}
+    {% for item in products %}
     <div class="row">
         <div class="col-sm-12">
-            <b>Nome: </b>{{ product.name }}<br>
+            <b>Nome: </b>{{ item.product.name }}<br>
             {% if product.description %}
-            <b>Descrição: </b>{{ product.description }}<br>
+            <b>Descrição: </b>{{ item.product.description }}<br>
             {% endif %}
-            <b>Preço: </b><b>{{ product.price }}<br>
-            {% if product.quantity %}
-            <b>Quantidade: </b>{{ product.quantity }}<br>
-            {% endif %}
+            <b>Preço: </b><b>{{ item.product.price }}<br>         
+            <b>Quantidade: </b>{{ item.quantity }}<br>
         </div>
     </div>
     <br>

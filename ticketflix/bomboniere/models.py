@@ -46,14 +46,6 @@ class Product(ProductComponent):
     Class that represents a Leaf in Composite Pattern.
     """
 
-    quantity = models.IntegerField(
-        verbose_name=_("Quantidade"),
-        help_text=_("Quantidade de Produtos no Combo"),
-        validators=[validators.MinValueValidator(0)],
-        blank=True,
-        null=True
-    )
-
     class Meta:
         verbose_name = _("Produto")
         verbose_name_plural = _("Produtos")
@@ -73,3 +65,25 @@ class Combo(ProductComponent):
     class Meta:
         verbose_name = _("Combo")
         verbose_name_plural = _("Combos")
+
+
+class ComboProductQuantity(models.Model):
+
+    combo = models.ForeignKey(
+        Combo,
+        related_name="Combo",
+        on_delete=models.CASCADE
+    )
+
+    product = models.ForeignKey(
+        Product,
+        related_name="Produto",
+        on_delete=models.CASCADE
+    )
+
+    quantity = models.IntegerField(
+        verbose_name=_("Quantidade"),
+        help_text=_("Quantidade de Produtos no Combo"),
+        validators=[validators.MinValueValidator(0)],
+        default=1
+    )

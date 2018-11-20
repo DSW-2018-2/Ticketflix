@@ -11,7 +11,7 @@ class ProductSelectForm(forms.Form):
 
         super(ProductSelectForm, self).__init__(*args, **kwargs)
         
-        self.fields['combo_products'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(attrs={'checked': 'checked'}),
+        self.fields['combo_products'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(attrs={'checked': True}),
                                                                   choices=self.get_selected_choices(products_in_combo),
                                                                   required=False)
 

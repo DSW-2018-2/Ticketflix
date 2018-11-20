@@ -7,7 +7,7 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
-from .models import Combo, Product
+from .models import Combo, Product, ComboProductQuantity
 from .forms import ProductSelectForm
 
 
@@ -51,6 +51,36 @@ class ComboList(ListView):
 class ComboView(DetailView):
     model = Combo
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+
+        context['products'] = self.get_products_context()
+        context.update(kwargs)
+
+        return self.render_to_response(context)
+
+    def get_products_context(self):
+        products_context = []
+
+        products = self.object.products.all()
+
+        for product in products:
+            item = {'product': product,
+                    'quantity': self.get_quantity(product)}
+            products_context.append(item)
+
+        return products_context
+
+    def get_quantity(self, product):
+        quantity = 0
+        combo_product = ComboProductQuantity.objects.filter(combo=self.object,
+                                                            product=product)
+        if combo_product.exists():
+            combo_product = combo_product[0]
+            quantity = combo_product.quantity
+
+        return quantity
 
 class ComboCreate(CreateView):
     model = Combo
@@ -120,21 +150,27 @@ class ProductSelect(FormView):
         combo.save()
 
     def add_combo_products(self, combo_products, combo):
-        
         if(combo_products):
             for combo_product_id in combo_products:
                 combo_product = Product.objects.get(id=combo_product_id)
                 combo.products.add(combo_product)
+                self.set_product_quantity(combo, combo_product)
 
         combo.save()
 
     def add_products(self, products, combo):
-
         if products:
             for product_id in products:
                 product = Product.objects.get(id=product_id)
-                combo.products.add(product)        
+                combo.products.add(product)
+                self.set_product_quantity(combo, product)
 
+    def set_product_quantity(self, combo, product):
+        
+        if ComboProductQuantity.objects.filter(combo=combo, product=product).exists() == False:
+            combo_product = ComboProductQuantity.objects.create(combo=combo,
+                                                                product=product)
+            combo_product.save()
 
     def get_success_url(self, combo_id):
         success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
