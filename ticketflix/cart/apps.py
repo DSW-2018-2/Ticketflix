@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class CartConfig(AppConfig):
-    name = 'cart'
+    name = "ticketflix.cart"
+    verbose_name = "Cart"
