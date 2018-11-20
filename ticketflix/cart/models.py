@@ -13,8 +13,8 @@ class Cart(models.Model):
         default=0.0
     )
 
-    tickets = models.ManyToManyField(
-        Ticket,
+    itemTickets = models.ManyToManyField(
+        ItemTickets,
         null=True,
         verbose_name=_("Ticket"),
         help_text=_("Tickets do Carrinho")   
@@ -48,3 +48,19 @@ class Cart(models.Model):
             self.tickets.remove(item)
         self.save()
         self.update_parcial_price()
+
+class Item(models.Model):
+    quatity = models.IntegerField(
+        max_digits=10,
+        default=1
+    )
+
+class ItemTicket(Item):
+    tickets = models.ManyToManyField(
+        Ticket,
+        null=True,
+        verbose_name=_("Ticket"),
+        help_text=_("Tickets do Carrinho")   
+    )
+
+    
