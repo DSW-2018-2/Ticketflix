@@ -30,30 +30,31 @@
   </head>
 
   <body>
-    <nav class="white" role="navigation">
+    <nav class="black" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Ticketflix</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'spectacle:spectacle-list' %}">Espetáculos</a></li>
-        </ul>
         {% if request.user.is_authenticated %}
           <ul class="right hide-on-med-and-down">
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "Minha conta" %}</a></li>
+            <li><a class="white-text" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
           </ul>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+            <ul class="right hide-on-med-and-down">
+            <li><a class="white-text" href="{% url 'users:detail' request.user.username  %}">{% trans "Minha conta" %}</a></li>
           </ul>
         {% else %}
           <ul class="right hide-on-med-and-down">
-            <li><a id="sign-up-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+            <li><a class="white-text" id="sign-up-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
           </ul>
           <ul class="right hide-on-med-and-down">
-            <li><a id="log-in-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+            <li><a class="white-text" id="log-in-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
           </ul>
         {% endif %}
+        <a id="logo-container" href="{% url 'home' %}" class="brand-logo white-text">Ticketflix</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="white-text" href="{% url 'about' %}">Sobre</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="white-text" href="{% url 'spectacle:spectacle-list' %}">Espetáculos</a></li>
+        </ul>
+        
 
         <ul id="nav-mobile" class="sidenav">
           <li><a href="{% url 'about' %}">Sobre</a></li>
@@ -75,7 +76,7 @@
 
 
     {% block footer %}
-    <footer class="page-footer black">
+    <footer class="page-footer-base black">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -109,7 +110,7 @@
       </div>
     </div>
   </footer>
-    {% endblock footer %}
+  {% endblock footer %}
 
     {% block modal %}{% endblock modal %}
 

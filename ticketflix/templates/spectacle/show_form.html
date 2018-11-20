@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+<main>
   <div class="container">
     <div class="row">
       {% if form.date.errors %}
@@ -79,8 +80,9 @@
         </div>
       </div>
     <br>
-    <button type="submit" class="btn btn-success float-right">{% trans 'Submit' %}</button>
-    </form>
-    <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
+    <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Cancelar' %}</button></a>
+    <button type="submit" class="btn btn-success right red lighten-3 white-text lighten-1">{% trans 'Submit' %}</button>
   </div>
+  <br>
+</main>
 {% endblock content %}

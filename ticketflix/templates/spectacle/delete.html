@@ -6,12 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <form method="post">
-    {% csrf_token %}
-    <p>{% trans 'Tem cereteza de que deseja deletar esse objeto?' %} {{ object }} </p>
-    <button type="submit" class="btn btn-success float-right">{% trans 'Submit' %}</button>
-  </form>
-  <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
-</div>
+<main>
+	<div class="container">
+	  <form method="post">
+	    {% csrf_token %}
+	    <p>{% trans 'Tem cereteza de que deseja deletar esse objeto?' %} {{ object }} </p>
+	    <button type="submit" class="btn btn-success float-right red lighten-3 white-text lighten-1">{% trans 'Submit' %}</button>
+	  </form>
+	  <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
+	</div>
+</main>
 {% endblock content %}
