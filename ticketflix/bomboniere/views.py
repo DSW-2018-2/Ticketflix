@@ -25,7 +25,6 @@ class ProductCreate(CreateView):
         'name',
         'description',
         'price',
-        'quantity'
     ]
     success_url = reverse_lazy('bomboniere:product:product_list')
 
@@ -36,7 +35,6 @@ class ProductUpdate(UpdateView):
         'name',
         'description',
         'price',
-        'quantity'
     ]
     success_url = reverse_lazy('bomboniere:product:product_list')
 
@@ -58,7 +56,8 @@ class ComboCreate(CreateView):
     model = Combo
     fields = [
         'name',
-        'description'
+        'description',
+        'price'
     ]
 
     def get_success_url(self):
@@ -72,8 +71,7 @@ class ComboUpdate(UpdateView):
     fields = [
         'name',
         'description',
-        'price',
-        'quantity'
+        'price'
     ]
     success_url = reverse_lazy('bomboniere:combo:combo_list')
 
@@ -99,16 +97,14 @@ class ProductSelect(FormView):
         combo_id = kwargs['pk']
         combo = Combo.objects.get(id=combo_id)
 
+        self.reset_combo_products(combo)
+
         products = form.cleaned_data.get('products')
-        combo_price = 0
 
         for product_id in products:
             product = Product.objects.get(id=product_id)
             combo.products.add(product)
-            combo_price += product.price
 
-        combo.price = combo_price
-        combo.quantity = len(products)
         combo.save()
 
         return HttpResponseRedirect(self.get_success_url(combo_id))
@@ -117,3 +113,10 @@ class ProductSelect(FormView):
         success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
 
         return str(success_url) # success_url must be lazy
+
+    def reset_combo_products(self, combo):
+
+        for product in combo.products.all():
+            combo.products.remove(product)
+
+        combo.save()

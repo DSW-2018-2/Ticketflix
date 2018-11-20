@@ -31,14 +31,6 @@ class ProductComponent(models.Model):
         blank=False
     )
 
-    quantity = models.IntegerField(
-        verbose_name=_("Quantidade"),
-        help_text=_("Quantidade em Estoque"),
-        validators=[validators.MinValueValidator(0)],
-        blank=True,
-        null=True
-    )
-
     def __str__(self):
         return self.name
 
@@ -54,6 +46,14 @@ class Product(ProductComponent):
     Class that represents a Leaf in Composite Pattern.
     """
 
+    quantity = models.IntegerField(
+        verbose_name=_("Quantidade"),
+        help_text=_("Quantidade de Produtos no Combo"),
+        validators=[validators.MinValueValidator(0)],
+        blank=True,
+        null=True
+    )
+
     class Meta:
         verbose_name = _("Produto")
         verbose_name_plural = _("Produtos")
@@ -68,23 +68,6 @@ class Combo(ProductComponent):
         Product,
         verbose_name=_("Produtos"),
         help_text=_("Produtos do Combo")    
-    )
-
-    price = models.FloatField(
-        verbose_name=_("Preço"),
-        help_text=_("Preço"),
-        validators=[validators.MinValueValidator(0)],
-        blank=False,
-        default=0
-    )
-
-    quantity = models.IntegerField(
-        verbose_name=_("Quantidade"),
-        help_text=_("Quantidade em Estoque"),
-        validators=[validators.MinValueValidator(0)],
-        blank=True,
-        null=True,
-        default=0
     )
 
     class Meta:

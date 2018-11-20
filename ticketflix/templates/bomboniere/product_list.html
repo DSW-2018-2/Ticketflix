@@ -8,7 +8,6 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Quantity</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +17,6 @@
             <td>{{ product.name }}</td>
             <td>{{ product.description}}</td>
             <td>{{ product.price }}</td>
-            <td>{{ product.quantity }}</td>
             <td>
                 <a href="{% url 'bomboniere:product:product_view' product.id %}">view</a>
             </td>
