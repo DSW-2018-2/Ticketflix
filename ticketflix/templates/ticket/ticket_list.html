@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load static %} {% block title %}Ticket: {{ object.date }}{% endblock %} {% block content %}
+<h1>Tickets</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Place</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in object_list %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.session.date }} | {{ ticket.session.time}}</td>
+            <td>{{ ticket.session.place }}</td>
+            <td>
+                <a href="{% url 'ticket:ticket_view' ticket.id %}">view</a>
+            </td>
+            <td>
+                <a href="{% url 'ticket:ticket_edit' ticket.id %}">edit</a>
+            </td>
+            <td>
+                <a href="{% url 'ticket:ticket_delete' ticket.id %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'ticket:ticket_new' %}">New</a>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% load static %} {% block title %}Ticket: {{ object.date }}{% endblock %} {% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>{{ object.ticket_type }}</h2>
+            {% if object.session.time %}
+            <p>{{ object.session.time }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
