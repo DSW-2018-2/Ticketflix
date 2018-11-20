@@ -37,11 +37,7 @@ urlpatterns = [
     path(
         "ticket/",
         include(("ticketflix.ticket.urls","ticketflix.ticket"), namespace="ticket"),
-    ),
-    # path(
-    # "cart/",
-    # include(("ticketflix.cart.urls","ticketflix.cart"), namespace="cart"),
-    # ),
+    )
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

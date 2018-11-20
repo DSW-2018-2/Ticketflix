@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% load static %} {% block title %}Carrinho: {{ object.parcial_price }}{% endblock %} {% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>{{ object.parcial_price }}</h2>
+            {% for tickets in object.tickets.all%}
+                {{tickets.ticket_type}}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
