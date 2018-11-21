@@ -1,37 +1,50 @@
-{% extends "base.html" %} {% load static %} {% block title %}Session: {{ object.date }}{% endblock %} {% block content %}
-<h1>Sessions</h1>
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Date</th>
-            <th>Place</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for session in object_list %}
-        <tr>
-            <td>{{ session.id }}</td>
-            <td>{{ session.date }} | {{ session.time}}</td>
-            <td>{{ session.place }}</td>
-            <td>
-                <a href="{% url 'session:session_view' session.id %}">view</a>
-            </td>
-            <td>
-                <a href="{% url 'session:session_edit' session.id %}">edit</a>
-            </td>
-            <td>
-                <a href="{% url 'session:session_delete' session.id %}">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block title %}Ingresso: {{ object.date }}
+{% endblock %} 
 
-<a href="{% url 'session:session_new' %}">New</a>
+{% block content %}
+
+<main>
+  <div class="container">
+    <h2>Sessão</h2>
+    <a href="{% url 'session:session_new' %}"><button type="button" class="btn btn-danger mr-1 right red darken-3 white-text lighten-1">Novo Sessão</button></a>
+    <div class="row">
+      <div class="col-sm-12">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Data</th>
+              <th>Lugar</th>
+              <th>View</th>
+              <th>Editar</th>
+              <th>Deletar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for session in object_list %}
+            <tr>
+              <td>{{ session.id }}</td>
+              <td>{{ session.date }} | {{ session.time}}</td>
+              <td>{{ session.place }}</td>
+              <td>
+                  <a href="{% url 'session:session_view' session.id %}">view</a>
+              </td>
+              <td>
+                  <a href="{% url 'session:session_edit' session.id %}">edit</a>
+              </td>
+              <td>
+                  <a href="{% url 'session:session_delete' session.id %}">delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
 
 {% endblock content %}

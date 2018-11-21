@@ -1,14 +1,19 @@
-{% extends "base.html" %} {% load static %} {% block title %}Session: {{ object.date }}{% endblock %} {% block content %}
-<div class="container">
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-    <div class="row">
-        <div class="col-sm-12">
-
-            <h2>{{ object.date }}</h2>
-            {% if object.time %}
-            <p>{{ object.time }}</p>
-            {% endif %}
-        </div>
-    </div>
-</div>
+{% block title %}Ingresso: {{ object.date }}
+{% endblock %}
+{% block content %}
+<main>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm-12">
+	      <h2>{{ object.date }}</h2>
+	      {% if object.time %}
+	      <p>{{ object.time }}</p>
+	      {% endif %}
+	    </div>
+	  </div>
+	</div>
+</main>
 {% endblock content %}
