@@ -9,7 +9,7 @@
 <main>
   <div class="container">
     <h2>Sessão</h2>
-    <a href="{% url 'session:session_new' %}"><button type="button" class="btn btn-danger mr-1 right red darken-3 white-text lighten-1">Novo Sessão</button></a>
+    <a href="{% url 'session:session_new' %}"><button type="button" class="btn btn-danger mr-1 right red darken-3 white-text lighten-1">Nova Sessão</button></a>
     <div class="row">
       <div class="col-sm-12">
         <table border="1">
@@ -18,7 +18,7 @@
               <th>ID</th>
               <th>Data</th>
               <th>Lugar</th>
-              <th>View</th>
+              <th>Acessar</th>
               <th>Editar</th>
               <th>Deletar</th>
             </tr>
@@ -30,13 +30,13 @@
               <td>{{ session.date }} | {{ session.time}}</td>
               <td>{{ session.place }}</td>
               <td>
-                  <a href="{% url 'session:session_view' session.id %}">view</a>
+                  <a href="{% url 'session:session_view' session.id %}">acessar</a>
               </td>
               <td>
-                  <a href="{% url 'session:session_edit' session.id %}">edit</a>
+                  <a href="{% url 'session:session_edit' session.id %}">editar</a>
               </td>
               <td>
-                  <a href="{% url 'session:session_delete' session.id %}">delete</a>
+                  <a href="{% url 'session:session_delete' session.id %}">deletar</a>
               </td>
             </tr>
             {% endfor %}

@@ -15,7 +15,7 @@
           <h4 class="header col s12 white-text" style="text-shadow: 2px 2px #000;">Ingressos para filmes, peças e shows do jeito mais simples e ágil</h4>
         </div>
         <div class="row center">
-          <a href="{% url 'spectacle:spectacle-list' %}" id="download-button" class="btn-large waves-effect waves-light red lighten-3 white-text lighten-1"><b>Espetáculos</b></a>
+          <a href="{% url 'ticket:ticket_list' %}" id="download-button" class="btn-large waves-effect waves-light red lighten-3 white-text lighten-1"><b>Ingressos</b></a>
         </div>
         <br><br>
 
@@ -33,7 +33,7 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center blue-text lighten-3"><i class="material-icons">local_play</i></h2>
-            <h5 class="center">Espetáculos</h5>
+            <h5 class="center"><a href="{% url 'spectacle:spectacle-list' %}">Espetáculos</h5></a>  
             <p class="light">Filmes, peças de teatro e shows, tudo em um só lugar.</p>
           </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center blue-text lighten-3"><i class="material-icons">local_pizza</i></h2>
-            <h5 class="center">Bombonieres</h5>
+            <h5 class="center"><a href="">Bombonieres</h5></a>
             <p class="light">Fila? Nunca mais. Compre seus lanche para o espetáculo por aqui.</p>
           </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center blue-text lighten-3"><i class="material-icons">room</i></h2>
-            <h5 class="center">Estabelecimentos</h5>
+            <h5 class="center"><a href="">Estabelecimentos</h5></a>
             <p class="light">Saiba qual estabelecimento está mais perto de você e também o que ele está exibindo.</p>
           </div>
         </div>
