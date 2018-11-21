@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% load static %} {% block title %}Combo: {{ object.name }}{% endblock %} {% block content %}
+<div class="container">
+    <b>Nome: </b>{{ object.name }}<br>
+    {% if object.description %}
+    <b>Descrição: </b>{{ object.description }}<br>
+    {% endif %}
+    <b>Preço: </b><b>{{ object.price }}<br>
+    <br>
+
+    <div class="col-sm-12">
+        <div class="row"><h5>Produtos:</h5></div>
+    </div>
+
+    {% for item in products %}
+    <div class="row">
+        <div class="col-sm-12">
+            <b>Nome: </b>{{ item.product.name }}<br>
+            {% if product.description %}
+            <b>Descrição: </b>{{ item.product.description }}<br>
+            {% endif %}
+            <b>Preço: </b><b>{{ item.product.price }}<br>         
+            <b>Quantidade: </b>{{ item.quantity }}<br>
+            <a href="{% url 'bomboniere:combo:product_quantity' object.id item.product.id %}">mudar a quantidade do produto</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+
+    <td>
+        <a href="{% url 'bomboniere:combo:product_select' object.id %}">mudar os produtos do combo</a><br><br>
+        <a href="{% url 'bomboniere:combo:combo_list' %}">ir para a lista de combos</a>
+    </td>
+
+</div>
+{% endblock content %}

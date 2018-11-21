@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% load static %} {% block title %}Quantidade de Produtos no Combo: {{ object.date }}{% endblock %} {% block content %}
+<h3>Quantidade do Produto</h3>
+<form method="post">{% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}
