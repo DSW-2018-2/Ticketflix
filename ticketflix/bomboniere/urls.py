@@ -20,6 +20,7 @@ combo_urls = [
     path('edit/<int:pk>', ComboUpdate.as_view(template_name='bomboniere/combo_form.html'), name='combo_edit'),
     path('delete/<int:pk>', ComboDelete.as_view(template_name='bomboniere/combo_delete.html'), name='combo_delete'),
     path('product_select/<int:pk>', ProductSelect.as_view(template_name = 'bomboniere/product_select.html'), name='product_select'),
+    path('product_quantity/<int:pk_combo>/<int:pk_product>', ProductQuantityView.as_view(template_name = 'bomboniere/product_quantity_form.html'), name='product_quantity'),
 ]
 
 urlpatterns = [

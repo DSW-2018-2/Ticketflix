@@ -1,9 +1,8 @@
 
 from django.template import RequestContext
-from django.views.generic import ListView
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import FormView
+
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
@@ -79,6 +78,7 @@ class ComboView(DetailView):
         if combo_product.exists():
             combo_product = combo_product[0]
             quantity = combo_product.quantity
+            print(f'===========================QUANT ENCONTRADA: {quantity}')
 
         return quantity
 
@@ -133,7 +133,7 @@ class ProductSelect(FormView):
         combo_id = kwargs['pk']
         combo = Combo.objects.get(id=combo_id)  
 
-        combo_products = form.cleaned_data.get('products_in_combo')
+        combo_products = form.cleaned_data.get('combo_products')
         products = form.cleaned_data.get('products')
 
         self.reset_combo_products(combo)
@@ -177,4 +177,41 @@ class ProductSelect(FormView):
 
         return str(success_url) # success_url must be lazy
 
-    
+class ProductQuantityView(CreateView):
+    # form = ProductQuantityForm
+    model = ComboProductQuantity
+    fields = [
+        'quantity'
+    ]
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        if form.is_valid():
+            return self.form_valid(form, request, **kwargs)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form, request, **kwargs):
+        combo_id = kwargs['pk_combo']
+        product_id = kwargs['pk_product']
+
+        combo = Combo.objects.get(id=combo_id)
+        product = Product.objects.get(id=product_id)
+
+        instance = ComboProductQuantity.objects.filter(combo=combo, product=product)
+        instance = instance[0]
+        quantity = request.POST.copy().get('quantity')
+        instance.quantity = quantity
+        print(f'============ quantidade: {quantity}')
+        # print('================= instancia:\n%r', %(instance))
+        instance.save()
+
+        return HttpResponseRedirect(self.get_success_url(combo_id))
+        # success_url = reverse_lazy('bomboniere:combo:combo_list')
+        # return HttpResponseRedirect(success_url)
+
+    def get_success_url(self, combo_id):
+        success_url = reverse_lazy('bomboniere:combo:combo_view', kwargs={'pk': combo_id})
+
+        return str(success_url) # success_url must be lazy
