@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% load static %} {% block title %}New Product: {{ object.date }}{% endblock %} {% block content %}
-<h1>Product Edit</h1>
+{% extends "base.html" %} {% load static %} {% block title %}Novo Produto: {{ object.date }}{% endblock %} {% block content %}
+<h1>Editar Produto</h1>
 <form method="post">{% csrf_token %} {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>

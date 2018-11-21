@@ -1,13 +1,13 @@
-{% extends "base.html" %} {% load static %} {% block title %}Products{% endblock %} {% block content %}
-<h1>Products</h1>
+{% extends "base.html" %} {% load static %} {% block title %}Produtos{% endblock %} {% block content %}
+<h1>Produtos</h1>
 
 <table border="1">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
         </tr>
     </thead>
     <tbody>
@@ -18,19 +18,19 @@
             <td>{{ product.description}}</td>
             <td>{{ product.price }}</td>
             <td>
-                <a href="{% url 'bomboniere:product:product_view' product.id %}">view</a>
+                <a href="{% url 'bomboniere:product:product_view' product.id %}">ver</a>
             </td>
             <td>
-                <a href="{% url 'bomboniere:product:product_edit' product.id %}">edit</a>
+                <a href="{% url 'bomboniere:product:product_edit' product.id %}">editar</a>
             </td>
             <td>
-                <a href="{% url 'bomboniere:product:product_delete' product.id %}">delete</a>
+                <a href="{% url 'bomboniere:product:product_delete' product.id %}">deletar</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a href="{% url 'bomboniere:product:product_new' %}">New</a>
+<a href="{% url 'bomboniere:product:product_new' %}">novo produto</a>
 
 {% endblock content %}

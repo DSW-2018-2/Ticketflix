@@ -20,13 +20,15 @@
             {% endif %}
             <b>Preço: </b><b>{{ item.product.price }}<br>         
             <b>Quantidade: </b>{{ item.quantity }}<br>
+            <a href="{% url 'bomboniere:combo:product_quantity' object.id item.product.id %}">mudar a quantidade do produto</a>
         </div>
     </div>
     <br>
     {% endfor %}
 
     <td>
-        <a href="{% url 'bomboniere:combo:combo_list' %}">view</a>
+        <a href="{% url 'bomboniere:combo:product_select' object.id %}">mudar os produtos do combo</a><br><br>
+        <a href="{% url 'bomboniere:combo:combo_list' %}">ir para a lista de combos</a>
     </td>
 
 </div>

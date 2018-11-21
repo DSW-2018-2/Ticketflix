@@ -5,10 +5,10 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
         </tr>
     </thead>
     <tbody>
@@ -20,19 +20,19 @@
             <td>{{ combo.price }}</td>
             <td>{{ combo.quantity }}</td>
             <td>
-                <a href="{% url 'bomboniere:combo:combo_view' combo.id %}">view</a>
+                <a href="{% url 'bomboniere:combo:combo_view' combo.id %}">ver</a>
             </td>
             <td>
-                <a href="{% url 'bomboniere:combo:combo_edit' combo.id %}">edit</a>
+                <a href="{% url 'bomboniere:combo:combo_edit' combo.id %}">editar</a>
             </td>
             <td>
-                <a href="{% url 'bomboniere:combo:combo_delete' combo.id %}">delete</a>
+                <a href="{% url 'bomboniere:combo:combo_delete' combo.id %}">deletar</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a href="{% url 'bomboniere:combo:combo_new' %}">New</a>
+<a href="{% url 'bomboniere:combo:combo_new' %}">novo combo</a>
 
 {% endblock content %}
