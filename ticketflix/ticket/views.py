@@ -14,29 +14,11 @@ class TicketList(ListView):
 class TicketView(DetailView):
     model = Ticket
 
-
 class TicketCreate(CreateView):
     model = Ticket
     fields = [
         'ticket_type',
         'seat',
-        'price',
         'session',
     ]
-    success_url = reverse_lazy('ticket:ticket_list')
-
-
-class TicketUpdate(UpdateView):
-    model = Ticket
-    fields = [
-        'ticket_type',
-        'seat',
-        'price',
-        'session',
-    ]
-    success_url = reverse_lazy('ticket:ticket_list')
-
-
-class TicketDelete(DeleteView):
-    model = Ticket
     success_url = reverse_lazy('ticket:ticket_list')

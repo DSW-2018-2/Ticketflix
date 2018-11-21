@@ -4,21 +4,64 @@ from django.core import validators
 from django.urls import reverse
 
 from ticketflix.ticket.models import Ticket
+from ticketflix.bomboniere.models import Product, Combo
+
+
+class Item(models.Model):
+    quatity = models.IntegerField(
+        default=1
+    )
+
+class ItemTickets(Item):
+    tickets = models.ManyToManyField(
+        Ticket,
+        null=True,
+        verbose_name=_("Tickets"),
+        help_text=_("Tickets do Carrinho")   
+    )
+
+class ItemProducts(Item):
+    products = models.ManyToManyField(
+        Product,
+        null=True,
+        verbose_name=_("Produtos"),
+        help_text=_("Produtos do Carrinho")   
+    )
+
+class ItemCombos(Item):
+    combos = models.ManyToManyField(
+        Combo,
+        null=True,
+        verbose_name=_("Combos"),
+        help_text=_("Combos do Carrinho")   
+    )
 
 class Cart(models.Model):
 
     parcial_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        default=0.0
+        default=0
     )
 
-    itemTickets = models.ManyToManyField(
-        ItemTickets,
-        null=True,
+    tickets = models.ManyToManyField(
+        Ticket,
         verbose_name=_("Ticket"),
         help_text=_("Tickets do Carrinho")   
     )
+
+    products = models.ManyToManyField(
+        Product,
+        verbose_name=_("Produtos"),
+        help_text=_("Produtos do Carrinho")   
+    )
+
+    combos = models.ManyToManyField(
+        Combo,
+        verbose_name=_("Combos"),
+        help_text=_("Combos do Carrinho")   
+    )
+
 
     class Meta:
         verbose_name = _("Carrinho")
@@ -32,35 +75,28 @@ class Cart(models.Model):
         parcial_price = 0
 
         for ticket in self.tickets.all:
-            parcial_price += ticket.price 
-        
+            if(ticket.ticket_type == "Meia"):
+                parcial_price += ticket.session.price/2
+            else:
+                parcial_price += ticket.session.price
+
+        for product in self.products.all:
+            parcial_price += product.price
+            
+        for combo in self.combos.all:
+            parcial_price += combo.price
+
         self.parcial_price = parcial_price
         self.save()
 
-    def add_cart_items(self, item):
-        if isinstance(item, Ticket):
-            self.tickets.add(item)
-        self.save()
-        self.update_parcial_price()
+    # def add_cart_items(self, item):
+    #     if isinstance(item, Ticket):
+    #         self.tickets.add(item)
+    #     self.save()
+    #     self.update_parcial_price()
 
-    def remove_cart_items(self, item):
-        if isinstance(item, Ticket):
-            self.tickets.remove(item)
-        self.save()
-        self.update_parcial_price()
-
-class Item(models.Model):
-    quatity = models.IntegerField(
-        max_digits=10,
-        default=1
-    )
-
-class ItemTicket(Item):
-    tickets = models.ManyToManyField(
-        Ticket,
-        null=True,
-        verbose_name=_("Ticket"),
-        help_text=_("Tickets do Carrinho")   
-    )
-
-    
+    # def remove_cart_items(self, item):
+    #     if isinstance(item, Ticket):
+    #         self.tickets.remove(item)
+    #     self.save()
+    #     self.update_parcial_price()

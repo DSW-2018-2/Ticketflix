@@ -1,5 +1,8 @@
 from django.db import models
 from django.urls import reverse
+from django.core import validators
+from django.utils.translation import ugettext_lazy as _
+
 from ticketflix.spectacle.models import Spectacle
 
 class Session(models.Model):
@@ -28,6 +31,14 @@ class Session(models.Model):
         related_query_name='session',
         on_delete=models.CASCADE,
         null=True
+    )
+
+    price = models.FloatField(
+        verbose_name=_("Preço"),
+        help_text=_("Preço"),
+        validators=[validators.MinValueValidator(0)],
+        blank=False,
+        default=0
     )
 
     def __str__(self):

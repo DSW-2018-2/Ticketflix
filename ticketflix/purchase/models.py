@@ -9,14 +9,14 @@ class Purchase(models.Model):
         verbose_name=_("Preço Total"),
         help_text=_("Preço Total"),
         validators=[validators.MinValueValidator(0)],
-        blank=False
-        default=0.0
+        blank=False,
+        default=0
     )
 
     rate = models.FloatField(
         verbose_name=_("Taxa"),
         help_text=_("Taxa"),
-        default=0.1
+        default=0.1,
         blank=False
     )
 

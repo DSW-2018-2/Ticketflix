@@ -20,14 +20,7 @@ class Ticket(models.Model):
         verbose_name=_("Assento"),
         help_text=_("Assento"),
         max_length=50,
-        blank=False
-    )
-
-    price = models.FloatField(
-        verbose_name=_("Preço"),
-        help_text=_("Preço"),
-        validators=[validators.MinValueValidator(0)],
-        blank=False
+        null = True
     )
 
     session = models.ForeignKey(
@@ -37,6 +30,7 @@ class Ticket(models.Model):
         on_delete=models.PROTECT,
         null=True
     )
+    
     class Meta:
         verbose_name = _("Ticket")
         verbose_name_plural = _("Tickets")
