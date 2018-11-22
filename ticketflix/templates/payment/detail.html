@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Pagamentos" %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<h2>Pagamento</h2>
+	<div class="row">
+		<div class="col-sm-12">
+		{% comment %} <ul>ID: <strong>{{ payment.id }}</strong></ul> {% endcomment %}
+        <ul>Tipo: {{ payment.get_payment_type_display }}</ul>
+        <ul>ID da Compra: {{ payment.purchase.id }}</ul>
+        <ul>Nome do Cliente: {{ payment.purchase.customer.firstName }} {{ payment.purchase.customer.lastName }}</ul>
+        <ul>Valor da Compra: {{ payment.purchase.totalPrice }} </ul>
+    </div>
+</div>
+{% endblock content %}

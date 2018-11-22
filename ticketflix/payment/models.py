@@ -10,6 +10,7 @@ class Customer(models.Model):
 
 
 class Purchase(models.Model):
+    id = 12345
     totalPrice = 42.00
     customer = Customer()
 
@@ -20,7 +21,34 @@ class PaymentStrategy(models.Model):
         verbose_name_plural = _('Pagamentos')
         abstract = True
 
-    purchase = models.ForeignKey(Purchase, on_delete=models.PROTECT)
+    CARTAODECREDITO = 'Cartão de Crédito'
+    BOLETOBANCARIO = 'Boleto Bancário'
+    NA = 'NA'
+
+    PAYMENT_CHOICES = (
+        (CARTAODECREDITO, CARTAODECREDITO),
+        (BOLETOBANCARIO, BOLETOBANCARIO),
+        (NA, 'N/A'),
+    )
+
+    purchase = models.ForeignKey(
+        Purchase, 
+        on_delete=models.PROTECT,
+    )
+
+    payment_type = models.CharField(
+        verbose_name=_('Tipo de Pagamento'),
+        help_text=_('Tipo de Pagamento'),
+        max_length=20,
+        choices=PAYMENT_CHOICES,
+        default=NA,
+    )
+
+    def __str__(self):
+        return self.id
+
+    def get_absolute_url(self):
+        return reverse('payment:payment_detail', kwargs={'id': self.id})
 
 
 class BankTicket(PaymentStrategy):
