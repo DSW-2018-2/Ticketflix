@@ -13,7 +13,7 @@
 				<form method="post">{% csrf_token %} {{ form.as_p }}
             <br><br>
 						<a href="{% url 'ticket:ticket_list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Cancelar' %}</button></a>
-				    <button type="submit" value="Submit" class="btn btn-danger mr-1 right green darken-3 white-text lighten-1">Novo Ingresso</button></a>
+				    <button type="submit" value="Submit" class="btn btn-danger mr-1 right green darken-3 white-text lighten-1">Salvar</button></a>
 				</form>
 			</div>
 		</div>

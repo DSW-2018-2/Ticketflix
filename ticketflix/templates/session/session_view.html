@@ -1,18 +1,22 @@
 {% extends "base.html" %} 
 {% load static i18n %} 
 
-{% block title %}Ingresso: {{ object.date }}
+{% block title %}Sessão: {{ object.date }}
 {% endblock %}
 {% block content %}
 <main>
 	<div class="container">
 	  <div class="row">
 	    <div class="col-sm-12">
-	      <h3>Dia: {{ object.date }}</h3>
+	      <h3> Sessão </h3>
+	      <b>Dia: </b>{{ object.date }}
 	      {% if object.time %}
-	      <p>Hora: {{ object.time }}</p>
+	      <p><b>Horário: </b>{{ object.time }}</p>
 	      {% endif %}
+	      <p><b>Local: </b>{{ object.place }}</p>
+	      <p><b>Tickets disponíveis: </b>{{ object.available_ticket_number}} tickets dos {{ object.total_ticket_number}} totais </p>
 	    </div>
+	    <a href="{% url 'session:session_list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1 right">{% trans 'Voltar' %}</button></a>
 	  </div>
 	</div>
 </main>

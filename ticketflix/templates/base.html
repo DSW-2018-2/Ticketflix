@@ -101,9 +101,11 @@
         <div class="col l3 s12">
           <h5 class="white-text">Menu</h5>
           <ul>
-            <li><a class="white-text" href="#!">Espetáculos</a></li>
-            <li><a class="white-text" href="#!">Ingressos</a></li>
-            <li><a class="white-text" href="#!">Bombonier</a></li>
+            <li><a class="white-text" href="{% url 'spectacle:spectacle-list' %}">Espetáculos</a></li>
+            <li><a class="white-text" href="{% url 'ticket:ticket_list' %}">Ingressos</a></li>
+            <li><a class="white-text" href="{% url 'bomboniere:combo:combo_list' %}">Bombonier</a></li>
+            <li><a class="white-text" href="">Estabelecimentos</a></li>
+            <li><a class="white-text" href="">Carrinho</a></li>
           </ul>
         </div>
         <div class="col l3 s12">

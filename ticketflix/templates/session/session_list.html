@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 {% load static i18n %} 
 
-{% block title %}Ingresso: {{ object.date }}
+{% block title %}Sessão: {{ object.date }}
 {% endblock %} 
 
 {% block content %}
@@ -17,8 +17,8 @@
             <tr>
               <th>ID</th>
               <th>Data</th>
-              <th>Lugar</th>
-              <th>Acessar</th>
+              <th>Local</th>
+              <th>Ver</th>
               <th>Editar</th>
               <th>Deletar</th>
             </tr>
@@ -30,7 +30,7 @@
               <td>{{ session.date }} | {{ session.time}}</td>
               <td>{{ session.place }}</td>
               <td>
-                  <a href="{% url 'session:session_view' session.id %}">acessar</a>
+                  <a href="{% url 'session:session_view' session.id %}">ver</a>
               </td>
               <td>
                   <a href="{% url 'session:session_edit' session.id %}">editar</a>
