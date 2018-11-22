@@ -22,6 +22,7 @@ class SessionCreate(CreateView):
         'date',
         'time',
         'spectacle',
+        'room',
         'total_ticket_number',
         'available_ticket_number',
         'price'
@@ -35,6 +36,7 @@ class SessionUpdate(UpdateView):
         'place',
         'date',
         'time',
+        'room'
         'total_ticket_number',
         'available_ticket_number',
         'price'
