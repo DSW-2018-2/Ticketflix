@@ -83,8 +83,8 @@ class CreditCard(PaymentStrategy):
         verbose_name_plural = _('Cartões de Crédito')
 
     _ownerName = models.CharField(
-        verbose_name=_('Pagador do boleto'),
-        help_text=_('Nome do pagador do boleto'),
+        verbose_name=_('Nome no cartão'),
+        help_text=_('Nome do dono do cartão'),
         max_length=255,
         default = ''
     )
