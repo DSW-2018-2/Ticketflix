@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../owner/.idea/owner.iml" filepath="$PROJECT_DIR$/../owner/.idea/owner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../parallax-template/.idea/parallax-template.iml" filepath="$PROJECT_DIR$/../parallax-template/.idea/parallax-template.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ticketflix.iml" filepath="$PROJECT_DIR$/.idea/ticketflix.iml" />
     </modules>
   </component>

@@ -74,3 +74,7 @@ Ex: feature/1-<nome-da-nova-feature> (Considerando que a feature tenha sido soli
 * __release/<versão-da-release>__ - Branch onde será feito os ajustes finais/build antes da entrega de uma versão do produto de software. Constará no nome da branch a versão da release a ser entregue.
 
 * __support/<tema-ou-natureza>__ - Branch onde serão executadas tarefas de suporte relacionadas ao software, como elaboração de documentações, correções de natureza de gerência de configuração e etc.
+
+
+## Metodologia
+ Para a elaboração deste documento foram alocados dois membros da equipe, o **A Mariana e o João Pedro Sconetto**, como exposto na [ata](https://github.com/DSW-2018-2/Ticketflix/wiki/Ata-da-Reuni%C3%A3o-1). O git community é muito importante quando o assunto é open sorce, pois assim é possível estabelecer um padrão entre todos aqueles que querem contribuir.

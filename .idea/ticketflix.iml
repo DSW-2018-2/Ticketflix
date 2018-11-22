@@ -18,6 +18,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6 (Ticketflix)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="owner" />
+    <orderEntry type="module" module-name="parallax-template" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="$MODULE_DIR$/requirements/local.txt" />

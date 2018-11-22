@@ -1,37 +1,50 @@
-{% extends "base.html" %} {% load static %} {% block title %}Ticket: {{ object.date }}{% endblock %} {% block content %}
-<h1>Tickets</h1>
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-<table border="1">
-    <thead>
-        <tr>
+{% block title %}Ingresso {{ object.date }}
+{% endblock %} 
+
+{% block content %}
+<main>
+  <div class="container">
+    <h2>Ingresso</h2>
+    <a href="{% url 'ticket:ticket_new' %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Novo ingresso</button></a>
+    <div class="row">
+      <div class="col-sm-12">
+      <table border="1">
+        <thead>
+          <tr>
             <th>ID</th>
-            <th>Date</th>
-            <th>Place</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for ticket in object_list %}
-        <tr>
+            <th>Data</th>
+            <th>Local</th>
+            <th>Ver</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticket in object_list %}
+          <tr>
             <td>{{ ticket.id }}</td>
             <td>{{ ticket.session.date }} | {{ ticket.session.time}}</td>
             <td>{{ ticket.session.place }}</td>
             <td>
-                <a href="{% url 'ticket:ticket_view' ticket.id %}">view</a>
+                <a href="{% url 'ticket:ticket_view' ticket.id %}">ver</a>
             </td>
             <td>
-                <a href="{% url 'ticket:ticket_edit' ticket.id %}">edit</a>
+                <a href="{% url 'ticket:ticket_edit' ticket.id %}">editar</a>
             </td>
             <td>
-                <a href="{% url 'ticket:ticket_delete' ticket.id %}">delete</a>
+                <a href="{% url 'ticket:ticket_delete' ticket.id %}">deletar</a>
             </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+    </div>
+  </div>
+</main>
 
-<a href="{% url 'ticket:ticket_new' %}">New</a>
 
 {% endblock content %}
