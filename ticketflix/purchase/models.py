@@ -39,5 +39,5 @@ class Purchase(models.Model):
         self.save()
 
     def set_total_price(self):
-        self.total_price = self.cart.parcial_price * (1 + self.rate)
+        self.total_price = self.cart.parcial_price * (1.0 + self.rate)
         self.save()

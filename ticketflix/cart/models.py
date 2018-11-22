@@ -8,9 +8,9 @@ from ticketflix.bomboniere.models import Product, Combo
 
 class Cart(models.Model):
 
-    parcial_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
+    parcial_price = models.FloatField(
+        verbose_name=_("Preço Parcial da Compra"),
+        help_text=_("Preço Parcial da Compra"),
         default=0
     )
 

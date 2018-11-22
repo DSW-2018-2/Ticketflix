@@ -48,7 +48,7 @@ class SetTickets(FormView):
 
     def create_half_tickets(self, half_tickets, session, tickets):
 
-        for i in range(1, half_tickets):
+        for i in range(1, half_tickets + 1):
             ticket = Ticket.objects.create(ticket_type="Meia", 
                                            session=session,
                                            price=(session.price)/2.0)
@@ -58,7 +58,7 @@ class SetTickets(FormView):
 
     def create_full_tickets(self, full_tickets, session, tickets):
 
-        for i in range(1, full_tickets):
+        for i in range(1, full_tickets + 1):
             ticket = Ticket.objects.create(ticket_type="Inteira", 
                                            session=session, 
                                            price=session.price)
@@ -66,7 +66,6 @@ class SetTickets(FormView):
             tickets.append(ticket)
 
     def create_cart(self, tickets):
-
         cart = Cart.objects.create()
         cart.save()
 
@@ -146,10 +145,14 @@ class SetBomboniereProducts(FormView):
 
         products = form.cleaned_data.get('products')
         combos = form.cleaned_data.get('combos')
-        cart = self.get_cart
+        
+        cart = self.get_cart()
         
         self.add_products(cart, products)
         self.add_combos(cart, combos)
+
+        cart.update_parcial_price()
+        cart.save()
 
         return HttpResponseRedirect(self.get_success_url(cart.id))
 
@@ -169,6 +172,7 @@ class SetBomboniereProducts(FormView):
         cart.save()
 
     def reset_products(self, cart):
+
         for product in cart.products.all():
             cart.products.remove(product)
         
@@ -192,7 +196,7 @@ class SetBomboniereProducts(FormView):
     def get_success_url(self, cart_id):
         """Return the URL to redirect to after processing a valid form."""
         
-        self.success_url = reverse_lazy('cart:cart_view', kwargs={'pk_cart': cart_id})
+        self.success_url = reverse_lazy('cart:cart_view', kwargs={'pk': cart_id})
 
         if not self.success_url:
             raise ImproperlyConfigured("No URL to redirect to. Provide a success_url.")

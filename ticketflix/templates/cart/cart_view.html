@@ -1,14 +1,67 @@
-{% extends "base.html" %} {% load static %} {% block title %}Carrinho: {{ object.parcial_price }}{% endblock %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Compra:{% endblock %} {% block content %}
 <div class="container">
+
+    <h4>Ingressos:</h4>
+    {% for ticket in object.tickets.all %}
+        <div class="row">
+            <div class="col-sm-12">
+            <b>Ingresso para {{ ticket.session.spectacle }}</b><br>
+                Tipo: {{ ticket.ticket_type }} <br>
+                Assento: {{ ticket.seat }} <br>
+                Preço: {{ ticket.price }} <br>
+                Sessão: <br>
+                <div class="col-sm-12">
+                    Data: {{ ticket.session.date }} <br>
+                    Hora: {{ ticket.session.time }} <br>
+                    Local: {{ ticket.session.place }} <br>
+                    Sala: {{ ticket.session.room.name }} <br>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <h4>Produtos de Bomboniere:</h4>
+    <div class="row">
+        <div class="col-sm-12">
+            {% if object.products.all %}
+            <h5>Produtos:</h5>
+            {% for product in object.products.all %}
+            <div class="row">
+                <div class="col-sm-12">
+                    Nome: {{ product.name }} <br>
+                    {% if product.description %}
+                    Descrição: {{ product.description }} <br>
+                    {% endif %}
+                    Preço: {{ product.price }} <br>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if object.combos.all %}
+            <h5>Combos:</h5>
+            {% for combo in object.combos.all %}
+            <div class="row">
+                <div class="col-sm-12">
+                    Nome: {{ combo.name }} <br>
+                    {% if combo.description %}
+                    Descrição: {{ combo.description }} <br>
+                    {% endif %}
+                    Preço: {{ combo.price }} <br>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-12">
-
-            <h2>{{ object.parcial_price }}</h2>
-            {% for tickets in object.tickets.all%}
-                {{tickets.ticket_type}}
-            {% endfor %}
+            Preço Parcial da Compra: {{ object.parcial_price }}
         </div>
     </div>
+    
+    <a href="{% url 'purchase:finalize_purchase' object.id %}">Finalizar Compra</a><br><br>
+    
 </div>
 {% endblock content %}

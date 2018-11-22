@@ -8,6 +8,8 @@
             {% if object.time %}
             <p>{{ object.time }}</p>
             {% endif %}
+
+            <a href="{% url 'cart:set_tickets' session.id %}">Comprar Ingressos</a>
         </div>
     </div>
 </div>

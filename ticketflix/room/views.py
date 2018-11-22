@@ -87,7 +87,7 @@ class AddSeatRow(FormView):
         row = form.cleaned_data.get('row')
         seats_quantity = form.cleaned_data.get('seats_quantity')
 
-        for i in range(1, seats_quantity):
+        for i in range(1, seats_quantity + 1):
             seat = Seat.objects.create(row=row,
                                        number=i,
                                        room=room)

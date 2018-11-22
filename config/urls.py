@@ -37,19 +37,28 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path(
         "session/",
-        include(("ticketflix.session.urls","ticketflix.session"), namespace="session"),
+        include(("ticketflix.session.urls","ticketflix.session"), 
+        namespace="session"),
     ),
     path(
         "ticket/",
-        include(("ticketflix.ticket.urls","ticketflix.ticket"), namespace="ticket"),
+        include(("ticketflix.ticket.urls","ticketflix.ticket"), 
+        namespace="ticket"),
     ),
     path(
         "cart/",
-        include(("ticketflix.cart.urls","ticketflix.cart"), namespace="cart"),
+        include(("ticketflix.cart.urls","ticketflix.cart"), 
+        namespace="cart"),
     ),
     path(
         "room/",
-        include(("ticketflix.room.urls","ticketflix.room"), namespace="room"),
+        include(("ticketflix.room.urls","ticketflix.room"), 
+        namespace="room"),
+    ),
+    path(
+        "purchase/",
+        include(("ticketflix.purchase.urls", "ticketflix.purchase"),
+        namespace="purchase")
     )
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
