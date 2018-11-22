@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 {% load static i18n %}
-{% block title %}Establishments{% endblock %}
+
+{% block title %}Estabelecimentos{% endblock %}
 
 {% block content %}
-<div class="container">
-  <h2>establishments</h2>
-
-  <div class="list-group">
-    {% for establishment in object_list %}
-      <li>
-        <a href="{{establishment.get_absolute_url}}">{{establishment.name}}</a> 
-      </li>
-      {% empty %}
-          <li>No establishment yet.</li>
-      {% endfor %}
+<main>
+  <div class="container">
+    <h2>Estabelecimentos</h2>
+    <div class="list-group">
+      <a href="{% url 'establishment:establishment-create' %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Novo Estabelecimento</button></a>
+      {% for establishment in object_list %}
+        <li>
+          <a href="{{establishment.get_absolute_url}}">{{establishment.name}}</a> 
+        </li>
+        {% empty %}
+            <li>Sem estabelecimentos.</li>
+        {% endfor %}
+    </div>
   </div>
-</div>
+</main>
 {% endblock content %}
