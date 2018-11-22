@@ -36,11 +36,18 @@ urlpatterns = [
     ),
     path(
         "session/",
-        include(("ticketflix.session.urls","ticketflix.session"), namespace="session"),
+        include(("ticketflix.session.urls","ticketflix.session"), 
+                namespace="session")
     ),
     path(
         "ticket/",
-        include(("ticketflix.ticket.urls","ticketflix.ticket"), namespace="ticket"),
+        include(("ticketflix.ticket.urls","ticketflix.ticket"), 
+                namespace="ticket")
+    ),
+    path(
+        "establishment/",
+        include(("ticketflix.establishment.urls", "establishment"),
+                namespace="establishment")
     ),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

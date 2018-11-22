@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Establisment: {{ object.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>
+        <strong>{{establishment.name}}</strong> <br>
+        <br>
+        <strong>Endereço:</strong> {{establishment.address}} <br>
+        <strong>Complemento:</strong> {{establishment.addressComplement}} <br>
+        <strong>CEP:</strong> {{establishment.cep}} <br>
+        <strong>Cidade:</strong> {{establishment.city}} <br>
+        <strong>Telefone:</strong> {{establishment.phoneNumber}}
+      </h2>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
