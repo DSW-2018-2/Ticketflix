@@ -11,7 +11,7 @@ class Establishment(models.Model):
     phoneNumber = models.CharField(max_length=14)
 
     def get_absolute_url(self):
-        return reverse("establishment-detail", args=[str(self.id)])
+        return reverse('establishment:establishment-detail', kwargs={'id': self.id})
 
     def __str__(self):
         return self.name
