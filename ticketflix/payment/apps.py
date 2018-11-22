@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class PaymentsConfig(AppConfig):
-    name = 'payments'
+class PaymentAppConfig(AppConfig):
+    name = 'ticketflix.payment'
+    verbose_name = 'Payment'

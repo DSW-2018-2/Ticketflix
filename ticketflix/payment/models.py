@@ -1,15 +1,17 @@
 from django.db import models
 
+from django.utils.translation import ugettext_lazy as _
+
 # these are temporary class that must be exterminated when the real is implemented
-class Customer():
+class Customer(models.Model):
     def __init__(self):
         self.firstName = 'Valdir'
         self.lastName = 'das Couves'
 
-class Purchase():
+
+class Purchase(models.Model):
     totalPrice = 42.00
     customer = Customer()
-
 
 
 class PaymentStrategy(models.Model):
@@ -19,6 +21,7 @@ class PaymentStrategy(models.Model):
         abstract = True
 
     purchase = models.ForeignKey(Purchase, on_delete=models.PROTECT)
+
 
 class BankTicket(PaymentStrategy):
     class Meta:
@@ -40,10 +43,11 @@ class BankTicket(PaymentStrategy):
 
     expirationDate = models.DateField(
         verbose_name=_('Data de vencimento'), 
-        help_text=_('Data de vencimento do boleto')
+        help_text=_('Data de vencimento do boleto'),
         auto_now=False,
         auto_now_add=False
     )
+
 
 class CreditCard(PaymentStrategy):
     class Meta:

@@ -21,6 +21,11 @@ urlpatterns = [
     ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path(
+        "payment/", 
+        include(("ticketflix.payment.urls", "payment"), 
+                namespace="payment")
+),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
