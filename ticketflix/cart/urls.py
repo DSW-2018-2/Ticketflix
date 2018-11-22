@@ -24,5 +24,6 @@ from .views import *
 # ]
 
 urlpatterns = [
-    path("set_tickets/<int: pk_session>", SetTickets.as_view(template_name='cart/set_tickets.html'), name='set_tickets')
+    path("set_tickets/<int:pk_session>", SetTickets.as_view(template_name='cart/set_tickets.html'), name='set_tickets'),
+    path("set_seats/<int:pk_cart>", SetSeats.as_view(template_name='cart/set_seats.html'), name='set_seats'),
 ]

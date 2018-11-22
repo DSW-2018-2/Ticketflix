@@ -46,6 +46,10 @@ urlpatterns = [
     path(
         "cart/",
         include(("ticketflix.cart.urls","ticketflix.cart"), namespace="cart"),
+    ),
+    path(
+        "room/",
+        include(("ticketflix.room.urls","ticketflix.room"), namespace="room"),
     )
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

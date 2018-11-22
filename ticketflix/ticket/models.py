@@ -23,6 +23,14 @@ class Ticket(models.Model):
         null = True
     )
 
+    price = models.FloatField(
+        verbose_name=_("Preço"),
+        help_text=_("Preço"),
+        validators=[validators.MinValueValidator(0)],
+        blank=False,
+        default=0
+    )
+
     session = models.ForeignKey(
         Session,
         related_name='sessions',

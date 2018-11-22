@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% load static %} {% block title %}Room: {% endblock %} {% block content %}
+<h1>Room</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in object_list %}
+        <tr>
+            <td>{{ room.id }}</td>
+            <td>{{ room.name }}</td>
+            <td>
+                <a href="{% url 'room:room_view' room.id %}">view</a>
+            </td>
+            <td>
+                <a href="{% url 'room:room_edit' room.id %}">edit</a>
+            </td>
+            <td>
+                <a href="{% url 'room:room_delete' room.id %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'room:room_new' %}">New</a>
+
+{% endblock content %}

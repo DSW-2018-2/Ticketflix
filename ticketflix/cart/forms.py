@@ -14,3 +14,12 @@ class SetTicketsForm(forms.Form):
         required=True,
         initial=0
     )
+
+
+class SetSeatsForm(forms.Form):
+
+    half_tickets_quantity = forms.IntegerField(
+        validators=[validators.MinValueValidator(0)],
+        required=True,
+        initial=0
+    )

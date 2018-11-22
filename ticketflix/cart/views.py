@@ -47,7 +47,9 @@ class SetTickets(FormView):
     def create_half_tickets(self, half_tickets, session, tickets):
 
         for i in range(1, half_tickets):
-            ticket = Ticket.objects.create(ticket_type="Meia", session=session)
+            ticket = Ticket.objects.create(ticket_type="Meia", 
+                                           session=session,
+                                           price=(session.price)/2.0)
             ticket.save()
             tickets.append(ticket)
 
@@ -55,23 +57,35 @@ class SetTickets(FormView):
     def create_full_tickets(self, full_tickets, session, tickets):
 
         for i in range(1, full_tickets):
-            ticket = Ticket.objects.create(ticket_type="Inteira", session=session)
+            ticket = Ticket.objects.create(ticket_type="Inteira", 
+                                           session=session, 
+                                           price=session.price)
             ticket.save()
             tickets.append(ticket)
 
     def create_cart(self, tickets):
 
         cart = Cart.objects.create()
+        cart.save()
 
-        # TODO: terminar de criar carrinho, adicionar os objetos, e enviar o id      
+        for ticket in tickets:
+            cart.tickets.add(ticket)
 
-    def get_success_url(self, tickets):
+        cart.update_parcial_price()
+        cart.save()
+
+        return cart.id
+
+    def get_success_url(self, cart_id):
         """Return the URL to redirect to after processing a valid form."""
         
-        self.success_url('cart:set_seats', kwargs={'tickets': tickets})
+        self.success_url = reverse_lazy('cart:set_seats', kwargs={'pk_cart': cart_id})
 
         if not self.success_url:
             raise ImproperlyConfigured("No URL to redirect to. Provide a success_url.")
         return str(self.success_url)  # success_url may be lazy
 
-# TODO: criar a url de setar assentos
+
+class SetSeats(FormView):
+
+    form_class = SetSeatsForm

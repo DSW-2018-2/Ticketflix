@@ -6,36 +6,6 @@ from django.urls import reverse
 from ticketflix.ticket.models import Ticket
 from ticketflix.bomboniere.models import Product, Combo
 
-
-class Item(models.Model):
-    quatity = models.IntegerField(
-        default=1
-    )
-
-class ItemTickets(Item):
-    tickets = models.ManyToManyField(
-        Ticket,
-        null=True,
-        verbose_name=_("Tickets"),
-        help_text=_("Tickets do Carrinho")   
-    )
-
-class ItemProducts(Item):
-    products = models.ManyToManyField(
-        Product,
-        null=True,
-        verbose_name=_("Produtos"),
-        help_text=_("Produtos do Carrinho")   
-    )
-
-class ItemCombos(Item):
-    combos = models.ManyToManyField(
-        Combo,
-        null=True,
-        verbose_name=_("Combos"),
-        help_text=_("Combos do Carrinho")   
-    )
-
 class Cart(models.Model):
 
     parcial_price = models.DecimalField(
@@ -74,16 +44,13 @@ class Cart(models.Model):
     def update_parcial_price(self):
         parcial_price = 0
 
-        for ticket in self.tickets.all:
-            if(ticket.ticket_type == "Meia"):
-                parcial_price += ticket.session.price/2
-            else:
-                parcial_price += ticket.session.price
+        for ticket in self.tickets.all():
+            parcial_price += ticket.price
 
-        for product in self.products.all:
+        for product in self.products.all():
             parcial_price += product.price
             
-        for combo in self.combos.all:
+        for combo in self.combos.all():
             parcial_price += combo.price
 
         self.parcial_price = parcial_price
