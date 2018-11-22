@@ -29,7 +29,7 @@ Os mantenedores do projeto têm o direito e a responsabilidade de remover, edita
 Este Código de Conduta aplica-se tanto nos espaços do projeto quanto nos espaços públicos quando um indivíduo representa o projeto ou sua comunidade. Exemplos de representar um projeto ou comunidade incluem o uso de um endereço de e-mail oficial do projeto, postagem através de uma conta oficial em mídias sociais, ou atuando como representante designado em um evento online ou offline. A representação de um projeto pode ser melhor definida e esclarecida pelos responsáveis ​​pelo projeto.
 
 ## Execução
-Instâncias de comportamento abusivo, de assédio ou de outra forma inaceitável podem ser comunicadas ao contactar a equipe do projeto em equipe.drdown@gmail.com.
+Instâncias de comportamento abusivo, de assédio ou de outra forma inaceitável podem ser comunicadas ao contactar a equipe do projeto em equipe.ticketflix@gmail.com.
 A equipe do projeto irá rever e investigar todas as queixas, e responderá da forma que julgar apropriada às circunstâncias.
 A equipe do projeto é obrigada a manter a confidencialidade em relação ao repórter de um incidente. Mais detalhes sobre políticas de execução específicas podem ser publicados separadamente.
 
