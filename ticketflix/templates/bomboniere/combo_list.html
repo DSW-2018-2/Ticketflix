@@ -8,7 +8,9 @@
             <th>Nome</th>
             <th>Descrição</th>
             <th>Preço</th>
-            <th>Quantidade</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +20,6 @@
             <td>{{ combo.name }}</td>
             <td>{{ combo.description}}</td>
             <td>{{ combo.price }}</td>
-            <td>{{ combo.quantity }}</td>
             <td>
                 <a href="{% url 'bomboniere:combo:combo_view' combo.id %}">ver</a>
             </td>

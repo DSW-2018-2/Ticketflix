@@ -13,6 +13,12 @@ class Room(models.Model):
         max_length=10
     )
 
+    spare = models.BooleanField(
+        verbose_name=_("Livre"),
+        help_text=_("Assento Livre"),
+        default=True
+    )
+
     def __str__(self):
         return self.name
 
@@ -43,6 +49,12 @@ class Seat(models.Model):
         related_query_name='seats',
         on_delete=models.CASCADE,
         null=False
+    )
+
+    spare = models.BooleanField(
+        verbose_name=_("Livre"),
+        help_text=_("Assento Livre"),
+        default=True
     )
 
     def __str__(self):
