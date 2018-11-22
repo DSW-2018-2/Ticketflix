@@ -15,7 +15,7 @@
           <h4 class="header col s12 white-text" style="text-shadow: 2px 2px #000;">Ingressos para filmes, peças e shows do jeito mais simples e ágil</h4>
         </div>
         <div class="row center">
-          <a href="{% url 'ticket:ticket_list' %}" id="download-button" class="btn-large waves-effect waves-light red lighten-3 white-text lighten-1"><b>Ingressos</b></a>
+          <a href="{% url 'spectacle:spectacle-list' %}" id="download-button" class="btn-large waves-effect waves-light red lighten-3 white-text lighten-1"><b>Espetáculos</b></a>
         </div>
         <br><br>
 
@@ -33,15 +33,15 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center blue-text lighten-3"><i class="material-icons">local_play</i></h2>
-            <h5 class="center"><a href="{% url 'spectacle:spectacle-list' %}">Espetáculos</h5></a>  
-            <p class="light">Filmes, peças de teatro e shows, tudo em um só lugar.</p>
+            <h5 class="center"><a href="{% url 'ticket:ticket_list' %}">Ingressos</h5></a>  
+            <p class="light">Ingressos pra filmes, peças de teatro e shows, tudo em um só lugar.</p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center blue-text lighten-3"><i class="material-icons">local_pizza</i></h2>
-            <h5 class="center"><a href="">Bombonieres</h5></a>
+          <h5 class="center"><a href="{% url 'bomboniere:combo:combo_list' %}">Bombonieres</h5></a>
             <p class="light">Fila? Nunca mais. Compre seus lanche para o espetáculo por aqui.</p>
           </div>
         </div>
@@ -121,7 +121,7 @@
             <li><a class="white-text" href="#!">Segurança e Privacidade</a></li>
             <li><a class="white-text" href="#!">Meia-Entrada</a></li>
             <li><a class="white-text" href="#!">Termo de Uso</a></li>
-            <li><a class="white-text" href="#!">Sobre</a></li>
+            <li><a class="white-text" href="{% url 'about' %}"">Sobre</a></li>
           </ul>
         </div>
       </div>

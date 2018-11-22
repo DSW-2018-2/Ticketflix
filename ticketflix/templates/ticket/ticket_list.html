@@ -17,7 +17,7 @@
             <th>ID</th>
             <th>Data</th>
             <th>Lugar</th>
-            <th>View</th>
+            <th>Ver</th>
             <th>Editar</th>
             <th>Deletar</th>
           </tr>
@@ -29,13 +29,13 @@
             <td>{{ ticket.session.date }} | {{ ticket.session.time}}</td>
             <td>{{ ticket.session.place }}</td>
             <td>
-                <a href="{% url 'ticket:ticket_view' ticket.id %}">view</a>
+                <a href="{% url 'ticket:ticket_view' ticket.id %}">ver</a>
             </td>
             <td>
-                <a href="{% url 'ticket:ticket_edit' ticket.id %}">edit</a>
+                <a href="{% url 'ticket:ticket_edit' ticket.id %}">editar</a>
             </td>
             <td>
-                <a href="{% url 'ticket:ticket_delete' ticket.id %}">delete</a>
+                <a href="{% url 'ticket:ticket_delete' ticket.id %}">deletar</a>
             </td>
           </tr>
           {% endfor %}

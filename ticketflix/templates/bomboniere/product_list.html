@@ -1,36 +1,49 @@
-{% extends "base.html" %} {% load static %} {% block title %}Produtos{% endblock %} {% block content %}
-<h1>Produtos</h1>
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in object_list %}
-        <tr>
-            <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description}}</td>
-            <td>{{ product.price }}</td>
-            <td>
-                <a href="{% url 'bomboniere:product:product_view' product.id %}">ver</a>
-            </td>
-            <td>
-                <a href="{% url 'bomboniere:product:product_edit' product.id %}">editar</a>
-            </td>
-            <td>
-                <a href="{% url 'bomboniere:product:product_delete' product.id %}">deletar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block title %}Produtos {{ object.date }}
+{% endblock %} 
 
-<a href="{% url 'bomboniere:product:product_new' %}">novo produto</a>
+{% block content %}
+<main>
+  <div class="container">
+    <h2>Produto</h2>
+    <a href="{% url 'bomboniere:product:product_new' %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Novo produto</button></a>
+    <div class="row">
+      <div class="col-sm-12">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in object_list %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description}}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <a href="{% url 'bomboniere:product:product_view' product.id %}">ver</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'bomboniere:product:product_edit' product.id %}">editar</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'bomboniere:product:product_delete' product.id %}">deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
 
 {% endblock content %}

@@ -1,38 +1,50 @@
-{% extends "base.html" %} {% load static %} {% block title %}Combos{% endblock %} {% block content %}
-<h1>Combo</h1>
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for combo in object_list %}
-        <tr>
-            <td>{{ combo.id }}</td>
-            <td>{{ combo.name }}</td>
-            <td>{{ combo.description}}</td>
-            <td>{{ combo.price }}</td>
-            <td>{{ combo.quantity }}</td>
-            <td>
-                <a href="{% url 'bomboniere:combo:combo_view' combo.id %}">ver</a>
-            </td>
-            <td>
-                <a href="{% url 'bomboniere:combo:combo_edit' combo.id %}">editar</a>
-            </td>
-            <td>
-                <a href="{% url 'bomboniere:combo:combo_delete' combo.id %}">deletar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block title %}Combos {{ object.date }}
+{% endblock %} 
 
-<a href="{% url 'bomboniere:combo:combo_new' %}">novo combo</a>
+{% block content %}
+<main>
+  <div class="container">
+    <h2>Combo</h2>
+    <a href="{% url 'bomboniere:combo:combo_new' %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Novo combo</button></a>
+    <div class="row">
+      <div class="col-sm-12">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for combo in object_list %}
+            <tr>
+              <td>{{ combo.id }}</td>
+              <td>{{ combo.name }}</td>
+              <td>{{ combo.description}}</td>
+              <td>{{ combo.price }}</td>
+              <td>{{ combo.quantity }}</td>
+              <td>
+                  <a href="{% url 'bomboniere:combo:combo_view' combo.id %}">ver</a>
+              </td>
+              <td>
+                  <a href="{% url 'bomboniere:combo:combo_edit' combo.id %}">editar</a>
+              </td>
+              <td>
+                  <a href="{% url 'bomboniere:combo:combo_delete' combo.id %}">deletar</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
 
 {% endblock content %}

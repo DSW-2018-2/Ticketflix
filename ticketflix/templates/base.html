@@ -56,10 +56,7 @@
           <img src="{% static 'images/ticketflix.png' %}" alt="Logo" style="height: 55px; padding-top: 10px;">
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a class="white-text" href="{% url 'about' %}">Sobre</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a class="white-text" href="#">Estabelecimentos</a></li>
+          <li><a class="white-text" href="">Carrinho</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
           <li><a class="white-text" href="{% url 'spectacle:spectacle-list' %}">Espetáculos</a></li>
@@ -70,6 +67,7 @@
         <ul class="right hide-on-med-and-down">
           <li><a class="white-text" href="{% url 'ticket:ticket_list' %}">Ingressos</a></li>
         </ul>
+        
 
         <ul id="nav-mobile" class="sidenav">
           <li><a href="{% url 'about' %}">Sobre</a></li>
@@ -114,7 +112,7 @@
             <li><a class="white-text" href="#!">Segurança e Privacidade</a></li>
             <li><a class="white-text" href="#!">Meia-Entrada</a></li>
             <li><a class="white-text" href="#!">Termo de Uso</a></li>
-            <li><a class="white-text" href="#!">Sobre</a></li>
+            <li><a class="white-text" href="{% url 'about' %}"">Sobre</a></li>
           </ul>
         </div>
       </div>
