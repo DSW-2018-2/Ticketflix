@@ -323,7 +323,7 @@ tags
 ### Project template
 
 ticketflix/media/
-
+venv/
 .pytest_cache/
 .env
 .envs/*

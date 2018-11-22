@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load static %} {% block title %}Session: {{ object.date }}{% endblock %} {% block content %}
+<h1>Sessions</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Place</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in object_list %}
+        <tr>
+            <td>{{ session.id }}</td>
+            <td>{{ session.date }} | {{ session.time}}</td>
+            <td>{{ session.place }}</td>
+            <td>
+                <a href="{% url 'session:session_view' session.id %}">view</a>
+            </td>
+            <td>
+                <a href="{% url 'session:session_edit' session.id %}">edit</a>
+            </td>
+            <td>
+                <a href="{% url 'session:session_delete' session.id %}">delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'session:session_new' %}">New</a>
+
+{% endblock content %}

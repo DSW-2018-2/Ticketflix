@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Espetáculos" %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h2>Espetáculo</h2>
+	<div class="row">
+		<div class="col-sm-12">
+		  <a href="{% url 'spectacle:spectacle-create' %}"><button  class="btn btn-sucess mr-1 float-right">{% trans 'Criar Espetáculo' %}</button></a>
+      {% for spectacle in object_list %}
+			<div class="list-group">
+				<li>
+          <a href="{{ spectacle.get_absolute_url }}">{{spectacle}}</a>
+				</li>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+
+
+
