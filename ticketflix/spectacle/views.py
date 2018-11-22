@@ -33,6 +33,10 @@ class SpectacleDetailView(DetailView):
 class SpectacleListView(ListView):
     model = Spectacle
     paginate_by = 10
+    ordering = [
+        'spectacle_type',
+        'name'
+    ]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

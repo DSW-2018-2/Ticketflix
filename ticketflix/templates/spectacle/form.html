@@ -104,12 +104,17 @@
 
       <div id="div_id_poster" class="row">
         <label for="id_poster" class="col s12">
-          {% trans 'Poster' %}
         </label>
-        <div class="">
-          <input type="file" name="poster" class="input-field" id="id_poster" accept=".png, .jpg, .jpeg, .gif">
-         </div>
-        <small id="hint_id_poster" class="form-text text-muted">{% trans 'Poster do Espetáculo' %}.</small>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Poster</span>
+            <input type="file" name="poster" id="id_poster" accept=".png, .jpg, .jpeg, .gif">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <small id="hint_id_poster" class="disabled">{% trans 'Poster do Espetáculo' %}.</small>
       </div>
 
       <div id="div_id_classification" class="row">

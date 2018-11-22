@@ -54,25 +54,25 @@
     </div>
     {% if decorator %}
       {% if spectacle.spectacle_type == 'FILME' %}
-        <a href="{% url 'spectacle:movie-delete' decorator.id %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Remover Informações' %}</button></a>
-        <a href="{% url 'spectacle:movie-update' decorator.id %}"><button  class="btn btn-warning mr-1 float-right">{% trans 'Editar Informações' %}</button></a>
+        <a href="{% url 'spectacle:movie-delete' decorator.id %}"><button  class="btn red white-text">{% trans 'Remover Informações' %}</button></a>
+        <a href="{% url 'spectacle:movie-update' decorator.id %}"><button  class="btn yellow darken-1 white-text">{% trans 'Editar Informações' %}</button></a>
       {% elif spectacle.spectacle_type == 'PECA' %}
-        <a href="{% url 'spectacle:play-delete' decorator.id %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Remover Informações' %}</button></a>
-        <a href="{% url 'spectacle:play-update' decorator.id %}"><button  class="btn btn-warning mr-1 float-right">{% trans 'Editar Informações' %}</button></a>
+        <a href="{% url 'spectacle:play-delete' decorator.id %}"><button  class="btn red white-text">{% trans 'Remover Informações' %}</button></a>
+        <a href="{% url 'spectacle:play-update' decorator.id %}"><button  class="btn yellow darken-1 white-text">{% trans 'Editar Informações' %}</button></a>
       {% elif spectacle.spectacle_type == 'SHOW' %}
-        <a href="{% url 'spectacle:show-delete' decorator.id %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Remover Informações' %}</button></a>
-        <a href="{% url 'spectacle:show-update' decorator.id %}"><button  class="btn btn-warning mr-1 float-right">{% trans 'Editar Informações' %}</button></a>
+        <a href="{% url 'spectacle:show-delete' decorator.id %}"><button  class="btn red white-text">{% trans 'Remover Informações' %}</button></a>
+        <a href="{% url 'spectacle:show-update' decorator.id %}"><button  class="btn yellow darken-1 white-text">{% trans 'Editar Informações' %}</button></a>
       {% endif %}
     {% else %}
       {% if spectacle.spectacle_type == 'FILME' %}
-        <a href="{% url 'spectacle:movie-create' %}"><button  class="btn red lighten-3 white-text lighten-1">{% trans 'Adicionar Informações' %}</button></a>
+        <a href="{% url 'spectacle:movie-create' %}"><button  class="btn cyan white-text lighten-1">{% trans 'Adicionar Informações' %}</button></a>
       {% elif spectacle.spectacle_type == 'PECA' %}
-        <a href="{% url 'spectacle:play-create' %}"><button  class="btn red lighten-3 white-text lighten-1">{% trans 'Adicionar Informações' %}</button></a>
+        <a href="{% url 'spectacle:play-create' %}"><button  class="btn cyan white-text lighten-1">{% trans 'Adicionar Informações' %}</button></a>
       {% elif spectacle.spectacle_type == 'SHOW' %}
-        <a href="{% url 'spectacle:show-create' %}"><button  class="btn red lighten-3 white-text lighten-1">{% trans 'Adicionar Informações' %}</button></a>
+        <a href="{% url 'spectacle:show-create' %}"><button  class="btn cyan white-text lighten-1">{% trans 'Adicionar Informações' %}</button></a>
       {% endif %}
     {% endif %}
-    <a href="{% url 'spectacle:spectacle-update' spectacle.id %}"><button  class="btn btn-info mr-1 red lighten-3 white-text lighten-1">{% trans 'Editar Espetáculo' %}</button></a>
+    <a href="{% url 'spectacle:spectacle-update' spectacle.id %}"><button  class="btn red white-text">{% trans 'Editar Espetáculo' %}</button></a>
     <a href="{% url 'spectacle:spectacle-list' %}"><button  class="btn btn-danger mr-1 right red darken-3 white-text lighten-1">{% trans 'Voltar' %}</button></a>
   </div>
 <br><br><br>
