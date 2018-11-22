@@ -38,3 +38,7 @@ Os mantenedores do projeto que não seguem ou aplicam o Código de Conduta de bo
 
 ## Atribuição
 Este Código de Conduta é adaptado da Convenção do Contribuinte, versão 1.4, disponível em http://contributor-covenant.org/version/1/4
+
+
+## Metodologia
+ Para a elaboração deste documento foram alocados dois membros da equipe, o **A Mariana e o João Pedro Sconetto**, como exposto na [ata](https://github.com/DSW-2018-2/Ticketflix/wiki/Ata-da-Reuni%C3%A3o-1). O git community é muito importante quando o assunto é open sorce, pois assim é possível estabelecer um padrão entre todos aqueles que querem contribuir.
