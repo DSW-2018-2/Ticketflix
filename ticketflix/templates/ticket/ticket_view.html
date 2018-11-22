@@ -1,14 +1,25 @@
-{% extends "base.html" %} {% load static %} {% block title %}Ticket: {{ object.date }}{% endblock %} {% block content %}
-<div class="container">
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-    <div class="row">
-        <div class="col-sm-12">
+{% block title %}Ingresso {{ object.date }}
+{% endblock %} 
 
-            <h2>{{ object.ticket_type }}</h2>
-            {% if object.session.time %}
-            <p>{{ object.session.time }}</p>
-            {% endif %}
-        </div>
-    </div>
-</div>
+{% block content %}
+<main>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm-12">
+	    	<h3> Ingresso </h3>
+	      <b>Tipo: </b>{{ object.ticket_type }}
+	      {% if object.session.time %}
+	      <b><p>Horário: </b>{{ object.session.time }}</p>
+	      <b><p>Local: </b>{{ object.session.place }}</p>
+	      <b><p>Preço: </b>{{ object.price }} reais</p>
+	      <b><p>Assento: </b>{{ object.seat }}</p>
+	      {% endif %}
+	    </div>
+	    <a href="{% url 'ticket:ticket_list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1 right">{% trans 'Voltar' %}</button></a>
+	  </div>
+	</div>
+</main>
 {% endblock content %}

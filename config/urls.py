@@ -34,7 +34,6 @@ urlpatterns = [
         include(("ticketflix.bomboniere.urls", "bomboniere"), 
                 namespace="bomboniere")
     ),
-    # Your stuff: custom urls includes go here
     path(
         "session/",
         include(("ticketflix.session.urls","ticketflix.session"), namespace="session"),

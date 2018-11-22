@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+<main>
   <div class="container">
     <div class="row">
       {% if form.date.errors %}
@@ -25,23 +26,23 @@
     <form method='post' class="mt-3">
       {% csrf_token %}
       <div class="row">
-        <div class="form-group col">
+        <div class="col s12">
           <label>{% trans 'Nome' %}*</label>
           {% if object.name %}
-            <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" value="{{ object.name }}"/>
-            <small class="text-muted">{% trans 'Insira o nome do espetáculo' %}</small>
+            <input class="input-field" type="text" name="name" maxlength="100" required id="id_name" value="{{ object.name }}"/>
+            <label class="text-muted">{% trans 'Insira o nome do espetáculo' %}</label>
           {% else %}
-            <input class="form-control" type="text" name="name" maxlength="100" required id="id_name"/>
+            <input class="input-field" type="text" name="name" maxlength="100" required id="id_name"/>
             <small class="text-muted">{% trans 'Insira o nome do espetáculo' %}</small>
           {% endif %}
         </div>
       </div>
-      <div id="div_id_spectacle_type" class="form-group">
+      <div id="div_id_spectacle_type" class="row">
       <label for="id_spectacle_type" class="col-form-label  requiredField">
           {% trans 'Tipo do Espetáculo' %}<span class="asteriskField">*</span>
       </label>
-      <div class="">
-        <select name="spectacle_type" class="select form-control" required="" id="id_spectacle_type">
+      <div class="col s12">
+        <select name="spectacle_type" class="input-field" required="" id="id_spectacle_type">
         {% if not object.get_spectacle_type_display %}
           <option value="" selected="">---------</option>
           <option value="FILME">{% trans 'Filme' %}</option>
@@ -61,11 +62,11 @@
       </div>
       <br>
 
-      <div id="div_id_status" class="form-group">
-      <label for="id_status" class="col-form-label  requiredField">
+      <div id="div_id_status" class="row">
+      <label for="id_status" class="requiredField">
           {% trans 'Status do Espetáculo' %}<span class="asteriskField">*</span>
       </label>
-      <div class="">
+      <div class="col s12">
         <select name="status" class="select form-control" required="" id="id_status">
         {% if not object.get_status_display %}
           <option value="" selected="">---------</option>
@@ -83,38 +84,44 @@
             {% endif %}
           {% endfor %}
         {% endif %}
-
         </select>
       </div>
       <br>
 
-      <div class="">
-        <label class="col" for="id_duration">{% trans 'Duração do Espetáculo' %}*</label>
-        <div>
+      <div class="row">
+        <label for="id_duration" class="requiredField">
+            {% trans 'Duração do Espetáculo' %}<span class="asteriskField">*</span>
+        </label>
+        <div class="col s12">
           {% if object.duration %}
-            <input class="form-control" type="number" name="duration" step="1" required id="id_duration"  value="{{ object.duration }}"/>
+            <input class="input-field" type="number" name="duration" step="1" required id="id_duration"  value="{{ object.duration }}"/>
           {% else %}
-            <input class="form-control" type="number" name="duration" step="1" required id="id_duration"  value="0"/>
+            <input class="input-field" type="number" name="duration" step="1" required id="id_duration"  value="0"/>
           {% endif %}
-          <small class="text-muted">{% trans 'Insira a duração do espetáculo em minutos' %}</small>
+          <small for="id_duration">Insira a duração do espetáculo (em minutos)</small>
         </div>
       </div>
 
-      <div id="div_id_poster" class="form-group">
-        <label for="id_poster" class="col-form-label ">
-          {% trans 'Poster' %}
+      <div id="div_id_poster" class="row">
+        <label for="id_poster" class="col s12">
         </label>
-        <div class="">
-          <input type="file" name="poster" class="clearablefileinput" id="id_poster" accept=".png, .jpg, .jpeg, .gif">
-          <small id="hint_id_poster" class="form-text text-muted">{% trans 'Poster do Espetáculo' %}.</small>
-         </div>
+        <div class="file-field input-field">
+          <div class="btn blue-grey lighten-2">
+            <span>Poster</span>
+            <input type="file" name="poster" id="id_poster" accept=".png, .jpg, .jpeg, .gif">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <small id="hint_id_poster" class="disabled">{% trans 'Poster do Espetáculo' %}.</small>
       </div>
 
-      <div id="div_id_classification" class="form-group">
+      <div id="div_id_classification" class="row">
       <label for="id_classification" class="col-form-label  requiredField">
           {% trans 'Classificação Indicativa' %}<span class="asteriskField">*</span>
       </label>
-      <div class="">
+      <div class="col s12">
         <select name="classification" class="select form-control" required="" id="id_classification">
         {% if not object.get_classification_display %}
           <option value="" selected="">---------</option>
@@ -135,9 +142,12 @@
         {% endif %}
         </select>
       </div>
-      <br>
-      <button type="submit" class="btn btn-success float-right">{% trans 'Submit' %}</button>
+      <br><br>
     </form>
-    <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
+    <br><br>
+    <a href="{% url 'spectacle:spectacle-list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Cancelar' %}</button></a>
+    <button type="submit" class="btn btn-success green darken-3 white-text lighten-1 right">{% trans 'Submit' %}</button>
   </div>
+  <br/>
+</main>
 {% endblock %}

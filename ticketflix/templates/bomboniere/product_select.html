@@ -1,9 +1,26 @@
-{% extends "base.html" %} {% load static %} {% block title %}Selecionar Produto: {{ object.name }}{% endblock %} {% block content %}
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-<form method='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='submit'>
-</form>
+{% block title %}Selecionar produto: {{ object.name }}
+{% endblock %} 
+
+{% block content %}
+
+<main>
+	<div class="container">
+		<h2>Produtos selecionados</h2>
+		<div class="row">
+			<div class="col-sm-12">
+				<form method='post'>
+			    {% csrf_token %}
+			    {{ form.as_p }}
+			    <br><br>
+					<a href="{% url 'bomboniere:combo:combo_list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Voltar' %}</button></a>
+					<a href="{% url 'bomboniere:product:product_new' %}"><button type="button" class="btn btn-danger mr-1 green darken-3 white-text lighten-1 right">{% trans 'Novo Produto' %}</button></a>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
 
 {% endblock content %}
