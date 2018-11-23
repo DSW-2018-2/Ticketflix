@@ -18,8 +18,6 @@
             <th>Data</th>
             <th>Local</th>
             <th>Ver</th>
-            <th>Editar</th>
-            <th>Deletar</th>
           </tr>
         </thead>
         <tbody>
@@ -30,12 +28,6 @@
             <td>{{ ticket.session.place }}</td>
             <td>
                 <a href="{% url 'ticket:ticket_view' ticket.id %}">ver</a>
-            </td>
-            <td>
-                <a href="{% url 'ticket:ticket_edit' ticket.id %}">editar</a>
-            </td>
-            <td>
-                <a href="{% url 'ticket:ticket_delete' ticket.id %}">deletar</a>
             </td>
           </tr>
           {% endfor %}
