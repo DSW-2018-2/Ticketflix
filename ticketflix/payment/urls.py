@@ -2,7 +2,11 @@ from django.conf import settings
 from django.urls import include, path
 from django.views import defaults as default_views
 
-from .views import *
+from .views import PaymentSelectView
+from .views import BankTicketCreateView
+from .views import CreditCardCreateView
+from .views import BankTicketDetail
+from .views import CreditCardDetail
 
 urlpatterns = [
     path(
