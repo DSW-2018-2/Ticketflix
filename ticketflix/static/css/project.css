@@ -87,6 +87,12 @@ main {
   opacity: 1; 
 }
 
+[type="radio"]:not(:checked), [type="radio"]:checked {
+  position: static;
+  left: 10px; 
+  opacity: 1; 
+}
+
 #parcialtotal {
   
   float: right;

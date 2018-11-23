@@ -1,5 +1,55 @@
 {% extends "base.html" %} {% load static %} {% block title %}Credit Card: {% endblock %} {% block content %}
 <div class="container">
+<div class="stepper" align="center">
+    <div class="steps clearfix" align="center">
+    <ul role="tablist" class="tablist link-li" align="center">
+      <li role="tab" class="stepli first "  aria-selected="true">
+        <span class="current-info audible"> </span>
+        <span class="title">
+        <span class="number">
+          1
+          </span><br>
+          <span class="title_text">Ingressos</span>
+        </span>
+      </li>
+      <li role="tab" class="stepli  disabled" >
+          <span class="title">
+          <span class="number">
+          2
+          </span><br>
+          <span class="title_text">Assentos</span>
+
+          </span>
+      </li>
+      <li role="tab" class="stepli disabled" >
+      <span class="title">
+      <span class="number">
+      3
+      </span><br>
+      <span class="title_text">Bomboniere</span>
+
+      </span>
+      </li>
+      <li role="tab" class="stepli  disabled" >
+      <span class="title">
+      <span class="number">
+      4
+      </span><br>
+      <span class="title_text">Confirmação</span>
+      </span>
+      </li>
+      <li role="tab" class="stepli current disabled" >
+      <span class="title">
+      <span class="number">
+      5
+      </span><br>
+      <span class="title_text">Pagamento</span>
+      </span>
+      </li>
+      </ul>
+      </div>
+    </div>
+
     <h4>Cartão de Crédito</h4>
     <div class="row">
         <div class="col-sm-12">
