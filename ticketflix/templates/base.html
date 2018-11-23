@@ -64,7 +64,7 @@
         </ul>
         {% if request.user.is_superuser %}
         <ul class="right hide-on-med-and-down">
-          <li><a class="white-text" href="{% url 'session:session_list' %}">Gerenciar</a></li>
+          <li><a class="white-text" href="{% url 'manage' %}">Gerenciar</a></li>
         </ul>
         {% endif %}
         
