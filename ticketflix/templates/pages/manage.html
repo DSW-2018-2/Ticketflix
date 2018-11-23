@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %} Gerenciamento
+{% endblock %}
+
+{% block content %}
+  
+<main>
+  <div class="container">
+    <h2>Gerenciamento</h2>
+    <div class="row">
+      <div class="col-sm-12">
+      <ul class="">
+          <li><a href="{% url 'spectacle:spectacle-create' %}">Espetáculos</a></li>
+          <li><a href="{% url 'room:room_new' %}">Salas</a></li>
+          <li><a href="{% url 'session:session_new' %}">Sessões</a></li>
+          <li><a href="{% url 'bomboniere:product:product_new' %}">Produtos</a></li>
+          <li><a href="{% url 'bomboniere:combo:combo_new' %}">Combos</a></li>
+          <li><a href="{% url 'establishment:establishment-create' %}">Estabelecimentos</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

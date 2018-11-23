@@ -11,6 +11,7 @@ from .views import ScheduleView
 
 urlpatterns = [
     path("", ScheduleView.as_view(template_name="pages/home.html"), name="home"),
+    path("manage", TemplateView.as_view(template_name="pages/manage.html"), name="manage"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),

@@ -1,4 +1,5 @@
 {% load static i18n %}<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -56,17 +57,16 @@
           <img src="{% static 'images/ticketflix.png' %}" alt="Logo" style="height: 55px; padding-top: 10px;">
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a class="white-text" href="">Carrinho</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
           <li><a class="white-text" href="{% url 'spectacle:spectacle-list' %}">Espetáculos</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
           <li><a class="white-text" href="{% url 'session:session_list' %}">Sessões</a></li>
         </ul>
+        {% if request.user.is_superuser %}
         <ul class="right hide-on-med-and-down">
-          <li><a class="white-text" href="{% url 'ticket:ticket_list' %}">Ingressos</a></li>
+          <li><a class="white-text" href="{% url 'session:session_list' %}">Gerenciar</a></li>
         </ul>
+        {% endif %}
         
 
         <ul id="nav-mobile" class="sidenav">
