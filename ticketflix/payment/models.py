@@ -2,18 +2,7 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 
-# these are temporary class that must be exterminated when the real is implemented
-class Customer(models.Model):
-    def __init__(self):
-        self.firstName = 'Valdir'
-        self.lastName = 'das Couves'
-
-
-class Purchase(models.Model):
-    id = 12345
-    totalPrice = 42.00
-    customer = Customer()
-
+from ticketflix.purchase.models import Purchase
 
 class PaymentStrategy(models.Model):
     class Meta:
@@ -78,7 +67,6 @@ class PaymentStrategy(models.Model):
     def get_absolute_url(self):
         return reverse('payment:payment_detail', kwargs={'id': self.id})
 
-
 class BankTicket(PaymentStrategy):
     class Meta:
         verbose_name = _('Boleto Bancário')
@@ -111,7 +99,6 @@ class BankTicket(PaymentStrategy):
         default=PaymentStrategy.BOLETOBANCARIO,
         editable=False,
     )
-
 
 class CreditCard(PaymentStrategy):
     class Meta:
