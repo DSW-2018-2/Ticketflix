@@ -80,6 +80,7 @@ LOCAL_APPS = [
     'ticketflix.room.apps.RoomConfig',
     'ticketflix.payment.apps.PaymentAppConfig',
     'ticketflix.establishment.apps.EstablishmentAppConfig',
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
