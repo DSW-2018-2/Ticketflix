@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}
+  {% trans "Espetáculos" %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<h2>Espetáculo</h2>
+	<div class="row">
+		<div class="col-sm-12">
+		  <ul>Nome: <strong>{{ spectacle.name }}</strong></ul>
+      <ul>Tipo: {{ spectacle.get_spectacle_type_display }}</ul>
+      <ul>Status: {{ spectacle.get_status_display }}</ul>
+      <ul>Duração: {{ spectacle.duration }} minutos</ul>
+
+      <ul>Sessões: </ul>
+      {% for session in spectacle.sessions.all%}
+      <ul>- Dia:  {{ session.date }} - Hora: {{session.time}} </ul>
+      {% endfor%}
+
+      {% if spectacle.poster  %}
+        <ul>{{ spectacle.poster }}</ul>
+      {% endif %}
+
+      <ul>Classificação Indicativa: {{ spectacle.get_classification_display }}</ul>
+      {% if decorator %}
+        <h4><strong>Informações Adicionais</strong></h4>
+        {% if spectacle.spectacle_type == 'FILME' %}
+          <ul>Sinopse: {{ decorator.synopsis }}</ul>
+          <ul>Diretor: {{ decorator.diretor }}</ul>
+          <ul>Elenco: {{ decorator.cast }}</ul>
+          <ul>Produtor: {{ decorator.producer }}</ul>
+          <ul>Escritor: {{ decorator.writer }}</ul>
+          <ul>Gênero: {{ decorator.get_gender_display }}</ul>
+          <ul>Trailer: <a href="">{{ decorator.trailer }}</a></ul>
+        {% elif spectacle.spectacle_type == 'PECA' %}
+          <ul>Sinopse: {{ decorator.synopsis }}</ul>
+          <ul>Diretor: {{ decorator.diretor }}</ul>
+          <ul>Elenco: {{ decorator.cast }}</ul>
+          <ul>Produtor: {{ decorator.producer }}</ul>
+          <ul>Escritor: {{ decorator.writer }}</ul>
+          <ul>Gênero: {{ decorator.get_gender_display }}</ul>
+        {% elif spectacle.spectacle_type == 'SHOW' %}
+          <ul>Banda: {{ decorator.band }}</ul>
+          <ul>Turnê: {{ decorator.tour }}</ul>
+          <ul>Descrição: {{ decorator.description }}</ul>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+  {% if decorator %}
+    {% if spectacle.spectacle_type == 'FILME' %}
+      <a href="{% url 'spectacle:movie-delete' decorator.id %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Remover Informações' %}</button></a>
+      <a href="{% url 'spectacle:movie-update' decorator.id %}"><button  class="btn btn-warning mr-1 float-right">{% trans 'Editar Informações' %}</button></a>
+    {% elif spectacle.spectacle_type == 'PECA' %}
+      <a href="{% url 'spectacle:play-delete' decorator.id %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Remover Informações' %}</button></a>
+      <a href="{% url 'spectacle:play-update' decorator.id %}"><button  class="btn btn-warning mr-1 float-right">{% trans 'Editar Informações' %}</button></a>
+    {% elif spectacle.spectacle_type == 'SHOW' %}
+      <a href="{% url 'spectacle:show-delete' decorator.id %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Remover Informações' %}</button></a>
+      <a href="{% url 'spectacle:show-update' decorator.id %}"><button  class="btn btn-warning mr-1 float-right">{% trans 'Editar Informações' %}</button></a>
+    {% endif %}
+  {% else %}
+    {% if spectacle.spectacle_type == 'FILME' %}
+      <a href="{% url 'spectacle:movie-create' %}"><button  class="btn btn-success mr-1 float-right">{% trans 'Adicionar Informações' %}</button></a>
+    {% elif spectacle.spectacle_type == 'PECA' %}
+      <a href="{% url 'spectacle:play-create' %}"><button  class="btn btn-success mr-1 float-right">{% trans 'Adicionar Informações' %}</button></a>
+    {% elif spectacle.spectacle_type == 'SHOW' %}
+      <a href="{% url 'spectacle:show-create' %}"><button  class="btn btn-success mr-1 float-right">{% trans 'Adicionar Informações' %}</button></a>
+    {% endif %}
+  {% endif %}
+  <a href="{% url 'spectacle:spectacle-update' spectacle.id %}"><button  class="btn btn-info mr-1 float-right">{% trans 'Editar Espetáculo' %}</button></a>
+  <a href="{% url 'spectacle:spectacle-list' %}"><button  class="btn btn-danger mr-1 float-right">{% trans 'Voltar' %}</button></a>
+</div>
+{% endblock content %}

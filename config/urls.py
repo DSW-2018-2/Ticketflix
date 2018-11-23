@@ -5,8 +5,12 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from .views import ScheduleView
+
+
+
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", ScheduleView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -20,13 +24,77 @@ urlpatterns = [
         include("ticketflix.users.urls", namespace="users"),
     ),
     path("accounts/", include("allauth.urls")),
+    path(
+        "spectacle/",
+        include(("ticketflix.spectacle.urls", "spectacle"),
+                namespace="spectacle")
+    ),
+    path(
+        "bomboniere/", 
+        include(("ticketflix.bomboniere.urls", "bomboniere"), 
+                namespace="bomboniere")
+    ),
     # Your stuff: custom urls includes go here
     path(
         "payment/", 
         include(("ticketflix.payment.urls", "payment"), 
                 namespace="payment")
-),
+    ),
+    path(
+        "session/",
+        include(("ticketflix.session.urls","ticketflix.session"), 
+        namespace="session"),
+    ),
+    path(
+        "ticket/",
+        include(("ticketflix.ticket.urls","ticketflix.ticket"), 
+        namespace="ticket"),
+    ),
+    path(
+        "cart/",
+        include(("ticketflix.cart.urls","ticketflix.cart"), 
+        namespace="cart"),
+    ),
+    path(
+        "room/",
+        include(("ticketflix.room.urls","ticketflix.room"), 
+        namespace="room"),
+    ),
+    path(
+        "purchase/",
+        include(("ticketflix.purchase.urls", "ticketflix.purchase"),
+        namespace="purchase")
+    )
 ] + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)
+
+if settings.DEBUG:
+    # This allows the error pages to be debugged during development, just visit
+    # these url in browser to see how these error pages look like.
+    urlpatterns += [
+        path(
+            "400/",
+            default_views.bad_request,
+            kwargs={"exception": Exception("Bad Request!")},
+        ),
+        path(
+            "403/",
+            default_views.permission_denied,
+            kwargs={"exception": Exception("Permission Denied")},
+        ),
+        path(
+            "404/",
+            default_views.page_not_found,
+            kwargs={"exception": Exception("Page not Found")},
+        ),
+        path("500/", default_views.server_error),
+    ]
+    if "debug_toolbar" in settings.INSTALLED_APPS:
+        import debug_toolbar
+
+        urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
 

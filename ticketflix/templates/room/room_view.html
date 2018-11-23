@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% load static %} {% block title %}Room: {% endblock %} {% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>{{ object.name }}</h4>
+        </div>
+    </div>
+
+    <h4>Assentos:</h4>
+    {% for seat in seats %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{ seat.row }}-{{ seat.number }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

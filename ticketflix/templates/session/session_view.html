@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% load static %} {% block title %}Session: {{ object.date }}{% endblock %} {% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>{{ object.date }}</h2>
+            {% if object.time %}
+            <p>{{ object.time }}</p>
+            {% endif %}
+
+            <a href="{% url 'cart:set_tickets' session.id %}">Comprar Ingressos</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

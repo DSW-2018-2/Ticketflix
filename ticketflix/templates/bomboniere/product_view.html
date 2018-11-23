@@ -1,0 +1,15 @@
+
+{% extends "base.html" %} {% load static %} {% block title %}Produto: {{ object.name }}{% endblock %} {% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <b>Nome: </b>{{ object.name }}<br>
+            {% if object.description %}
+            <b>Descrição: </b>{{ object.description }}<br>
+            {% endif %}
+            <b>Preço: </b><b>{{ object.price }}<br>
+        </div>
+    </div>
+</div>
+{% endblock content %}

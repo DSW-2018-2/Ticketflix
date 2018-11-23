@@ -71,7 +71,14 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'ticketflix.users.apps.UsersAppConfig',
     # Your stuff: custom apps go here
-    'ticketflix.payment.apps.PaymentAppConfig'
+    'ticketflix.spectacle.apps.SpectacleAppConfig',
+    'ticketflix.session.apps.SessionConfig',
+    'ticketflix.ticket.apps.TicketConfig',
+    'ticketflix.cart.apps.CartConfig',
+    'ticketflix.purchase.apps.PurchaseConfig',
+    'ticketflix.bomboniere.apps.BomboniereAppConfig',
+    'ticketflix.room.apps.RoomConfig',
+    'ticketflix.payment.apps.PaymentAppConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

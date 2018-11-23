@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load static %} {% block title %}Combos{% endblock %} {% block content %}
+<h1>Combo</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for combo in object_list %}
+        <tr>
+            <td>{{ combo.id }}</td>
+            <td>{{ combo.name }}</td>
+            <td>{{ combo.description}}</td>
+            <td>{{ combo.price }}</td>
+            <td>
+                <a href="{% url 'bomboniere:combo:combo_view' combo.id %}">ver</a>
+            </td>
+            <td>
+                <a href="{% url 'bomboniere:combo:combo_edit' combo.id %}">editar</a>
+            </td>
+            <td>
+                <a href="{% url 'bomboniere:combo:combo_delete' combo.id %}">deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'bomboniere:combo:combo_new' %}">novo combo</a>
+
+{% endblock content %}
