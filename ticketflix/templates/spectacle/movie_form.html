@@ -36,8 +36,10 @@
               <option value="{{ object.id }}" selected="">{{ object.name }}</option>
             {% else %}
               <option value="" selected="">---------</option>
-              {% for spectacle in spectacles%}
-                <option value="{{ spectacle.id }}">{{ spectacle.name }}</option>
+              {% for spectacle in spectacles %}
+                {% if spectacle.spectacle_type == 'FILME' %}
+                  <option value="{{ spectacle.id }}">{{ spectacle.name }}</option>
+                {% endif %}
               {% endfor %}
             {% endif %}
             </select>
@@ -157,9 +159,9 @@
       </div>
       </div>
     <br>
-    </form>
     <a href="{% url 'spectacle:spectacle-list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Cancelar' %}</button></a>
     <button type="submit" class="btn btn-success right green lighten-3 white-text lighten-1">{% trans 'Submit' %}</button>
+    </form>
   </div>
   <br>
 <main>
