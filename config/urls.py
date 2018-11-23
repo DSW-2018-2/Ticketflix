@@ -36,6 +36,11 @@ urlpatterns = [
                 namespace="bomboniere")
     ),
     path(
+        "payment/", 
+        include(("ticketflix.payment.urls", "payment"), 
+                namespace="payment")
+    ),
+    path(
         "session/",
         include(("ticketflix.session.urls","ticketflix.session"), 
         namespace="session"),

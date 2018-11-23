@@ -5,6 +5,16 @@ from ticketflix.users.models import User
 from ticketflix.cart.models import Cart
 
 class Purchase(models.Model):
+    AGUARDANDO = 'Aguardando'
+    CONFIRMADO = 'Confirmado'
+    CANCELADO = 'Cancelado'
+
+    STATUS_CHOICES = (
+        (AGUARDANDO, AGUARDANDO),
+        (CONFIRMADO, CONFIRMADO),
+        (CANCELADO, CANCELADO),
+    )
+
     total_price = models.FloatField(
         verbose_name=_("Preço Total"),
         help_text=_("Preço Total"),
@@ -20,8 +30,12 @@ class Purchase(models.Model):
         blank=False
     )
 
-    statusPayment = models.BooleanField(
-        default=False
+    statusPayment = models.CharField(
+        verbose_name=_('Status'),
+        help_text=_('Status do Pagamento'),
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=AGUARDANDO,
     )
 
     customer = models.ForeignKey(
@@ -34,8 +48,8 @@ class Purchase(models.Model):
         on_delete=models.PROTECT
     )
 
-    def update_status_payment(self):
-        self.statusPayment = True
+    def update_status_payment(self, status_payment):
+        self.statusPayment = status_payment
         self.save()
 
     def set_total_price(self):

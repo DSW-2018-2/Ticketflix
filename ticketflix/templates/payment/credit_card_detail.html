@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% load static %} {% block title %}Credit Card: {% endblock %} {% block content %}
+<div class="container">
+    <h4>Cartão de Crédito</h4>
+    <div class="row">
+        <div class="col-sm-12">
+            Nome do dono: {{ object.ownerName }}<br>
+            Número do Cartão: {{ object.cardNumber }}<br>
+            Código de Segurança: {{ object.securityCode }}<br>
+            Mês de vencimento: {{ object.expireMonth }}<br>
+            Ano de vencimento: {{ object.expireYear }}<br>
+            Valor do pagamento: {{ object.purchase.total_price }}<br>
+        </div>
+    </div>
+</div>
+{% endblock content %}

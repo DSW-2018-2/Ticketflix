@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% load static %} {% block title %} Informações do Cartão de Crédito {{ object.date }}{% endblock %} {% block content %}
+<h1> Forneça as informações do cartão de crédito para o pagamento </h1>
+<form method="post">{% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

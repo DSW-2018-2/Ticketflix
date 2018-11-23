@@ -78,6 +78,7 @@ LOCAL_APPS = [
     'ticketflix.purchase.apps.PurchaseConfig',
     'ticketflix.bomboniere.apps.BomboniereAppConfig',
     'ticketflix.room.apps.RoomConfig',
+    'ticketflix.payment.apps.PaymentAppConfig',
     'ticketflix.establishment.apps.EstablishmentAppConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
