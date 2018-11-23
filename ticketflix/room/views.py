@@ -23,7 +23,10 @@ class RoomView(DetailView):
         Pass response_kwargs to the constructor of the response class.
         """
 
+        seatsRows = Seat.objects.filter(room=self.object).distinct('row')
         seats = Seat.objects.filter(room=self.object)
+
+        context['seatsRows'] = seatsRows
         context['seats'] = seats
 
         print("===============================")
