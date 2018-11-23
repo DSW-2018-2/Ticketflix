@@ -4,4 +4,4 @@ class PaymentSelectForm(Form):
     CHOICES=[('bankTicket','Boleto bancário'),
              ('creditCard','Cartão de crédito')]
 
-    choice = ChoiceField(choices=CHOICES, widget=RadioSelect())
+    choice = ChoiceField(choices=CHOICES, widget=RadioSelect(), required=True)

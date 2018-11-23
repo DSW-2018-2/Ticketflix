@@ -11,18 +11,23 @@ urlpatterns = [
         name='payment_select'
     ),
     path(
-        "detail/<int:fk>/<int:id>",
-        PaymentDetailView.as_view(template_name="payment/detail.html"),
-        name="payment_detail"
-    ),
-    path(
         "bank_ticket/create/<int:id>",
         BankTicketCreateView.as_view(template_name="payment/bank_ticket_create.html"),
         name="bank_ticket_create"
     ),
     path(
         "credit_card/create/<int:id>",
-        BankTicketCreateView.as_view(template_name="payment/credit_card_create.html"),
+        CreditCardCreateView.as_view(template_name="payment/credit_card_create.html"),
         name="credit_card_create"
     ),
+    path(
+        "bank_ticket/detail/<int:pk>",
+        BankTicketDetail.as_view(template_name="payment/bank_ticket_detail.html"),
+        name="bank_ticket_detail"
+    ),
+    path(
+        "credit_card/detail/<int:pk>",
+        CreditCardDetail.as_view(template_name="payment/credit_card_detail.html"),
+        name="credit_card_detail"
+    )
 ]
