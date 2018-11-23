@@ -1,15 +1,23 @@
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-{% extends "base.html" %} {% load static %} {% block title %}Produto: {{ object.name }}{% endblock %} {% block content %}
-<div class="container">
+{% block title %}Produto: {{ object.name }}
+{% endblock %} 
 
+{% block content %}
+<main>
+  <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <b>Nome: </b>{{ object.name }}<br>
-            {% if object.description %}
-            <b>Descrição: </b>{{ object.description }}<br>
-            {% endif %}
-            <b>Preço: </b><b>{{ object.price }}<br>
+      <div class="col-sm-12">
+      	<h3>Produto</h3>
+        <b>Nome: {{ object.name }}</b><br>
+        {% if object.description %}
+        <b>Descrição: </b>{{ object.description }}<br>
+        {% endif %}
+        <b>Preço: </b>{{ object.price }} reais<br>
         </div>
+      </div>   
     </div>
-</div>
+	</div>
+</main>
 {% endblock content %}

@@ -1,19 +1,25 @@
-{% extends "base.html" %} {% load static %} {% block title %}Room: {% endblock %} {% block content %}
-<div class="container">
+{% extends "base.html" %} {% load static i18n %} {% block title %}Room: {% endblock %} {% block content %}
+<main>
+	<div class="container">
 
     <div class="row">
         <div class="col-sm-12">
-            <h4>{{ object.name }}</h4>
+            <h2>{{ object.name }}</h2>
         </div>
     </div>
 
     <h4>Assentos:</h4>
-    {% for seat in seats %}
-    <div class="row">
-        <div class="col-sm-12">
-            {{ seat.row }}-{{ seat.number }}
-        </div>
-    </div>
+    {% for row in seatsRows %}
+    {{row.row}}
+      {% for seat in seats%}
+        {% if seat.row == row.row %}
+          | {{ seat.number }} |
+        {% endif %}
+      {% endfor %}
+      <br>
     {% endfor %}
-</div>
+    <a href="{% url 'room:add_seat_row' object.id %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Cadastrar assentos</button></a>
+
+	</div>
+</main>
 {% endblock content %}

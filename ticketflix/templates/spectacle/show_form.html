@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+<main>
   <div class="container">
     <div class="row">
       {% if form.date.errors %}
@@ -24,63 +25,70 @@
     {% endif %}
     <form method='post' class="mt-3">
     {% csrf_token %}
-      <div>
-        <div>
+      <div class="row">
+        <div class="col s12">
           <label for="id_spectacle" class="col-form-label  requiredField">
           {% trans 'Espetáculo Relacionado' %}<span class="asteriskField">*</span>
           </label>
           <div class="">
-            <select name="spectacle" class="select form-control" required_id="id_spectacle" required="">
+            <select name="spectacle" class="select input-field" required_id="id_spectacle" required="">
             {% if object %}
               <option value="{{ object.id }}" selected="">{{ object.name }}</option>
             {% else %}
               <option value="" selected="">---------</option>
-              {% for spectacle in spectacles%}
-                <option value="{{ spectacle.id }}">{{ spectacle.name }}</option>
+              {% for spectacle in spectacles %}
+                {% if spectacle.spectacle_type == 'SHOW' %}
+                  <option value="{{ spectacle.id }}">{{ spectacle.name }}</option>
+                {% endif %}
               {% endfor %}
             {% endif %}
             </select>
           </div>
-
         </div>
+        <br>
         <div class="row">
-          <div class="form-group col">
+          <div class="col s12">
             <label>{% trans 'Banda' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="band" maxlength="255" required id="id_band" value="{{ object.band }}"/>
+              <input class="input-field" type="text" name="band" maxlength="255" required id="id_band" value="{{ object.band }}"/>
               <small class="text-muted">{% trans 'Insira o nome da banda' %}</small>
             {% else %}
-              <input class="form-control" type="text" name="band" maxlength="255" required id="id_band"/>
+              <input class="input-field" type="text" name="band" maxlength="255" required id="id_band"/>
               <small class="text-muted">{% trans 'Insira o nome da banda' %}</small>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <label>{% trans 'Turnê' %}*</label>
+            {% if object %}
+              <input class="input-field" type="text" name="tour" maxlength="255" required id="id_tour" value="{{ object.tour }}"/>
+              <small class="text-muted">{% trans 'Insira o nome da turnê' %}</small>
+            {% else %}
+              <input class="input-field" type="text" name="tour" maxlength="255" required id="id_tour"/>
+              <small class="text-muted">{% trans 'Insira o nome da turnê' %}</small>
             {% endif %}
           </div>
         </div>
         <div class="row">
-          <div class="form-group col">
-            <label>{% trans 'Turnê' %}*</label>
+          <div class="col s12">
+            <label for="id_description">{% trans 'Descrição' %}*</label>
             {% if object %}
-              <input class="form-control" type="text" name="tour" maxlength="255" required id="id_tour" value="{{ object.tour }}"/>
-              <small class="text-muted">{% trans 'Insira o nome da turnê' %}</small>
-            {% else %}
-              <input class="form-control" type="text" name="tour" maxlength="255" required id="id_tour"/>
-              <small class="text-muted">{% trans 'Insira o nome da turnê' %}</small>
+              <textarea class="text-area" name="description" cols="40" rows="5" maxlength="500" id="id_description" required>{{ object.description }}</textarea>
+              <small class="text-muted">{% trans 'Entre com a descrição do show' %}</small>
+            {%else%}
+              <textarea class="text-area" name="description" cols="40" rows="5" maxlength="500" id="id_description" required></textarea>
+              <small class="text-muted">{% trans 'Entre com a descrição do show' %}</small>
             {% endif %}
           </div>
-        </div>
-        <div class="">
-          <label for="id_description">{% trans 'Descrição' %}*</label>
-          {% if object %}
-            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_description" required>{{ object.description }}</textarea>
-            <small class="text-muted">{% trans 'Entre com a descrição do show' %}</small>
-          {%else%}
-            <textarea class="form-control" name="description" cols="40" rows="5" maxlength="500" id="id_description" required></textarea>
-            <small class="text-muted">{% trans 'Entre com a descrição do show' %}</small>
-          {% endif %}
         </div>
       </div>
     <br>
-    <button type="submit" class="btn btn-success float-right">{% trans 'Submit' %}</button>
+    <a href="{% url 'spectacle:spectacle-list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Cancelar' %}</button></a>
+    <button type="submit" class="btn btn-success right green lighten-3 white-text lighten-1">{% trans 'Submit' %}</button>
     </form>
-    <a href="{% url 'spectacle:spectacle-list' %}"><button type="submit" class="btn btn-danger mr-1 float-right">{% trans 'Cancelar' %}</button></a>
   </div>
+  <br>
+</main>
 {% endblock content %}

@@ -1,7 +1,15 @@
-{% extends "base.html" %} {% load static %} {% block title %}Add Seat Row: {{ object.date }}{% endblock %} {% block content %}
-<h1>Add Seat Row</h1>
-<form method="post">{% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
-
+{% extends "base.html" %} {% load static i18n %} {% block title %}Add Seat Row: {{ object.date }}{% endblock %} {% block content %}
+<main>
+	<div class="container">
+  		<h2>Adicionar assento</h2>
+		<div class="row">
+			<div class="col-sm-12">
+        <form method="post">{% csrf_token %} {{ form.as_p }}
+            <a href="{% url 'room:room_list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Cancelar' %}</button></a>
+            <button type="submit" value="Submit" class="btn btn-danger mr-1 right green darken-3 white-text lighten-1">Salvar</button></a>
+        </form>
+			</div>
+		</div>
+</div>
+</main>
 {% endblock content %}

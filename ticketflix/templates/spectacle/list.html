@@ -6,21 +6,33 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-	<h2>Espetáculo</h2>
-	<div class="row">
-		<div class="col-sm-12">
-		  <a href="{% url 'spectacle:spectacle-create' %}"><button  class="btn btn-sucess mr-1 float-right">{% trans 'Criar Espetáculo' %}</button></a>
-      {% for spectacle in object_list %}
-			<div class="list-group">
-				<li>
-          <a href="{{ spectacle.get_absolute_url }}">{{spectacle}}</a>
-				</li>
+<main>
+	<div class="container">
+  {% if request.user.is_superuser %}
+    <a href="{% url 'spectacle:spectacle-create' %}"><button  class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">{% trans 'Criar Espetáculo' %}</button></a>
+   {% endif %}
+    <h2>Espetáculos</h2>
+    <br><br><br><br>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          {% for spectacle in object_list %}
+            <div class="col s4">
+              {% if spectacle.poster %}
+                <img src="{{ spectacle.poster }}">
+              {% else %}
+                <a href="{{ spectacle.get_absolute_url }}">
+                  <img style="display: block; margin-left: auto; margin-right: auto;" src="{% static 'images/film-poster-placeholder.png' %}" height="360" width="293">
+                </a>
+                <p style="text-align: center">{{ spectacle.get_spectacle_type_display }} - {{spectacle.name}}</p><br>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
 			</div>
-			{% endfor %}
 		</div>
 	</div>
-</div>
+</main>
 {% endblock content %}
 
 

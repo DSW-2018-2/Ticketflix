@@ -115,7 +115,9 @@ class SetSeats(FormView):
 
         for ticket in cart.tickets.all():
             seat_id = seats.pop()
-            ticket.seat = Seat.objects.get(id=seat_id)
+            seat = Seat.objects.get(id=seat_id)
+            ticket.seat = str(seat.row) + "-" + str(seat.number)
+            ticket.save()
 
         cart.save()
 

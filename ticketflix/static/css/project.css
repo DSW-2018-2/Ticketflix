@@ -11,3 +11,163 @@
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+  flex: 1 0 auto;
+}
+
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: static;
+  left: 10px; 
+  opacity: 1; 
+}
+
+#parcialtotal {
+  
+  float: right;
+}
+
+.parcialtotal{
+  background: #000;
+  color: #fff;
+  font-size: 30px;
+  padding: 10px;
+}
+
+#ticket-title {
+  padding: 3px;
+  padding-left: 10px;
+  font-size: 15px;
+  background: #000;
+  color: #fff;
+}
+
+.ticket {
+  border: #000 solid 1px;
+  margin-top: 10px;
+}
+
+.ticket-body{
+  margin: 0px;
+}
+
+.ticket-info{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom  : 10px;
+}
+
+.title{
+  font-size: 12px;
+  color:#fff;  
+  vertical-align: middle;
+  float: center;
+  text-align: center;
+}
+
+
+.link-li{
+  display: block;
+    color: white;
+    text-align: center;
+    float: center;
+    padding: 16px;
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.tablist{
+  list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    justify-content: space-between;
+}
+.stepper .step{
+  float: center;
+  text-align: center;
+  justify-content: space-between;
+}
+.stepli{
+  justify-content: space-between;
+  vertical-align: middle;
+  display: inline-block;
+  height: 60px;
+  padding-top: 0;
+  width: 100px;
+  margin: 10px;
+  background-color: #000;
+}
+.current {
+  background-color: #dc1a28;
+}
+.number {
+  font-size: 15px;
+  margin-top: 5px;
+
+}

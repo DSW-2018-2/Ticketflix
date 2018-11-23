@@ -1,35 +1,46 @@
-{% extends "base.html" %} {% load static %} {% block title %}Room: {% endblock %} {% block content %}
-<h1>Room</h1>
+{% extends "base.html" %} 
+{% load static i18n %} 
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for room in object_list %}
-        <tr>
-            <td>{{ room.id }}</td>
-            <td>{{ room.name }}</td>
-            <td>
-                <a href="{% url 'room:room_view' room.id %}">view</a>
-            </td>
-            <td>
-                <a href="{% url 'room:room_edit' room.id %}">edit</a>
-            </td>
-            <td>
-                <a href="{% url 'room:room_delete' room.id %}">delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block title %}Room: 
+{% endblock %} 
 
-<a href="{% url 'room:room_new' %}">New</a>
-
+{% block content %}
+<main>
+  <div class="container">
+    <h2>Sala</h2>
+    <a href="{% url 'room:room_new' %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Nova Sessão</button></a>
+    <div class="row">
+      <div class="col-sm-12">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ver</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in object_list %}
+                <tr>
+                    <td>{{ room.id }}</td>
+                    <td>{{ room.name }}</td>
+                    <td>
+                        <a href="{% url 'room:room_view' room.id %}">ver</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'room:room_edit' room.id %}">editar</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'room:room_delete' room.id %}">deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock content %}

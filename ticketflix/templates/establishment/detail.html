@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}Estabelecimento: {{ object.name }}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Estabelecimento</h2>
+        <strong>{{establishment.name}}</strong> <br>
+        <br>
+        <strong>Endereço:</strong> {{establishment.address}} <br>
+        <strong>Complemento:</strong> {{establishment.addressComplement}} <br>
+        <strong>CEP:</strong> {{establishment.cep}} <br>
+        <strong>Cidade:</strong> {{establishment.city}} <br>
+        <strong>Telefone:</strong> {{establishment.phoneNumber}}
+      </div>
+      <br>
+      <a href="{% url 'establishment:establishment-list' %}"><button type="button" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">{% trans 'Voltar' %}</button></a>
+      <a href="{% url 'establishment:establishment-delete' establishment.id %}"><button type="button" class="btn btn-danger mr-1 yellow darken-3 white-text lighten-1 right">{% trans 'Deletar' %}</button></a>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+

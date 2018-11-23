@@ -11,6 +11,7 @@ from .views import ScheduleView
 
 urlpatterns = [
     path("", ScheduleView.as_view(template_name="pages/home.html"), name="home"),
+    path("manage", TemplateView.as_view(template_name="pages/manage.html"), name="manage"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -34,7 +35,6 @@ urlpatterns = [
         include(("ticketflix.bomboniere.urls", "bomboniere"), 
                 namespace="bomboniere")
     ),
-    # Your stuff: custom urls includes go here
     path(
         "payment/", 
         include(("ticketflix.payment.urls", "payment"), 
@@ -48,7 +48,12 @@ urlpatterns = [
     path(
         "ticket/",
         include(("ticketflix.ticket.urls","ticketflix.ticket"), 
-        namespace="ticket"),
+                namespace="ticket"),
+    ),
+    path(
+        "establishment/",
+        include(("ticketflix.establishment.urls", "establishment"),
+                namespace="establishment"),
     ),
     path(
         "cart/",
@@ -63,7 +68,7 @@ urlpatterns = [
     path(
         "purchase/",
         include(("ticketflix.purchase.urls", "ticketflix.purchase"),
-        namespace="purchase")
+        namespace="purchase"),
     )
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
