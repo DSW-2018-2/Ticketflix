@@ -17,9 +17,10 @@
         <ul>Status: {{ spectacle.get_status_display }}</ul>
         <ul>Duração: {{ spectacle.duration }} minutos</ul>
 
-        <ul>Sessões: </ul>
+        <ul>Programação: </ul>
         {% for session in spectacle.sessions.all%}
-        <ul>- Dia:  {{ session.date }} - Hora: {{session.time}} </ul>
+        <a href="{% url 'cart:set_tickets' session.id %}"><ul>- Dia:  {{ session.date }} às {{session.time}} </ul></a>
+        
         {% endfor%}
 
         {% if spectacle.poster  %}
@@ -52,6 +53,8 @@
         {% endif %}
       </div>
     </div>
+
+    {% if request.user.is_superuser %}
     {% if decorator %}
       {% if spectacle.spectacle_type == 'FILME' %}
         <a href="{% url 'spectacle:movie-delete' decorator.id %}"><button  class="btn red white-text">{% trans 'Remover Informações' %}</button></a>
@@ -74,6 +77,8 @@
     {% endif %}
     <a href="{% url 'spectacle:spectacle-update' spectacle.id %}"><button  class="btn red white-text">{% trans 'Editar Espetáculo' %}</button></a>
     <a href="{% url 'spectacle:spectacle-list' %}"><button  class="btn btn-danger mr-1 right red darken-3 white-text lighten-1">{% trans 'Voltar' %}</button></a>
+     <a href="{% url 'session:session_new' %}"><button type="button" class="btn btn-sucess ">Adicionar nova Sessão</button></a>
+     {% endif%}
   </div>
 <br><br><br>
 </main>

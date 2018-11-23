@@ -8,7 +8,9 @@
 {% block content %}
 <main>
 	<div class="container">
+  {% if request.user.is_superuser %}
     <a href="{% url 'spectacle:spectacle-create' %}"><button  class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">{% trans 'Criar Espetáculo' %}</button></a>
+   {% endif %}
     <h2>Espetáculos</h2>
     <br><br><br><br>
     <div class="row">
