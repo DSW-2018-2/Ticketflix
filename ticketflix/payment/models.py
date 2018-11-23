@@ -31,17 +31,25 @@ class PaymentStrategy(models.Model):
         (NA, 'N/A'),
     )
 
-    purchase = models.ForeignKey(
+    _purchase = models.ForeignKey(
         Purchase, 
         on_delete=models.PROTECT,
     )
 
-    payment_type = models.CharField(
+    _payment_type = models.CharField(
         verbose_name=_('Tipo de Pagamento'),
         help_text=_('Tipo de Pagamento'),
         max_length=20,
         choices=PAYMENT_CHOICES,
         default=NA,
+    )
+
+    status_payment = models.CharField(
+        verbose_name=_('Status'),
+        help_text=_('Status do Pagamento'),
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=AGUARDANDO,
     )
 
     def __str__(self):
@@ -56,20 +64,20 @@ class BankTicket(PaymentStrategy):
         verbose_name = _('Boleto Bancário')
         verbose_name_plural = _('Boletos Bancários')
 
-    ownerName = models.CharField(
+    _ownerName = models.CharField(
         verbose_name=_('Pagador do boleto'),
         help_text=_('Nome do pagador do boleto'),
         max_length=255,
         default = ''
     )
 
-    ownerCpf = models.BigIntegerField(
+    _ownerCpf = models.BigIntegerField(
         verbose_name=_('CPF do pagador'),
         help_text=_('CPF do pagador do boleto'),
         default = 00000000000
     )
 
-    expirationDate = models.DateField(
+    _expirationDate = models.DateField(
         verbose_name=_('Data de vencimento'), 
         help_text=_('Data de vencimento do boleto'),
         auto_now=False,
