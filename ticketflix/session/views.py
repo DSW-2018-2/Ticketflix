@@ -22,8 +22,10 @@ class SessionCreate(CreateView):
         'date',
         'time',
         'spectacle',
+        'room',
         'total_ticket_number',
-        'available_ticket_number'
+        'available_ticket_number',
+        'price'
     ]
     success_url = reverse_lazy('session:session_list')
 
@@ -34,8 +36,10 @@ class SessionUpdate(UpdateView):
         'place',
         'date',
         'time',
+        'room'
         'total_ticket_number',
-        'available_ticket_number'
+        'available_ticket_number',
+        'price'
     ]
     success_url = reverse_lazy('session:session_list')
 

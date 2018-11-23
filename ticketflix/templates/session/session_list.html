@@ -9,7 +9,9 @@
 <main>
   <div class="container">
     <h2>Sessão</h2>
+    {% if request.user.is_superuser %}
     <a href="{% url 'session:session_new' %}"><button type="button" class="btn btn-sucess mr-1 right blue lighten-1 white-text lighten-1">Nova Sessão</button></a>
+    {% endif %}
     <div class="row">
       <div class="col-sm-12">
         <table border="1">
@@ -18,9 +20,12 @@
               <th>ID</th>
               <th>Data</th>
               <th>Local</th>
+              <th>Espetáculo</th>
               <th>Ver</th>
+              {% if request.user.is_superuser %}
               <th>Editar</th>
               <th>Deletar</th>
+              {% endif %}
             </tr>
           </thead>
           <tbody>
@@ -28,16 +33,19 @@
             <tr>
               <td>{{ session.id }}</td>
               <td>{{ session.date }} | {{ session.time}}</td>
+              <td>{{ session.spectacle.name }}</td>
               <td>{{ session.place }}</td>
               <td>
                   <a href="{% url 'session:session_view' session.id %}">ver</a>
               </td>
+              {% if request.user.is_superuser %}
               <td>
                   <a href="{% url 'session:session_edit' session.id %}">editar</a>
               </td>
               <td>
                   <a href="{% url 'session:session_delete' session.id %}">deletar</a>
               </td>
+              {% endif %}
             </tr>
             {% endfor %}
           </tbody>

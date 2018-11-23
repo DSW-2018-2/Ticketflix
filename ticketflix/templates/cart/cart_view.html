@@ -1,0 +1,132 @@
+{% extends "base.html" %} {% load static i18n %} {% block title %}Compra{% endblock %} {% block content %}
+<main>
+  <div class="container">
+
+<div class="stepper" align="center">
+    <div class="steps clearfix" align="center">
+    <ul role="tablist" class="tablist link-li" align="center">
+      <li role="tab" class="stepli first "  aria-selected="true">
+        <span class="current-info audible"> </span>
+        <span class="title">
+        <span class="number">
+          1
+          </span><br>
+          <span class="title_text">Ingressos</span>
+        </span>
+      </li>
+      <li role="tab" class="stepli  disabled" >
+          <span class="title">
+          <span class="number">
+          2
+          </span><br>
+          <span class="title_text">Assentos</span>
+
+          </span>
+      </li>
+      <li role="tab" class="stepli disabled" >
+      <span class="title">
+      <span class="number">
+      3
+      </span><br>
+      <span class="title_text">Bomboniere</span>
+
+      </span>
+      </li>
+      <li role="tab" class="stepli current disabled" >
+      <span class="title">
+      <span class="number">
+      4
+      </span><br>
+      <span class="title_text">Confirmação</span>
+      </span>
+      </li>
+      <li role="tab" class="stepli disabled" >
+      <span class="title">
+      <span class="number">
+      5
+      </span><br>
+      <span class="title_text">Pagamento</span>
+      </span>
+      </li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+
+    <h2>Seus Pedido:</h2>
+    {% for ticket in object.tickets.all %}
+        <div class="row ticket">
+            <div class="col-sm-12" id="ticket-title"><b>{{ ticket.session.spectacle }}</b></div><br>
+            <div class="row ticket-body">
+               <div class="col-sm-6 left ticket-info">
+                <b>Tipo:</b> {{ ticket.ticket_type }} <br>
+                <b>Assento:</b> {{ ticket.seat }} <br>
+                <b>Preço:</b> {{ ticket.price }} <br>
+                </div>
+                <div class="col-sm-6 right ticket-info">
+                    <b>Data:</b> {{ ticket.session.date }} às {{ ticket.session.time }} <br>
+                    <b>Local:</b> {{ ticket.session.place }} <br>
+                    <b>Sala:</b> {{ ticket.session.room.name }} <br>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+            {% if object.products.all %}
+    <h2>Produtos de Bomboniere:</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-12" id="ticket-title"><h5>Produtos:</h5></div>
+            {% for product in object.products.all %}
+            <div class="row ticket">
+                <div class="col-sm-12 ticket-body">
+                    <div class="col-sm-6 left ticket-info">
+                    <b>Nome:</b> {{ product.name }} <br>
+                    {% if product.description %}
+                    <b>Descrição:</b> {{ product.description }} <br>
+                    {% endif %}
+                    </div>
+                    <div class="col-sm-6 right ticket-info">
+                    <b>Preço:</b> {{ product.price }} <br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if object.combos.all %}
+            <div class="col-sm-12" id="ticket-title"><h5>Combos:</h5></div>
+            {% for combo in object.combos.all %}
+            <div class="row ticket">
+                <div class="col-sm-12 ticket-body">
+                <div class="col-sm-6 left ticket-info">
+                    <b>Nome:</b> {{ combo.name }} <br>
+                    {% if combo.description %}
+                    <b>Descrição:</b> {{ combo.description }} <br>
+                    {% endif %}
+                    </div>
+                    <div class="col-sm-6 right ticket-info">
+                    <b>Preço:</b> {{ combo.price }} <br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row parcialtotal">
+        <div class="col-sm-12 ">
+           <b> Total:</b> <span id="parcialtotal">{{ object.parcial_price }}</span>
+        </div>
+    </div>
+    <button type="button" onClick="javascript:history.go(-1);" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">Voltar</button>
+
+    <a href="{% url 'purchase:finalize_purchase' object.id %}"><button type="button" class="btn btn-danger mr-1 right green darken-3 white-text lighten-1">Finalizar Compra</button></a>
+
+    </div>
+  </div>
+</main>
+{% endblock content %}

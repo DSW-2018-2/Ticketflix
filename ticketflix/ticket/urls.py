@@ -9,6 +9,4 @@ urlpatterns = [
     path('', TicketList.as_view(template_name='ticket/ticket_list.html'), name='ticket_list'),
     path('view/<int:pk>', TicketView.as_view(template_name='ticket/ticket_view.html'), name='ticket_view'),
     path('new', TicketCreate.as_view(template_name='ticket/ticket_form.html'), name='ticket_new'),
-    path('edit/<int:pk>', TicketUpdate.as_view(template_name='ticket/ticket_form.html'), name='ticket_edit'),
-    path('delete/<int:pk>', TicketDelete.as_view(template_name='ticket/ticket_delete.html'), name='ticket_delete'),
 ]

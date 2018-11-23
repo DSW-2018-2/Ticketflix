@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% load static %} {% block title %}Set Tickets: {{ object.parcial_price }}{% endblock %} {% block content %}
+<main>
+  <div class="container">
+
+<div class="stepper" align="center">
+    <div class="steps clearfix" align="center">
+    <ul role="tablist" class="tablist link-li" align="center">
+      <li role="tab" class="stepli first "  aria-selected="true">
+        <span class="current-info audible"> </span>
+        <span class="title">
+        <span class="number">
+          1
+          </span><br>
+          <span class="title_text">Ingressos</span>
+        </span>
+      </li>
+      <li role="tab" class="stepli  disabled" >
+          <span class="title">
+          <span class="number">
+          2
+          </span><br>
+          <span class="title_text">Assentos</span>
+
+          </span>
+      </li>
+      <li role="tab" class="stepli current disabled" >
+      <span class="title">
+      <span class="number">
+      3
+      </span><br>
+      <span class="title_text">Bomboniere</span>
+
+      </span>
+      </li>
+      <li role="tab" class="stepli disabled" >
+      <span class="title">
+      <span class="number">
+      4
+      </span><br>
+      <span class="title_text">Confirmação</span>
+      </span>
+      </li>
+      <li role="tab" class="stepli disabled" >
+      <span class="title">
+      <span class="number">
+      5
+      </span><br>
+      <span class="title_text">Pagamento</span>
+      </span>
+      </li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+    <h2>Selecionar itens de bomboniere:</h2>
+    <form method="post">{% csrf_token %} {{ form.as_p }}
+           <button type="button" onClick="javascript:history.go(-1);" class="btn btn-danger mr-1 red darken-3 white-text lighten-1">Voltar</button>
+				    <button type="submit" value="Submit" class="btn btn-danger mr-1 right green darken-3 white-text lighten-1">Avançar</button></a>
+    </form>
+        </div>
+  </div>
+  </div>
+</main>
+{% endblock content %}
