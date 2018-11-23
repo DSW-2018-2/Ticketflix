@@ -1,9 +1,12 @@
 {% extends "base.html" %} {% load static %} {% block title %}Bank Ticket: {% endblock %} {% block content %}
 <div class="container">
-
+    <h4>Boleto Bancário</h4>
     <div class="row">
         <div class="col-sm-12">
-            <h4>{{ object.ownerName }}</h4>
+            Nome do pagador: {{ object.ownerName }}<br>
+            CPF do pagador: {{ object.ownerCpf }}<br>
+            Data de vencimento: {{ object.expirationDate }}<br>
+            Valor do pagamento: {{ object.purchase.total_price }}<br>
         </div>
     </div>
 </div>
