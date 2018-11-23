@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import FormView, DetailView
+from django.views.generic import CreateView, FormView, DetailView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
 from .forms import PaymentSelectForm
-from .models import PaymentStrategy
+from .models import PaymentStrategy, BankTicket, CreditCard
+
 
 class PaymentSelectView(FormView):
     form_class = PaymentSelectForm
@@ -19,14 +20,13 @@ class PaymentSelectView(FormView):
 
     def form_valid(self, form, request, **kwargs):
         if(form.cleaned_data.get('choice') == 'bankTicket'):
-            print('================ ESCOLHEU O BOLETO')
-            success_url = reverse_lazy('payment:payment_select')
+            success_url = reverse_lazy('payment:payment_detail')
         
         elif(form.cleaned_data.get('choice') == 'creditCard'):
-            print('================ ESCOLHEU O CARTÃO DE CRÉDITO')
             success_url = reverse_lazy('payment:payment_select')
         
         return HttpResponseRedirect(success_url)
+
 
 class PaymentDetailView(DetailView):
     model = PaymentStrategy
@@ -42,3 +42,57 @@ class PaymentDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         payment = context['object']
         return context
+
+
+class BankTicketCreateView(CreateView):
+    model = BankTicket
+    template_name = 'payment/bank_ticket_create.html'
+
+    fields = [
+        '_ownerName',
+        '_cardNumber',
+        '_securityCode',
+        '_explireMonth',
+        '_expireYear'
+    ]
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        if form.is_valid():
+            return self.form_valid(form, request, **kwargs)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form, request, **kwargs):
+        return HttpResponseRedirect(self.get_success_url(kwargs['id']))
+
+    def get_success_url(self, id_payment):
+        success_url = reverse_lazy('payment:credit_card:detail', kwargs={'id': payment_id})
+
+        return str(success_url)
+
+class CreditCardCreateView(CreateView):
+    model = CreditCard
+    template_name = 'payment/bank_ticket_create.html'
+
+    fields = [
+        '_ownerName',
+        '_ownerCpf',
+    ]
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        if form.is_valid():
+            return self.form_valid(form, request, **kwargs)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form, request, **kwargs):
+        return HttpResponseRedirect(self.get_success_url(kwargs['id']))
+
+    def get_success_url(self, id_payment):
+        success_url = reverse_lazy('payment:credit_card:detail', kwargs={'id': payment_id})
+
+        return str(success_url)

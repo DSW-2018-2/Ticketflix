@@ -15,8 +15,6 @@ class PurchaseView(LoginRequiredMixin, DetailView):
     model = Purchase
 
 class FinalizePurchase(LoginRequiredMixin, RedirectView):
-    url = "http://localhost:8000/" # Apagar essa linha quando a url do pagamento for setada
-
     def get(self, request, *args, **kwargs):
         
         cart = Cart.objects.get(id=kwargs['pk_cart'])
@@ -25,7 +23,6 @@ class FinalizePurchase(LoginRequiredMixin, RedirectView):
         purchase.set_total_price()
         purchase.save()
 
-        # Colocar aqui a url do pagamento (com a pk da compra)
-        # self.url = reverse_lazy('payment:payment_url', kwargs={'pk_purchase': purchase.id})
+        self.url = reverse_lazy('payment:payment_select', kwargs={'fk': purchase.id})
 
         return super(FinalizePurchase, self).get(request, *args, **kwargs)
