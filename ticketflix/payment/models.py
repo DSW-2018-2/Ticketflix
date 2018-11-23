@@ -31,6 +31,16 @@ class PaymentStrategy(models.Model):
         (NA, 'N/A'),
     )
 
+    AGUARDANDO = 'Aguardando'
+    CONFIRMADO = 'Confirmado'
+    CANCELADO = 'Cancelado'
+
+    STATUS_CHOICES = (
+        (AGUARDANDO, AGUARDANDO),
+        (CONFIRMADO, CONFIRMADO),
+        (CANCELADO, CANCELADO),
+    )
+
     _purchase = models.ForeignKey(
         Purchase, 
         on_delete=models.PROTECT,
@@ -44,13 +54,23 @@ class PaymentStrategy(models.Model):
         default=NA,
     )
 
-    status_payment = models.CharField(
+    statusPayment = models.CharField(
         verbose_name=_('Status'),
         help_text=_('Status do Pagamento'),
         max_length=20,
         choices=STATUS_CHOICES,
         default=AGUARDANDO,
     )
+
+    def notifyStatus(self):
+        purchase_instance = Purchase.objects.get(id=self.purchase.id)
+        purchase_instance.updateStatusPayment(self.status_payment)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if(self.statusPayment != AGUARDANDO):
+            self.notifyStatus()
 
     def __str__(self):
         return self.id
@@ -82,6 +102,14 @@ class BankTicket(PaymentStrategy):
         help_text=_('Data de vencimento do boleto'),
         auto_now=False,
         auto_now_add=False
+    )
+
+    _payment_type = models.CharField(
+        verbose_name=_('Tipo de Pagamento'),
+        help_text=_('Tipo de Pagamento'),
+        max_length=20,
+        default=PaymentStrategy.BOLETOBANCARIO,
+        editable=False,
     )
 
 
@@ -126,4 +154,12 @@ class CreditCard(PaymentStrategy):
         verbose_name=_('Parcelas'),
         help_text=_('Quantidade de parcelas do pagamento'),
         default = 1
+    )
+
+    _payment_type = models.CharField(
+        verbose_name=_('Tipo de Pagamento'),
+        help_text=_('Tipo de Pagamento'),
+        max_length=20,
+        default=PaymentStrategy.CARTAODECREDITO,
+        editable=False,
     )
