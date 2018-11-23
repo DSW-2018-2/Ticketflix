@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from ticketflix.ticket.models import Ticket
 from ticketflix.bomboniere.models import Product, Combo
+from ticketflix.room.models import Seat
 
 class Cart(models.Model):
 
@@ -55,15 +56,3 @@ class Cart(models.Model):
 
         self.parcial_price = parcial_price
         self.save()
-
-    # def add_cart_items(self, item):
-    #     if isinstance(item, Ticket):
-    #         self.tickets.add(item)
-    #     self.save()
-    #     self.update_parcial_price()
-
-    # def remove_cart_items(self, item):
-    #     if isinstance(item, Ticket):
-    #         self.tickets.remove(item)
-    #     self.save()
-    #     self.update_parcial_price()

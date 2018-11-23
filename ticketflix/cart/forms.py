@@ -7,6 +7,7 @@ from ticketflix.bomboniere.models import Product, Combo
 from ticketflix.room.models import *
 from .models import Cart
 
+
 class SetTicketsForm(forms.Form):
 
     half_tickets_quantity = forms.IntegerField(
@@ -20,17 +21,26 @@ class SetTicketsForm(forms.Form):
         required=True,
         initial=0
     )
+    
+    def clean(self):
+      data = self.cleaned_data
+      half_tickets_quantity = data.get('half_tickets_quantity')
+      full_tickets_quantity = data.get('full_tickets_quantity')
+      quantity = half_tickets_quantity + full_tickets_quantity
+      if quantity < 1:
+        raise ValidationError('Escolha ao menos um ingresso')
+      return data
 
 
 class SetSeatsForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
-        
+
         initial = kwargs['initial']
         cart_id = initial.pop('pk_cart')
 
         super(SetSeatsForm, self).__init__(*args, **kwargs)
-        
+
         self.fields['cart_pk'] = forms.IntegerField(widget=forms.HiddenInput(), initial=cart_id)
         self.fields['seats'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(),
                                                          choices=self.get_choices(cart_id),
@@ -53,9 +63,9 @@ class SetSeatsForm(forms.Form):
         return choices
 
     def clean(self):
-        
+
         data = self.cleaned_data
-        
+
         cart_id = data.get('cart_pk')
         cart = Cart.objects.get(id=cart_id)
 
@@ -74,7 +84,7 @@ class SetBomboniereProductsForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(SetBomboniereProductsForm, self).__init__(*args, **kwargs)
-        
+
         self.fields['products'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(),
                                                             choices=self.get_products_choices(),
                                                             required=False)
@@ -83,7 +93,6 @@ class SetBomboniereProductsForm(forms.Form):
                                                           choices=self.get_combos_choices(),
                                                           required=False)
 
-    
     def get_products_choices(self):
         products_choices = []
 
@@ -96,7 +105,6 @@ class SetBomboniereProductsForm(forms.Form):
 
         return products_choices
 
-    
     def get_combos_choices(self):
         combos_choices = []
 
@@ -108,5 +116,3 @@ class SetBomboniereProductsForm(forms.Form):
                 combos_choices.append(tup)
 
         return combos_choices
-
-
